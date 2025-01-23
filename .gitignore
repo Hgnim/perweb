@@ -1,0 +1,15 @@
+node_modules
+/dist
+
+# Editor directories and files
+.idea
+.vscode
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+
+localOnly

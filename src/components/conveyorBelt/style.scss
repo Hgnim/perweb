@@ -21,19 +21,14 @@ $conveyorBelt_anim-time: 16s !default;
     height: $conveyorBeltHeight;
     position: absolute;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     flex-wrap: nowrap;
     transform: translateX(-100%);
-    animation: moveConveyor $conveyorBelt_anim-time linear infinite;
-    &.g2{
-        animation: moveConveyor $conveyorBelt_anim-time linear infinite;
-        animation-delay: calc($conveyorBelt_anim-time / 2);
-    }
+    //animation: moveConveyor $conveyorBelt_anim-time linear infinite;
 }
 
 .conveyor-belt .conveyor .item {
-    width: 100%;
     height: 80%;
     position: relative;
     z-index: 1;

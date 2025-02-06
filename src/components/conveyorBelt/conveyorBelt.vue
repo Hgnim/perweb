@@ -1,20 +1,16 @@
 <template>
   <div :style="styleObject" class="conveyor-belt">
-    <div class="conveyor">
-    </div>
-    <div class="conveyor g2">
-    </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent,ref} from 'vue';
+import { defineComponent,ref,PropType } from 'vue';
 export default defineComponent({
   name: 'conveyorBelt',
   props: {
     images:{
-      type: Object,
+      type: Array as PropType<string[]>,
       required: true,
-      default: []//图片，数量需为偶数
+      default: []//图片
     },
     style:{
       type: Object,
@@ -22,13 +18,18 @@ export default defineComponent({
       default:{
         conveyorBeltWidth:'800px',//传送带宽度
         conveyorBeltHeight:'100px',//传送带高度
-        animTime: '16s',//传送带速度
+        animTime: '16s',//传送带速度。如果waitNextTime为0，则该速度的单位必须使用秒，
       }
     },
     objNumId:{
       type: Number,
       required: false,
       default:0 //添加目标时寻找指定类的元素时的序号ID，用于多个组件
+    },
+    waitNextTime:{
+      type: Number,
+      required: false,
+      default:0 //释放下一个对象时等待的时间，为0则自动计算时间。单位：毫秒
     }
   },
   methods: {
@@ -44,30 +45,57 @@ export default defineComponent({
   },
   setup(props) {},
   mounted(){
-    for (let i = 0; i < 2; i++) {
-      let itemObjs :HTMLElement[]=[];
+    {
+      function sleep(interval:number) {
+        return new Promise((resolve) => {
+          setTimeout(resolve, interval);
+        });
+      }
+      const inputImages:string[]=this.images;
+      const objNumId:number=this.objNumId;
+      const animTime:string = this.style.animTime;
+      const waitNextTime:number =
+          this.waitNextTime != 0
+              ? this.waitNextTime
+              : (()=>{
+                return (parseFloat(animTime)*1000)/16;
+              })();
+      let imgNum:number=inputImages.length;
 
-      for (let j=(this.images.length*i)/2 ;j<this.images.length/(2-i);j++) {
-        const itemE:HTMLElement=(()=>{
+      async function AddConveyorObj() {
+        imgNum++;
+        if (imgNum>=inputImages.length)
+          imgNum=0;
+
+        const conveyorObj = (() => {
           const element = document.createElement('div');
-          element.className = 'item';
+          element.className = 'conveyor';
           return element;
         })();
-        itemE.append(
-            (()=>{
-              const element=document.createElement("img");
-              element.src = this.images[j];
-              return element;
-            })()
-        );
-        itemObjs.push(itemE);
-      }
-      itemObjs.reverse();//倒转数组，让其按参数中的数组顺序
+        conveyorObj.append((() => {
+          const itemE = document.createElement('div');
+          itemE.className = 'item';
+          itemE.append((() => {
+            const imgE = document.createElement('img');
+            imgE.src = inputImages[imgNum];
+            return imgE;
+          })());
+          return itemE;
+        })());
+        document.querySelectorAll(".conveyor-belt")[objNumId]?.append(conveyorObj);
 
-      const objClass:string= i==0?'.conveyor':'.conveyor.g2';
-      itemObjs.forEach(obj => {
-        document.querySelectorAll(".conveyor-belt")[this.objNumId]?.querySelectorAll(objClass)[0].append(obj);
-      })
+        function conveyorObj_animOver() {
+          conveyorObj.removeEventListener('animationend', conveyorObj_animOver);
+          conveyorObj.remove();
+        }conveyorObj.addEventListener('animationend', conveyorObj_animOver);
+
+        conveyorObj.style.animation = `moveConveyor ${animTime} linear`;
+
+        await sleep(waitNextTime);
+        (()=>{
+          AddConveyorObj();
+        })();
+      }AddConveyorObj();
     }
   }
 });

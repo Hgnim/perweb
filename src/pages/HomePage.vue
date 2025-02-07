@@ -17,6 +17,37 @@
         </div>
         <div class="col-12 mb-2">
           <div class="row">
+            <details>
+              <summary>自学生涯</summary>
+              <!--以下数据是根据历史项目推测得出，后续如果发现不准确则需进行更正-->
+<pre style="
+	background-color: #151515;
+	border-radius: 10px;
+	width: 70%;
+	text-align: initial;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 16px;
+	overflow: scroll;
+">
+| C# |
+------------------------------------------------------------------------------------------------------------------------------
+时间线   2021/05上旬           2021/05下旬           2021/06           2023/03       2023/07        2024/06        2024/07   NOW
+              |                     |                  |                 |             |              |              |      |
+      Visual Basic Script --> Visual Basic --> Visual Basic .NET -----> C# ========== C# =========== C# =========== C# ==== .
+                                                       |               / |             |              |              |      |
+                                               Console & WinForm ------  |  =========  |  ==========  |  =========== | ==== .
+                                                                  Xamarin.Android ===  |  ==========  |  =========== | ==== .
+                                                                                    ASP.NET -> ASP.NET Core(MVC) === | ==== .
+                                                                                                                   Unity == .
+------------------------------------------------------------------------------------------------------------------------------
+</pre>
+            </details>
+          </div>
+        </div>
+        <div class="col-12 mb-2">
+          <div class="row">
             <div class="col-10 offset-1">
               <dl class="title-and-content">
                 <dt>Github 提交图表：</dt>

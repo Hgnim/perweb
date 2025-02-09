@@ -16,34 +16,57 @@
           </div>
         </div>
         <div class="col-12 mb-2">
-          <div class="row">
-            <details>
-              <summary>自学生涯</summary>
-              <!--以下数据是根据历史项目推测得出，后续如果发现不准确则需进行更正-->
-<pre style="
-	background-color: #151515;
-	border-radius: 10px;
-	width: 70%;
-	text-align: initial;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	padding: 16px;
-	overflow: scroll;
-">
-| C# |
-------------------------------------------------------------------------------------------------------------------------------
-时间线   2021/05上旬           2021/05下旬           2021/06           2023/03       2023/07        2024/06        2024/07   NOW
-              |                     |                  |                 |             |              |              |      |
-      Visual Basic Script --> Visual Basic --> Visual Basic .NET -----> C# ========== C# =========== C# =========== C# ==== .
-                                                       |               / |             |              |              |      |
-                                               Console & WinForm ------  |  =========  |  ==========  |  =========== | ==== .
-                                                                  Xamarin.Android ===  |  ==========  |  =========== | ==== .
-                                                                                    ASP.NET -> ASP.NET Core(MVC) === | ==== .
-                                                                                                                   Unity == .
-------------------------------------------------------------------------------------------------------------------------------
+          <div class="row div-left-center content-width" style="text-align: left;">
+            <p>
+              我对计算机技术有着浓厚的兴趣且充满热情，始终保持着快速学习的能力。通过多年的自我学习与实践，为自己积累了不少宝贵的开发经验。
+            </p>
+            <ul dir="auto">
+              <li>
+                熟练掌握Windows、Linux(Debian系)等操作系统，能够根据不同的工作需求灵活切换和使用。
+                <ul>
+                  <li>熟练使用Windows操作系统进行日常办公和软件开发，具备系统故障排查和优化的能力。</li>
+                  <li>具备Linux系统的使用和管理能力。能熟练使用终端命令，了解其文件系统与权限用户组，能够进行服务器搭建和维护、系统配置和脚本编写。</li>
+                </ul>
+              </li>
+              <li>
+                <span>熟悉C#，且其为我的主要开发语言。应用于桌面应用开发、跨平台开发、依赖库开发、游戏开发、后端开发等。例如：Console, WinForm, ClassLibrary, Unity, Xamarin.Android, ASP.NET Core (MVC)</span>
+                <details>
+                  <summary style="font-size: 0.65rem">C#学习时间线</summary>
+                  <div class="div-left-center content-width details-box">
+<pre>
+时间线   2021/05上旬           2021/05下旬           2021/06         2023/03  NOW
+              |                     |                  |               |     |
+      Visual Basic Script --> Visual Basic --> Visual Basic .NET ---> C# --- .
+
 </pre>
-            </details>
+                    <p>
+                      初学vb，后转c#。
+                      <br/><span style="font-size: 0.8rem">该数据由历史项目推测得出</span>
+                    </p>
+                  </div>
+                </details>
+              </li>
+              <li>
+                了解并会使用HTML5、CSS3和JavaScript，以及CSS的预处理器Sass(包括SCSS语法)和JavaScript的超集TypeScript。能够运用Vue.js框架构建响应式Web界面。
+              </li>
+              <li>
+                掌握Git的基本概念，包括版本控制、分支管理、合并冲突解决等。了解Git的工作原理和核心机制，能够高效地使用Git进行代码版本管理。
+              </li>
+            </ul>
+            <div>
+              <span>
+                我主导着多个小型开源项目。并且积极参与开源社区，为多个开源项目做出了贡献。
+              </span>
+              <details>
+                <summary style="font-size: 0.65rem">开源项目精选</summary>
+                <div class="div-left-center content-width details-box" style="text-align: center">
+                  <a href="https://github.com/Hgnim/TimedPower">TimedPower</a><br/>
+                  <a href="https://github.com/Hgnim/EasyUpdateFromGithub">EasyUpdateFromGithub</a><br/>
+                  <a href="https://github.com/Hgnim/KeyInputMacro">KeyInputMacro</a><br/>
+                  <a href="https://github.com/Hgnim/RDR2PhotoView">RDR2PhotoView</a>
+                </div>
+              </details>
+            </div>
           </div>
         </div>
         <div class="col-12 mb-2">
@@ -218,5 +241,17 @@ export default defineComponent({
 .title-and-content{
   @extend .div-left-center;
   text-align: left;
+}
+
+.content-width{
+  width: 70%;
+}
+
+.details-box{
+  background-color: #151515;
+  border-radius: 10px;
+  text-align: initial;
+  padding: 16px;
+  overflow: scroll;
 }
 </style>

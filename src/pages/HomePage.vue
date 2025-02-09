@@ -15,20 +15,24 @@
             </div>
           </div>
         </div>
-        <div class="col-12 mb-2">
-          <div class="row div-left-center content-width" style="text-align: left;">
-            <p>
+        <div class="col-12 py-5">
+          <div class="row" style="text-align: left;">
+            <div class="col-10 offset-1 border-box mb-2">
+            <p style="margin-bottom: 0">
               我对计算机技术有着浓厚的兴趣且充满热情，始终保持着快速学习的能力。通过多年的自我学习与实践，为自己积累了不少宝贵的开发经验。
             </p>
-            <ul dir="auto">
-              <li>
+            <ul dir="auto" class="row" style="padding-left: 0;">
+              <li class="col-6 ulli-not-dot py-2">
+                <div class="card card-box-nohave-border">
                 熟练掌握Windows、Linux(Debian系)等操作系统，能够根据不同的工作需求灵活切换和使用。
                 <ul>
                   <li>熟练使用Windows操作系统进行日常办公和软件开发，具备系统故障排查和优化的能力。</li>
                   <li>具备Linux系统的使用和管理能力。能熟练使用终端命令，了解其文件系统与权限用户组，能够进行服务器搭建和维护、系统配置和脚本编写。</li>
                 </ul>
+                </div>
               </li>
-              <li>
+              <li class="col-6 ulli-not-dot py-2">
+                <div class="card card-box-nohave-border">
                 <span>熟悉C#，且其为我的主要开发语言。应用于桌面应用开发、跨平台开发、依赖库开发、游戏开发、后端开发等。例如：Console, WinForm, ClassLibrary, Unity, Xamarin.Android, ASP.NET Core (MVC)</span>
                 <details>
                   <summary style="font-size: 0.65rem">C#学习时间线</summary>
@@ -45,12 +49,17 @@
                     </p>
                   </div>
                 </details>
+                </div>
               </li>
-              <li>
+              <li class="col-6 ulli-not-dot py-2">
+                <div class="card card-box-nohave-border">
                 了解并会使用HTML5、CSS3和JavaScript，以及CSS的预处理器Sass(包括SCSS语法)和JavaScript的超集TypeScript。能够运用Vue.js框架构建响应式Web界面。
+                </div>
               </li>
-              <li>
+              <li class="col-6 ulli-not-dot py-2">
+                <div class="card card-box-nohave-border">
                 掌握Git的基本概念，包括版本控制、分支管理、合并冲突解决等。了解Git的工作原理和核心机制，能够高效地使用Git进行代码版本管理。
+                </div>
               </li>
             </ul>
             <div>
@@ -67,11 +76,12 @@
                 </div>
               </details>
             </div>
+            </div>
           </div>
         </div>
         <div class="col-12 mb-2">
           <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-10 offset-1 border-box">
               <dl class="title-and-content">
                 <dt>Github 提交图表：</dt>
                 <dd>
@@ -81,15 +91,14 @@
             </div>
           </div>
         </div>
-        <div class="col-12 mb-2" >
-          <div class="row" style="position: relative">
-            <div class="col-10 offset-1" style="border: 2px solid var(--bs-border-color);border-radius: 20px;position: absolute;height: 100%"><!--边框--></div>
-            <div class="col-11 offset-1">
+        <div class="col-10 offset-1 border-box mb-2">
+          <div class="row">
+            <div class="col-12">
               <h6 style="color:var(--bs-border-opacity);opacity: 0.006;position: absolute;">用过不代表精通</h6>
-              <h5 style="color:var(--bs-border-opacity);text-align: left;margin-top: 8px">技能：</h5>
+              <!--<h4 class="border-title">涉及的技能：</h4>-->
             </div>
-            <div class="col-10 offset-1" style="position: relative;">
-              <div style="position: absolute;width: 100%;height: 100%;z-index: 1;" class="div-left-center"></div>
+            <div class="col-12" style="position: relative;">
+              <div class="div-left-center transparent-cover"></div>
               <dl class="title-and-content unSelectable">
                 <dt>使用的语言/涉及的领域：</dt>
                 <dd>
@@ -126,8 +135,8 @@
                 </dd>
               </dl>
             </div>
-            <div class="col-10 offset-1" style="position: relative;">
-              <div style="position: absolute;width: 100%;height: 100%;z-index: 1;" class="div-left-center"></div>
+            <div class="col-12" style="position: relative;">
+              <div class="div-left-center transparent-cover"></div>
               <dl class="title-and-content unSelectable">
                 <dt>使用的平台/工具：</dt>
                 <dd>
@@ -156,8 +165,8 @@
                 </dd>
               </dl>
             </div>
-            <div class="col-10 offset-1" style="position: relative;">
-              <div style="position: absolute;width: 100%;height: 100%;z-index: 1;" class="div-left-center"></div>
+            <div class="col-12" style="position: relative;">
+              <div class="div-left-center transparent-cover"></div>
               <dl class="title-and-content unSelectable">
                 <dt>使用的操作系统：</dt>
                 <dd>
@@ -253,5 +262,43 @@ export default defineComponent({
   text-align: initial;
   padding: 16px;
   overflow: scroll;
+}
+
+.border-box{
+  //板块边框
+  border: 2px solid var(--bs-border-color);
+  border-radius: 20px;
+  height: 100%;
+  padding: 16px;
+}
+.border-title{
+  //板块标题
+  color:var(--bs-border-opacity);
+  text-align: left;
+}
+
+.transparent-cover{
+  //透明盖板，阻挡用户点击
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.card{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.ulli-not-dot{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.card-box-nohave-border{
+  //卡片的边距，不包含边框
+  padding: 5px 8px;
+  margin: 8px;
+  height: 100%;
 }
 </style>

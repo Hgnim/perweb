@@ -79,6 +79,7 @@ export default defineComponent({
   background-color:   var(--bs-navbar-color);
   border-right: 1px solid var(--bs-border-color);
   padding: 1rem;
+  z-index: 500;
 }
 
 .navbar-left .navbar-brand{

@@ -22,7 +22,7 @@
               我对计算机技术有着浓厚的兴趣且充满热情，始终保持着快速学习的能力。通过多年的自我学习与实践，为自己积累了不少宝贵的开发经验。
             </p>
             <ul dir="auto" class="row" style="padding-left: 0;">
-              <li class="col-6 ulli-not-dot py-2">
+              <li class="col-12 col-md-6 ulli-not-dot py-2">
                 <div class="card card-box-nohave-border">
                 熟练掌握Windows、Linux(Debian系)等操作系统，能够根据不同的工作需求灵活切换和使用。
                 <ul>
@@ -31,7 +31,7 @@
                 </ul>
                 </div>
               </li>
-              <li class="col-6 ulli-not-dot py-2">
+              <li class="col-12 col-md-6 ulli-not-dot py-2">
                 <div class="card card-box-nohave-border">
                 <span>熟悉C#，且其为我的主要开发语言。应用于桌面应用开发、跨平台开发、依赖库开发、游戏开发、后端开发等。例如：Console, WinForm, ClassLibrary, Unity, Xamarin.Android, ASP.NET Core (MVC)</span>
                 <details>
@@ -51,12 +51,12 @@
                 </details>
                 </div>
               </li>
-              <li class="col-6 ulli-not-dot py-2">
+              <li class="col-12 col-md-6 ulli-not-dot py-2">
                 <div class="card card-box-nohave-border">
                 了解并会使用HTML5、CSS3和JavaScript，以及CSS的预处理器Sass(包括SCSS语法)和JavaScript的超集TypeScript。能够运用Vue.js框架构建响应式Web界面。
                 </div>
               </li>
-              <li class="col-6 ulli-not-dot py-2">
+              <li class="col-12 col-md-6 ulli-not-dot py-2">
                 <div class="card card-box-nohave-border">
                 掌握Git的基本概念，包括版本控制、分支管理、合并冲突解决等。了解Git的工作原理和核心机制，能够高效地使用Git进行代码版本管理。
                 </div>
@@ -82,16 +82,6 @@
         <div class="col-12 mb-2">
           <div class="row">
             <div class="col-10 offset-1 border-box">
-              <dl class="title-and-content">
-                <dt>Github 提交图表：</dt>
-                <dd>
-                  <img class="unSelectable" src="https://ghchart.rshah.org/0045c4/Hgnim" alt="Hagnimik's github chart" style="width: 100%;text-align: center" />
-                </dd>
-              </dl>
-            </div>
-          </div>
-        </div>
-        <div class="col-10 offset-1 border-box mb-2">
           <div class="row">
             <div class="col-12">
               <h6 style="color:var(--bs-border-opacity);opacity: 0.006;position: absolute;">用过不代表精通</h6>
@@ -188,6 +178,20 @@
                         :wait-next-time="2000"
                     />
                   </div>
+                </dd>
+              </dl>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mb-2">
+          <div class="row">
+            <div class="col-10 offset-1 border-box">
+              <dl class="title-and-content">
+                <dt>Github 提交图表：</dt>
+                <dd>
+                  <img class="unSelectable" src="https://ghchart.rshah.org/0045c4/Hgnim" alt="Hagnimik's github chart" style="width: 100%;text-align: center" />
                 </dd>
               </dl>
             </div>

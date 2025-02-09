@@ -22,18 +22,37 @@
               我对计算机技术有着浓厚的兴趣且充满热情，始终保持着快速学习的能力。通过多年的自我学习与实践，为自己积累了不少宝贵的开发经验。
             </p>
             <ul dir="auto" class="row" style="padding-left: 0;">
-              <li class="col-12 col-md-6 ulli-not-dot py-2">
+              <li class="col-12 col-lg-6 ulli-not-dot py-2">
                 <div class="card card-box-nohave-border">
                 熟练掌握Windows、Linux(Debian系)等操作系统，能够根据不同的工作需求灵活切换和使用。
                 <ul>
                   <li>熟练使用Windows操作系统进行日常办公和软件开发，具备系统故障排查和优化的能力。</li>
                   <li>具备Linux系统的使用和管理能力。能熟练使用终端命令，了解其文件系统与权限用户组，能够进行服务器搭建和维护、系统配置和脚本编写。</li>
                 </ul>
+                  <p/>
+                  对计算机硬件有一定的了解，能拆卸与组装计算机硬件，故障时可以对其进行问题排查与简单的修复。
                 </div>
               </li>
-              <li class="col-12 col-md-6 ulli-not-dot py-2">
+              <li class="col-12 col-lg-6 ulli-not-dot py-2">
                 <div class="card card-box-nohave-border">
-                <span>熟悉C#，且其为我的主要开发语言。应用于桌面应用开发、跨平台开发、依赖库开发、游戏开发、后端开发等。例如：Console, WinForm, ClassLibrary, Unity, Xamarin.Android, ASP.NET Core (MVC)</span>
+                <span>熟悉C#，且其为我的主要开发语言。</span>
+                  <ul>
+                    <li>
+                      <strong>桌面应用开发：</strong>能熟练使用WinForm框架开发桌面应用，对WPF框架也有一定的了解。
+                    </li>
+                    <li>
+                      <strong>跨平台开发：</strong>开发运行于Linux操作系统上的程序，通过Xamarin.Android进行移动应用开发。
+                    </li>
+                    <li>
+                      <strong>依赖库开发：</strong>针对于C#类库的开发。
+                    </li>
+                    <li>
+                      <strong>游戏开发：</strong>在Unity引擎上有一定的开发经验，更偏向于2D游戏。
+                    </li>
+                    <li>
+                      <strong>后端开发：</strong>对使用ASP.NET Core (MVC)开发后端服务有一定的经验。
+                    </li>
+                  </ul>
                 <details>
                   <summary style="font-size: 0.65rem">C#学习时间线</summary>
                   <div class="div-left-center content-width details-box">
@@ -51,12 +70,12 @@
                 </details>
                 </div>
               </li>
-              <li class="col-12 col-md-6 ulli-not-dot py-2">
+              <li class="col-12 col-lg-6 ulli-not-dot py-2">
                 <div class="card card-box-nohave-border">
                 了解并会使用HTML5、CSS3和JavaScript，以及CSS的预处理器Sass(包括SCSS语法)和JavaScript的超集TypeScript。能够运用Vue.js框架构建响应式Web界面。
                 </div>
               </li>
-              <li class="col-12 col-md-6 ulli-not-dot py-2">
+              <li class="col-12 col-lg-6 ulli-not-dot py-2">
                 <div class="card card-box-nohave-border">
                 掌握Git的基本概念，包括版本控制、分支管理、合并冲突解决等。了解Git的工作原理和核心机制，能够高效地使用Git进行代码版本管理。
                 </div>

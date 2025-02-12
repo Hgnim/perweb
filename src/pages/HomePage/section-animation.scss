@@ -17,7 +17,7 @@
 ) {
   @for $i from 1 through $char-count {
     span:nth-child(#{$i}) {
-      animation-delay: calc(#{$animation-delay-step} * ($i - 1));
+      animation-delay: calc(#{$animation-delay-step} * ($i - 1) + #{$start-delay});
     }
   }
   span {
@@ -32,8 +32,10 @@
   }
 }
 #verbatim-output-1{
-  @include verbatim-output($char-count: 30,$animation-delay-step:0.05s);
-  line-height: 2.5rem;
+  @include verbatim-output($char-count: 17,$animation-delay-step:0.05s);
+}
+#verbatim-output-2{
+  @include verbatim-output($char-count: 12,$animation-delay-step:0.05s,$start-delay:0.85s);
 }
 
 #img-roll-in-1 {

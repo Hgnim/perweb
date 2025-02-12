@@ -1,0 +1,47 @@
+.section-anim{
+  animation: section-anim-fade-in 1s forwards;
+  animation-delay: 1.5s;
+  opacity: 0;
+}
+@keyframes section-anim-fade-in {
+  to{
+    opacity: 1;
+  }
+}
+
+@mixin verbatim-output(
+  $animation-delay-step: 0.5s,
+  $animation-duration: 0.5,
+  $char-count: 0,
+  $start-delay: 0s,
+) {
+  @for $i from 1 through $char-count {
+    span:nth-child(#{$i}) {
+      animation-delay: calc(#{$animation-delay-step} * ($i - 1));
+    }
+  }
+  span {
+    opacity: 0;
+    animation: fadeIn $animation-duration forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+}
+#verbatim-output-1{
+  @include verbatim-output($char-count: 30,$animation-delay-step:0.05s);
+  line-height: 2.5rem;
+}
+
+#img-roll-in-1 {
+  transform: translateX(50vw) rotate(720deg);
+  animation: rollIn 1s forwards;
+  @keyframes rollIn {
+    to{
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+}

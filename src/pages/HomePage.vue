@@ -1,24 +1,54 @@
 <template>
-  <div class="py-4">
+  <div class="py-4" style="overflow-x: hidden">
     <div class="container">
       <div class="row">
         <div class="col-12 mb-2">
           <div class="row">
             <div class="col-6">
               <div class="div-top-center" style="text-align: right;">
-                <p>Hi, I'm Hagnimik.</p>
-                <p>我是一名自由的个人开发者</p>
+                <p id="verbatim-output-1">
+                  <span>H</span>
+                  <span>i</span>
+                  <span>,</span>
+                  <span>&nbsp;</span>
+                  <span>I</span>
+                  <span>'</span>
+                  <span>m</span>
+                  <span>&nbsp;</span>
+                  <span>H</span>
+                  <span>a</span>
+                  <span>g</span>
+                  <span>n</span>
+                  <span>i</span>
+                  <span>m</span>
+                  <span>i</span>
+                  <span>k</span>
+                  <span>.</span>
+                  <br/>
+                  <span>我</span>
+                  <span>是</span>
+                  <span>一</span>
+                  <span>名</span>
+                  <span>自</span>
+                  <span>由</span>
+                  <span>的</span>
+                  <span>个</span>
+                  <span>人</span>
+                  <span>开</span>
+                  <span>发</span>
+                  <span>者</span>
+                </p>
               </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div id="img-roll-in-1" class="col-6 col-md-3">
               <img src="https://avatars.githubusercontent.com/u/112072873" alt="avatar" class="avatar" />
             </div>
           </div>
         </div>
         <div class="py-3"></div>
-        <div class="col-12 mb-2">
+        <div class="col-12 mb-2 section-anim">
           <div class="row" style="text-align: left;">
-            <div class="col-10 offset-1 border-box mb-2">
+            <div class="col-10 offset-1 border-box">
             <p style="margin-bottom: 0">
               我对计算机技术有着浓厚的兴趣且充满热情，始终保持着快速学习的能力。通过多年的自我学习与实践，为自己积累了不少宝贵的开发经验。
             </p>
@@ -99,9 +129,9 @@
             </div>
           </div>
         </div>
-        <div class="col-12 mb-2">
+        <div class="col-12 mb-2 section-anim">
           <div class="row" style="text-align: left;">
-            <div class="col-10 offset-1 border-box mb-2 row d-flex justify-content-center">
+            <div class="col-10 offset-1 border-box row d-flex justify-content-center">
               <div class="col-12">
                 <h5 class="border-title">受欢迎的产品：</h5>
               </div>
@@ -145,8 +175,8 @@
             </div>
           </div>
         </div>
-        <div class="py-3"></div>
-        <div class="col-12 mb-2">
+        <div class="py-4"></div>
+        <div class="col-12 mb-2 section-anim">
           <div class="row">
             <div class="col-10 offset-1 border-box">
           <div class="row">
@@ -252,7 +282,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 mb-2">
+        <div class="col-12 mb-2 section-anim">
           <div class="row">
             <div class="col-10 offset-1 border-box">
               <dl class="title-and-content">
@@ -283,6 +313,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@import './HomePage/section-animation.scss';
+
 .avatar{
   width: 128px;
   height: 128px;

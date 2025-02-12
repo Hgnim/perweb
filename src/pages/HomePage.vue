@@ -160,7 +160,7 @@
                 <div class="card card-box-nohave-border card-background">
                   <div class="card-img-top">
                     <a href="https://github.com/Hgnim/TimedPower" target="_blank" rel="noopener noreferrer">
-                      <img class="rounded img-size_16-9" src="https://raw.githubusercontent.com/wiki/Hgnim/TimedPower/img/image13.png" >
+                      <img class="rounded img-size_16-9" src="http://cdnjson.com/images/2025/02/12/Hgnim_TimedPower_wiki__image13.png" >
                     </a>
                   </div>
                   <div class="card-body">
@@ -193,25 +193,25 @@
                   <div class="div-left-center">
                     <conveyorBelt
                         :images="[
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/CS.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/DotNet.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/VueJS-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/HTML.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Sass.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/CSS.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/TypeScript.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/JavaScript.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Unity-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Git.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Markdown-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Webpack-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/CPP.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/C.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/NodeJS-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Nginx.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Bash-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Docker.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Bootstrap.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/CS.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/DotNet.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/VueJS-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/HTML.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Sass.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/CSS.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/TypeScript.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/JavaScript.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Unity-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Git.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Markdown-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Webpack-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/CPP.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/C.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/NodeJS-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Nginx.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Bash-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Docker.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Bootstrap.svg',
                     ]"
                         :style="{
                       conveyorBeltWidth:'100%',
@@ -231,16 +231,16 @@
                   <div class="div-left-center">
                     <conveyorBelt
                         :images="[
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/VisualStudio-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/VSCode-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/WebStorm-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Github-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Npm-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Photoshop.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Premiere.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/VIM-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Audition.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Blender-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/VisualStudio-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/VSCode-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/WebStorm-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Github-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Npm-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Photoshop.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Premiere.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/VIM-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Audition.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Blender-Dark.svg',
                     ]"
                         :style="{
                       conveyorBeltWidth:'100%',
@@ -261,11 +261,11 @@
                   <div class="div-left-center">
                     <conveyorBelt
                         :images="[
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Windows-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Linux-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Debian-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/RaspberryPi-Dark.svg',
-                      'https://raw.githubusercontent.com/tandpfun/skill-icons/refs/heads/main/icons/Ubuntu-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Windows-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Linux-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Debian-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/RaspberryPi-Dark.svg',
+                      'https://fastly.jsdelivr.net/gh/tandpfun/skill-icons@latest/icons/Ubuntu-Dark.svg',
                     ]"
                         :style="{
                       conveyorBeltWidth:'100%',

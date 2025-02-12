@@ -15,7 +15,8 @@
             </div>
           </div>
         </div>
-        <div class="col-12 py-5">
+        <div class="py-3"></div>
+        <div class="col-12 mb-2">
           <div class="row" style="text-align: left;">
             <div class="col-10 offset-1 border-box mb-2">
             <p style="margin-bottom: 0">
@@ -23,7 +24,7 @@
             </p>
             <ul dir="auto" class="row" style="padding-left: 0;">
               <li class="col-12 col-lg-6 ulli-not-dot py-2">
-                <div class="card card-box-nohave-border">
+                <div class="card card-box-nohave-border card-background">
                 熟练掌握Windows、Linux(Debian系)等操作系统，能够根据不同的工作需求灵活切换和使用。
                 <ul>
                   <li>熟练使用Windows操作系统进行日常办公和软件开发，具备系统故障排查和优化的能力。</li>
@@ -34,7 +35,7 @@
                 </div>
               </li>
               <li class="col-12 col-lg-6 ulli-not-dot py-2">
-                <div class="card card-box-nohave-border">
+                <div class="card card-box-nohave-border card-background">
                 <span>熟悉C#，且其为我的主要开发语言。</span>
                   <ul>
                     <li>
@@ -71,12 +72,12 @@
                 </div>
               </li>
               <li class="col-12 col-lg-6 ulli-not-dot py-2">
-                <div class="card card-box-nohave-border">
+                <div class="card card-box-nohave-border card-background">
                 了解并会使用HTML5、CSS3和JavaScript，以及CSS的预处理器Sass(包括SCSS语法)和JavaScript的超集TypeScript。能够运用Vue.js框架构建响应式Web界面。
                 </div>
               </li>
               <li class="col-12 col-lg-6 ulli-not-dot py-2">
-                <div class="card card-box-nohave-border">
+                <div class="card card-box-nohave-border card-background">
                 掌握Git的基本概念，包括版本控制、分支管理、合并冲突解决等。了解Git的工作原理和核心机制，能够高效地使用Git进行代码版本管理。
                 </div>
               </li>
@@ -98,6 +99,53 @@
             </div>
           </div>
         </div>
+        <div class="col-12 mb-2">
+          <div class="row" style="text-align: left;">
+            <div class="col-10 offset-1 border-box mb-2 row d-flex justify-content-center">
+              <div class="col-12">
+                <h5 class="border-title">受欢迎的产品：</h5>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4 py-2">
+                <div class="card card-box-nohave-border card-background">
+                  <div class="card-img-top">
+                    <a href="https://mjyy.top" target="_blank" rel="noopener noreferrer">
+                      <img class="rounded img-size_16-9" src="http://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg" >
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h6><a href="https://mjyy.top" target="_blank" rel="noopener noreferrer">谧静幽原Minecraft服务器</a></h6>
+                    <div style="font-size: 0.9rem">
+                      <p>
+                        我的世界生存服务器，点击前往<a href="https://mjyy.top" target="_blank" rel="noopener noreferrer">官方网站</a>查看详细介绍。<br/>
+                      </p>
+                      <div style="text-align: right">
+                        <span>--谧静幽原团队</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4 py-2">
+                <div class="card card-box-nohave-border card-background">
+                  <div class="card-img-top">
+                    <a href="https://github.com/Hgnim/TimedPower" target="_blank" rel="noopener noreferrer">
+                      <img class="rounded img-size_16-9" src="https://raw.githubusercontent.com/wiki/Hgnim/TimedPower/img/image13.png" >
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h6><a href="https://github.com/Hgnim/TimedPower" target="_blank" rel="noopener noreferrer">Timed Power (定时电源)</a></h6>
+                    <div style="font-size: 0.9rem">
+                      <p>
+                        简约、高效、多功能的定时电源操作工具。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="py-3"></div>
         <div class="col-12 mb-2">
           <div class="row">
             <div class="col-10 offset-1 border-box">
@@ -309,7 +357,6 @@ export default defineComponent({
 }
 
 .card{
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .ulli-not-dot{
@@ -323,5 +370,13 @@ export default defineComponent({
   padding: 5px 8px;
   margin: 8px;
   height: 100%;
+}
+.card-background{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.img-size_16-9{
+  width: 100%;
+  aspect-ratio: 16 / 9;
 }
 </style>

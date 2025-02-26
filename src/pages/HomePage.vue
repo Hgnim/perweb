@@ -295,6 +295,17 @@
             </div>
           </div>
         </div>
+        <div class="py-5"></div>
+        <div class="col-12 mb-2 section-anim">
+          <div class="offset-4 col-4 border-box">
+            <dl class=" title-and-content">
+              <dt>联系方式：</dt>
+              <dd>
+                <p>邮箱： <a class="Link--primary wb-break-all" href="mailto:hgn1m@outlook.com">hgn1m@outlook.com</a></p>
+              </dd>
+            </dl>
+          </div>
+        </div>
       </div>
     </div>
   </div>

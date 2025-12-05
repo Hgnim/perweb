@@ -1,12 +1,12 @@
 <template>
   <side-navbar />
-  <div id="main-page_mainDiv">
-  <router-view/>
+  <div id="app">
+  <router-view />
   </div>
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue';
-import sideNavbar from "@/components/SideNavbar.vue";
+import sideNavbar from "@/components/sideNavbar/sideNavbar.vue";
 export default defineComponent({
   components: {
     sideNavbar
@@ -16,7 +16,7 @@ export default defineComponent({
 });
 </script>
 <style>
-#main-page_mainDiv{
+#app{
   text-align: center
 }
 </style>

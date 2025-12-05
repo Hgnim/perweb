@@ -6,9 +6,9 @@ import  '@/assets/css/unSelect.css';
 
 import { createApp } from 'vue';
 
-import MainPage from '@/pages/Main.vue';
+import App from '@/App.vue';
 import router from '@/router';
-createApp(MainPage).use(router).mount('#main');
+createApp(App).use(router).mount('#main');
 
 //import SideNavbar from '@/components/SideNavbar.vue';
 //createApp(SideNavbar).mount('#SideNavbar');

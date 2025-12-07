@@ -1,7 +1,5 @@
 import 'jquery';
-import 'popper.js';
 import '@/assets/scss/bootstrap/custom.scss';//import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap';
 import  '@/assets/css/unSelect.css';
 
 import { createApp } from 'vue';

@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="py-3"></div>
-        <div class="col-12 mb-2 section-anim">
+        <div class="col-12 mb-2 section-anim terminal-wrap ter_no-color">
           <div class="row" style="text-align: left;">
             <div class="col-10 offset-1 border-box">
             <p style="margin-bottom: 0">

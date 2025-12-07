@@ -1,0 +1,8 @@
+@import 'terminal.css';
+
+.terminal-wrap {
+  &.ter_no-color{
+    color: inherit;
+    background-color: inherit;
+  }
+}

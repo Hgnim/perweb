@@ -1,8 +1,37 @@
 @import 'terminal.css';
 
 .terminal-wrap {
-  &.ter_no-color{
+  --primary-color: var(--bs-body-color);
+  --primary-color-rgb:var(--bs-body-color-rgb);
+
+  .terminal-prompt::selection{
+    background: rgba(var(--primary-color-rgb),.5);
+  }
+  .terminal-prompt{
+    &.underline::after{
+      height: 0.1em;
+      width: 0.5em;
+    }
+  }
+
+  &.ter_def-color{
     color: inherit;
     background-color: inherit;
   }
+
+  --terminal-border_border-color: #818181;
+  --terminal-border_background-color: #b3b3b3;
+  .terminal-border{
+    padding: 8px 2rem 8px 10px;
+    border: 2px solid var(--terminal-border_border-color);
+    border-radius: 20px;
+    background-color: var(--terminal-border_background-color);
+    overflow: hidden;
+    text-align: left;
+  }
 }
+[data-bs-theme=dark] .terminal-wrap{
+  --terminal-border_border-color: #1c1c1c;
+  --terminal-border_background-color: black;
+}
+

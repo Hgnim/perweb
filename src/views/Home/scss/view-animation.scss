@@ -1,0 +1,65 @@
+#section0 {
+  @keyframes roll-in {
+    to {
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+  @keyframes roll-out {
+    to{
+      transform: translateX(-50vw) rotate(-720deg);
+    }
+  }
+  .roll-in-1 {
+    transform: translateX(50vw) rotate(720deg);
+    animation: roll-in 1s forwards;
+  }
+  .roll-in-2 {
+    transform: translateX(-50vw) rotate(-720deg);
+    animation: roll-in 1s .3s forwards;
+  }
+  .roll-out-2{
+    animation: roll-out 1s forwards;
+  }
+
+  .title-load {
+    width: 0;
+    transform: translateX(60vw);
+    animation: title-load-anim 2s .3s forwards;
+    @keyframes title-load-anim {
+      40%{
+        width: 0;
+        transform: translateX(0);
+      }
+      100%{
+        width: 80%;
+        transform: translateX(0);
+      }
+    }
+  }
+  .title-unload {
+    animation: title-unload-anim 1s forwards;
+    @keyframes title-unload-anim {
+      to{
+        //width: 0;
+        transform: translateX(60vw);
+      }
+    }
+  }
+
+  .continue:hover{
+    svg{
+      animation: continue-svg_down-down 1s infinite;
+    }
+  }
+  .continue-svg-atten{
+    animation: continue-svg_down-down 1s 1.8s 2;//animate__delay-1s + animate__fast = 1.8s
+    @keyframes continue-svg_down-down {
+      50%{
+        transform: translateY(0.4rem);
+      }
+      100%{
+        transform: translateY(0);
+      }
+    }
+  }
+}

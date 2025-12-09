@@ -1,5 +1,5 @@
 <template>
-  <div id="leftSideNavbar">
+  <div id="leftSideNavbar" class="unSelectable">
   <nav ref="sideNavbar" id="sideNavbar" class="navbar navbar-left" :data-bs-theme="theme">
     <div ref="sideNavbar_toggleButton" id="side-navbar_toggle-button" v-on:click="sideNavbar_toggleButton_onClick()">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="css" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left svg-center"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -71,7 +71,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 $navbar-left_width: 5rem;
 #leftSideNavbar{
   --sn_transition-time: 1s;

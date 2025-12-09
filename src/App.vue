@@ -19,7 +19,12 @@ export default defineComponent({
   }
 });
 </script>
-<style>
+
+<style lang="scss">
+@import '@/assets/scss/terminal-custom.scss';
+@import 'animate.css';
+@import 'hover.css';
+@import 'spectre.css';
 #app{
   text-align: center
 }

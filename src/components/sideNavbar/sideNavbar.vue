@@ -1,5 +1,5 @@
 <template>
-  <div id="leftSideNavbar" class="unSelectable">
+  <div id="leftSideNavbar" ref="leftSideNavbar" class="unSelectable">
   <nav ref="sideNavbar" id="sideNavbar" class="navbar navbar-left" :data-bs-theme="theme"
        data-allow-wheel data-allow-touch>
     <div ref="sideNavbar_toggleButton" id="side-navbar_toggle-button" v-on:click="sideNavbar_toggleButton_onClick()">
@@ -33,6 +33,7 @@ import {defineComponent, Ref, ref} from 'vue';
 import {themeSync} from '@/ts/themeSync';
 export default defineComponent({
   setup() {
+    const leftSideNavbar: Ref<HTMLElement|null>=ref(null);
     const sideNavbar: Ref<HTMLElement | null>=ref(null);
     const sideNavbar_toggleButton: Ref<HTMLElement | null>=ref(null);
 
@@ -59,23 +60,34 @@ export default defineComponent({
     }
 
     $(function () {
-      const windowWidth:number=$(window).width() || -1;
-      if (windowWidth<768 && windowWidth !=-1) {
-        sideNavbar_toggleButton_onClick();
+      if(leftSideNavbar.value) {
+        if (getComputedStyle(leftSideNavbar.value).getPropertyValue('--auto-fold')=='true'){
+          sideNavbar_toggleButton_onClick();
+        }
       }
     });
 
     const {theme, toggleTheme} = themeSync(); //引入封装的主题逻辑
 
-    return {theme, toggleTheme,sideNavbar_toggleButton_onClick,sideNavbar,sideNavbar_toggleButton};
+    return {theme, toggleTheme,sideNavbar_toggleButton_onClick,leftSideNavbar,sideNavbar,sideNavbar_toggleButton};
   }
 });
 </script>
 
 <style scoped lang="scss">
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
 $navbar-left_width: 5rem;
 #leftSideNavbar{
   --sn_transition-time: 1s;
+  @include media-breakpoint-up(xs) {
+    --auto-fold: true;
+  }
+  @include media-breakpoint-up(lg) {
+    --auto-fold: false;
+  }
 }
 
 

@@ -1,5 +1,6 @@
 import 'jquery';
 import '@/assets/scss/bootstrap/custom.scss';
+import 'bootstrap';
 import  '@/assets/css/unSelect.css';
 
 import { createApp } from 'vue';

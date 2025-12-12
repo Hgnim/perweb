@@ -24,7 +24,6 @@ export default defineComponent({
 @import '@/assets/scss/terminal-custom.scss';
 @import 'animate.css';
 @import 'hover.css';
-@import 'spectre.css';
 #app{
   text-align: center
 }

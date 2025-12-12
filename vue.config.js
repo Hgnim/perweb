@@ -30,8 +30,6 @@ module.exports = defineConfig({
                 postcssOptions: {
                     plugins: [
                         createCssWrap('.terminal-wrap', /node_modules[\\\/]terminal\.css/),//https://terminalcss.xyz/
-                        createCssWrap('.spectre-wrap', /node_modules[\\\/]spectre\.css/),//https://picturepan2.github.io/spectre/
-                        createCssWrap('.picnic-wrap', /node_modules[\\\/]picnic/),//http://picnicss.com/
                         createCssWrap('.animate-wrap', /node_modules[\\\/]animate\.css/),//https://animate.style/
                         createCssWrap('.hover-wrap', /node_modules[\\\/]hover\.css/),//http://ianlunn.github.io/Hover/
                     ]

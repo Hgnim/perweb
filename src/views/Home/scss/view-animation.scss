@@ -100,6 +100,7 @@
     }
   }
 }
+
 #section1 {
   .row1{
     //region card-load
@@ -319,5 +320,62 @@
       }
     }
     //endregion
+  }
+}
+
+#section2 {
+  .col0{
+    .accordion{
+      @keyframes accordion-item-load{
+        to{
+          transform: translateX(0vw);
+        }
+      }
+      @keyframes accordion-item-unload-left {
+        to{
+          transform: translateX(-90vw);
+        }
+      }
+      @keyframes accordion-item-unload-right {
+        to{
+          transform: translateX(90vw);
+        }
+      }
+
+      .item0-load{
+        transform: translateX(-90vw);
+        animation: accordion-item-load 1s .3s forwards;
+      }
+      .item0-unload{
+        animation: accordion-item-unload-right .5s forwards;
+      }
+
+      .item1-load{
+        transform: translateX(90vw);
+        animation: accordion-item-load 1s .5s forwards;
+      }
+      .item1-unload{
+        animation: accordion-item-unload-left .5s 30ms forwards;
+      }
+
+      .item2-load{
+        transform: translateX(-90vw);
+        animation: accordion-item-load 1s .7s forwards;
+      }
+      .item2-unload{
+        animation: accordion-item-unload-right .5s 60ms forwards;
+      }
+
+      .item3-load{
+        transform: translateX(90vw);
+        animation: accordion-item-load 1s .9s forwards;
+      }
+      .item3-unload{
+        animation: accordion-item-unload-left .5s 90ms forwards;
+      }
+    }
+  }
+  .col1{
+
   }
 }

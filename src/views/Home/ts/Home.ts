@@ -16,7 +16,8 @@ export default defineComponent({
         const currentSection:Ref<number> = ref(-1);
 
         let isScrolling:boolean = false;
-        const allSection:number = 4;
+        //页面总数
+        const allSection:number = 3;
         function scrollToPage(pageIndex: number) {
             if (!loadDone.value) return;
             if (pageIndex < 0 || pageIndex >= allSection) return;
@@ -62,10 +63,12 @@ export default defineComponent({
                     case 'PageUp':
                         scrollToPage(currentSection.value - 1);break;
                     case '0':
+                        scrollToPage(0);break;
                     case '1':
                     case '2':
                     case '3':
-                        scrollToPage(Number(key));break;
+                    case '4':
+                        scrollToPage(Number(key)-1);break;
                     case 'Home':
                         scrollToPage(0);break;
                     case 'End':
@@ -116,9 +119,10 @@ export default defineComponent({
 
         const animElem:Ref<(HTMLElement|null)[][]>=ref((():(HTMLElement|null)[][]=>{
             let ref:(HTMLElement|null)[][];
-            ref = new Array(2);
+            ref = new Array(3);
             ref[0]=new Array(4);
             ref[1]=new Array(6);
+            ref[2]=new Array(6);
             return ref;
         })());
         const animElem_import=ref((e:HTMLElement|null, index1:number, index2:number) => {
@@ -217,6 +221,44 @@ export default defineComponent({
                         if (animElem.value[1][5]) {
                             animElem.value[1][5].classList.toggle('card3-unload', !isLoad);
                             animElem.value[1][5].classList.toggle('card3-load', isLoad);
+                        }
+                        break;
+                    case 2:
+                        if (animElem.value[2][0]){
+                            if (isLoad){
+                                animElem.value[2][0].style.setProperty('--animate-delay','.3s');
+                            }
+                            else {
+                                animElem.value[2][0].style.setProperty('--animate-delay','0s');
+                            }
+                            animElem.value[2][0].classList.toggle('animate__bounceOutLeft', !isLoad);
+                            animElem.value[2][0].classList.toggle('animate__bounceInRight', isLoad);
+                        }
+                        if (animElem.value[2][1]){
+                            animElem.value[2][1].classList.toggle('item0-unload', !isLoad);
+                            animElem.value[2][1].classList.toggle('item0-load', isLoad);
+                        }
+                        if (animElem.value[2][2]){
+                            animElem.value[2][2].classList.toggle('item1-unload', !isLoad);
+                            animElem.value[2][2].classList.toggle('item1-load', isLoad);
+                        }
+                        if (animElem.value[2][3]){
+                            animElem.value[2][3].classList.toggle('item2-unload', !isLoad);
+                            animElem.value[2][3].classList.toggle('item2-load', isLoad);
+                        }
+                        if (animElem.value[2][4]){
+                            animElem.value[2][4].classList.toggle('item3-unload', !isLoad);
+                            animElem.value[2][4].classList.toggle('item3-load', isLoad);
+                        }
+                        if (animElem.value[2][5]){
+                            if (isLoad){
+                                animElem.value[2][5].style.setProperty('--animate-delay','1s');
+                            }
+                            else {
+                                animElem.value[2][5].style.setProperty('--animate-delay','0s');
+                            }
+                            animElem.value[2][5].classList.toggle('animate__flipOutX', !isLoad);
+                            animElem.value[2][5].classList.toggle('animate__flipInY', isLoad);
                         }
                         break;
                 }

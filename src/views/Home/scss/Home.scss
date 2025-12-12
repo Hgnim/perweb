@@ -274,3 +274,68 @@
     }
   }
 }
+
+#section2 {
+  .container-main {
+    .col0 {
+      height: 80vh;
+      .title-par{
+        margin: 0;
+        height: 10vh;
+        max-height: 10vh;
+        position: relative;
+        .title{
+          margin-bottom: 10px;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+        }
+      }
+      .accordion {
+        max-height: 70vh;
+        margin-left: 10%;
+        margin-right: 10%;
+        .accordion-button{
+          --#{$prefix}accordion-btn-padding-x: 1rem;
+          --#{$prefix}accordion-btn-padding-y: 0.5rem;
+          span{
+            max-width: 80%;
+            word-break: break-all;
+          }
+        }
+        .accordion-body{
+          max-height: 40vh;
+          overflow: scroll;
+        }
+
+        .inset-image{
+          @include media-breakpoint-up(xs) {
+            width: 100%;
+          }
+          @include media-breakpoint-up(sm) {
+            width: 80%;
+          }
+          @include media-breakpoint-up(md) {
+            width: 25vw;
+          }
+          border-radius: 10px;
+        }
+      }
+    }
+    .col1{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 20vh;
+      .card{
+        overflow: scroll;
+        bottom: 0;
+        max-height: 18vh;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        position: absolute;
+      }
+    }
+  }
+}

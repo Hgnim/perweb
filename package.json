@@ -12,8 +12,6 @@
     "hover.css": "^2.3.2",
     "jquery": "^3.7.1",
     "pace-js": "^1.2.4",
-    "picnic": "^7.1.0",
-    "spectre.css": "^0.5.9",
     "terminal.css": "^0.7.5",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"

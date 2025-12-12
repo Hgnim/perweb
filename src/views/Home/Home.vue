@@ -121,10 +121,93 @@
         </div>
       </section>
 
-      <section>
-      </section>
-
-      <section>
+      <section id="section2">
+        <div class="container container-main">
+          <div class="row">
+            <div class="col-12 col0">
+              <div class="title-par animate-wrap">
+                <h2 :ref="(e:HTMLElement|null)=>animElem_import(e,2,0)"
+                    class="title animate__animated animate__delay-1s"
+                >精选产品</h2>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,1)" class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                      <span><strong>谧静幽原</strong> Minecraft多人游戏平台</span>
+                    </button>
+                  </h2>
+                  <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body"
+                         data-allow-wheel data-allow-keydown data-allow-touch>
+                      <img alt="image" class="inset-image mb-3" src="http://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg"><br/>
+                      <span>
+                        Minecraft多人游戏平台，前往<a href="https://mjyy.top">官网</a>以查看详情。
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,2)" class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                      <span>定时电源 (TimedPower)</span>
+                    </button>
+                  </h2>
+                  <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body"
+                         data-allow-wheel data-allow-keydown data-allow-touch>
+                      <img alt="image" class="inset-image mb-3" src="http://cdnjson.com/images/2025/02/12/Hgnim_TimedPower_wiki__image13.png"><br/>
+                      <span>
+                        Windows平台下简约、高效、多功能的定时电源操作工具。<br/>
+                        <a href="https://github.com/Hgnim/TimedPower">前往该项目</a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,3)" class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                      <span>按键输入宏 (KeyInputMacro)</span>
+                    </button>
+                  </h2>
+                  <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body"
+                         data-allow-wheel data-allow-keydown data-allow-touch>
+                      <span>
+                        Windows平台下通过脚本对指定窗口进行按键操作。<br>
+                        <a href="https://github.com/Hgnim/KeyInputMacro">前往该项目</a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,4)" class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                      <span>我的世界服务器玩家数据文件管理器 (MinecraftServerPlayerDataManager)</span>
+                    </button>
+                  </h2>
+                  <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body"
+                         data-allow-wheel data-allow-keydown data-allow-touch>
+                      在多个平台帮助所有者更好的管理服务端中玩家的数据文件。<br/>
+                      <a href="https://github.com/Hgnim/MinecraftServerPlayerDataManager">前往该项目</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col1 animate-wrap">
+              <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,5)"
+                   class="card animate__animated animate__delay-1s"
+              >
+                <div class="card-body" data-allow-wheel data-allow-keydown data-allow-touch>
+                  <h5><strong>联系我</strong></h5>
+                  <span>电子邮箱：<a href="mailto:hgn1m@outlook.com">hgn1m@outlook.com</a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>

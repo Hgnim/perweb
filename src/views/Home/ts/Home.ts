@@ -120,7 +120,7 @@ export default defineComponent({
         const animElem:Ref<(HTMLElement|null)[][]>=ref((():(HTMLElement|null)[][]=>{
             let ref:(HTMLElement|null)[][];
             ref = new Array(3);
-            ref[0]=new Array(4);
+            ref[0]=new Array(3+4);//section-1 + section0
             ref[1]=new Array(6);
             ref[2]=new Array(6);
             return ref;
@@ -131,6 +131,38 @@ export default defineComponent({
         async function doAnim(currSect:number,lastSect:number){
             function cssClassAction(index:number,isLoad:boolean){
                 switch (index) {
+                    case -1:
+                        if (animElem.value[0][4]) {
+                            //animElem.value[0][4].classList.toggle('animate__faster', !isLoad);
+                            animElem.value[0][4].classList.toggle('animate__bounceOutRight', !isLoad);
+                            animElem.value[0][4].classList.toggle('animate__rollIn', isLoad);
+                        }
+                        if (animElem.value[0][5]) {
+                            //animElem.value[0][5].classList.toggle('animate__faster', !isLoad);
+                            animElem.value[0][5].classList.toggle('animate__bounceOutLeft', !isLoad);
+                            animElem.value[0][5].classList.toggle('animate__jackInTheBox', isLoad);
+                        }
+                        if (animElem.value[0][6]) {
+                            //animElem.value[0][6].classList.toggle('animate__faster', !isLoad);
+                            animElem.value[0][6].classList.toggle('animate__rollOut', !isLoad);
+                            if (isLoad) {
+                                animElem.value[0][6].classList.add('animate__delay-2s');
+                                animElem.value[0][6].classList.add('animate__fast');
+
+                                animElem.value[0][6].classList.add('animate__bounceInUp');
+                                setTimeout(() => {
+                                        if (animElem.value[0][6]) {//动画完成后及时清理，避免影响hover
+                                            animElem.value[0][6].classList.remove('animate__delay-2s');
+                                            animElem.value[0][6].classList.remove('animate__fast');
+
+                                            animElem.value[0][6].classList.remove('animate__bounceInUp');
+                                        }
+                                    },
+                                    3000//animate__delay-2s + animate__fast(800ms) + 200ms容错 = 3000ms
+                                );
+                            }
+                        }
+                        break;
                     case 0:
                         if (animElem.value[0][0]) {
                             animElem.value[0][0].classList.toggle('roll-out-2', !isLoad);
@@ -277,6 +309,7 @@ export default defineComponent({
                 to0();
             }
             else {
+                doAnim(-1,-100);
                 window.addEventListener('load', () => {
                     to0();
                 }, {once: true/*执行完后解绑*/});

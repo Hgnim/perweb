@@ -6,14 +6,32 @@
         :style="{ transform: `translateY(${-(currentSection * 100)-100}vh)`/*-100用于兼容负数层*/ }"
     >
       <section id="section-1">
-        <button @click="skipLoadClick()">跳过加载</button>
+        <div class="container container-main">
+          <div class="row animate-wrap">
+            <div class="col-12 mb-3 col0">
+              <div :ref="(e:HTMLElement|null)=>animElem_import(e,0,4)"
+                   class="animate__animated"
+              >
+                <div class="spinner-border" role="status"></div>
+              </div>
+              <h3 class="animate__animated"
+                  :ref="(e:HTMLElement|null)=>animElem_import(e,0,5)"
+              >资源加载中</h3>
+            </div>
+            <div class="col-12 col1">
+              <button type="button" class="btn btn-secondary animate__animated" @click="skipLoadClick()"
+                      :ref="(e:HTMLElement|null)=>animElem_import(e,0,6)"
+              >后台加载</button>
+            </div>
+          </div>
+        </div>
       </section>
       <section id="section0">
         <div class="container">
           <div class="row row0">
             <div class="avatar-col col-xs-12 col-sm-5">
               <div class="avatar unSelectable">
-                <img :ref="(e:HTMLElement|null)=>animElem_import(e,0,0)" alt="avatar" draggable="false"
+                <img :ref="(e:HTMLElement|null)=>animElem_import(e,0,0)" alt="avatar图像加载中" draggable="false"
                      src="https://avatars.githubusercontent.com/u/112072873"/><!--class="roll-in-2"-->
               </div>
             </div>
@@ -48,12 +66,12 @@
             <div class="col-12 col-lg-6">
               <div class="row row0 animate-wrap">
                 <div class="lang-used col-6 col-lg-12 unSelectable">
-                  <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,0)" alt="Language used" draggable="false"
+                  <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,0)" alt="Language used图像加载中" draggable="false"
                        class="animate__animated animate__delay-1s"
                        src="https://raw.githubusercontent.com/Hgnim/Hgnim/refs/heads/main/profile-summary-card-output/transparent/2-most-commit-language.svg"/>
                 </div>
                 <div class="skill col-6 col-lg-12 unSelectable">
-                  <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,1)" alt="Skill" draggable="false"
+                  <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,1)" alt="Skill图像加载中" draggable="false"
                        class="animate__animated animate__delay-1s"
                        src="https://skillicons.dev/icons?perline=6&theme=dark&i=cs,ts,js,scss,css,vue,html,md,dotnet,bootstrap,docker,nginx,git,github,webpack,nodejs,npm,sqlite,visualstudio,vscode,webstorm,vim,bash,linux,windows,debian,raspberrypi,ubuntu"/>
                 </div>
@@ -140,7 +158,7 @@
                   <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body"
                          data-allow-wheel data-allow-keydown data-allow-touch>
-                      <img alt="image" class="inset-image mb-3" src="http://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg"><br/>
+                      <img alt="图像加载中" class="inset-image mb-3" src="http://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg"><br/>
                       <span>
                         Minecraft多人游戏平台，前往<a href="https://mjyy.top">官网</a>以查看详情。
                       </span>
@@ -156,7 +174,7 @@
                   <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body"
                          data-allow-wheel data-allow-keydown data-allow-touch>
-                      <img alt="image" class="inset-image mb-3" src="http://cdnjson.com/images/2025/02/12/Hgnim_TimedPower_wiki__image13.png"><br/>
+                      <img alt="图像加载中" class="inset-image mb-3" src="http://cdnjson.com/images/2025/02/12/Hgnim_TimedPower_wiki__image13.png"><br/>
                       <span>
                         Windows平台下简约、高效、多功能的定时电源操作工具。<br/>
                         <a href="https://github.com/Hgnim/TimedPower">前往该项目</a>

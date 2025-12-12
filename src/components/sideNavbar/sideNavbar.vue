@@ -15,12 +15,6 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/blog">博客</router-link>
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/test">测试</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/test2">测试2</router-link>
-        </li>
       </ul>
     </div>
   </nav>

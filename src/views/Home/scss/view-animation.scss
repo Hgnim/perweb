@@ -2,6 +2,17 @@
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins/breakpoints";
 
+#section-1{
+  .container-main{
+    .col0{
+
+    }
+    .col1{
+
+    }
+  }
+}
+
 #section0 {
   @keyframes roll-in {
     to {

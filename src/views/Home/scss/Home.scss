@@ -26,6 +26,24 @@
   justify-content: center;*/
 }
 
+#section-1{
+  .container-main{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .col0{
+      .spinner-border{
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+    .col1{
+
+    }
+  }
+}
+
 #section0 {
   .row0{
     @include media-breakpoint-up(xs) {}

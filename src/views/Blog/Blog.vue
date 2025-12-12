@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <h1>this is a test text</h1>
+  <span>nothing here :)</span>
 </template>
 
 <style scoped lang="scss">

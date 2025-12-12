@@ -1,6 +1,7 @@
 <template>
   <div id="leftSideNavbar" class="unSelectable">
-  <nav ref="sideNavbar" id="sideNavbar" class="navbar navbar-left" :data-bs-theme="theme">
+  <nav ref="sideNavbar" id="sideNavbar" class="navbar navbar-left" :data-bs-theme="theme"
+       data-allow-wheel data-allow-touch>
     <div ref="sideNavbar_toggleButton" id="side-navbar_toggle-button" v-on:click="sideNavbar_toggleButton_onClick()">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="css" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left svg-center"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
     </div>
@@ -122,9 +123,9 @@ $navbar-left_width: 5rem;
   display: none;//隐藏按钮
 }
 @mixin navbar-collapse_firefox-scrollbar{
-  @-moz-document url-prefix() {//firefox样式隔离，大括号类的样式只给firefox浏览器使用
+  @-moz-document url-prefix() {//firefox样式隔离，大括号内的样式供firefox浏览器使用
     scrollbar-width: thin; //细滚动条
-    scrollbar-color: var(--bs-body-color) var(--bs-navbar-active-color); //滑块颜色；滑道颜色
+    scrollbar-color: var(--bs-body-color) transparent; //滑块颜色；滑道颜色
   }
 }
 

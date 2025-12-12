@@ -6,6 +6,8 @@
     user-select: none !important;
 
     -webkit-user-drag: none !important;
+    -khtml-user-drag: none !important;
+    -o-user-drag: none !important;
     -moz-user-drag: none !important;
     -ms-user-drag: none !important;
     user-drag: none !important;
@@ -19,6 +21,8 @@
     user-select: initial !important;
 
     -webkit-user-drag: initial !important;
+    -khtml-user-drag: initial !important;
+    -o-user-drag: initial !important;
     -moz-user-drag: initial !important;
     -ms-user-drag: initial !important;
     user-drag: initial !important;

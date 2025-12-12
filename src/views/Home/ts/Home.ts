@@ -2,19 +2,23 @@
 
 import {defineComponent, ref, Ref, onMounted, onUnmounted} from 'vue';
 import conveyorBelt from "@/components/conveyorBelt/conveyorBelt.vue";
+import {sleep} from "@/ts/global/sleep";
 export default defineComponent({
     components: {
         conveyorBelt
     },
     setup() {
-        //#region 整页滚动
+        //region _整页滚动
+
+        //是否加载完毕
+        const loadDone:Ref<boolean>=ref(false);
         //当前页面
         const currentSection:Ref<number> = ref(-1);
-
 
         let isScrolling:boolean = false;
         const allSection:number = 4;
         function scrollToPage(pageIndex: number) {
+            if (!loadDone.value) return;
             if (pageIndex < 0 || pageIndex >= allSection) return;
             if (isScrolling) return;
             if (pageIndex > currentSection.value)
@@ -32,7 +36,10 @@ export default defineComponent({
         }
 
         function onWheel(this: Window, event: WheelEvent):void {
-            event.preventDefault();
+            if ((event.target as Element).closest('[data-allow-wheel]'))
+                return;//给需要滚动的元素或其父元素添加标签data-allow-wheel
+
+            event.preventDefault();//阻止默认行为
 
             const deltaY:number = event.deltaY;
             if (deltaY > 0)
@@ -42,6 +49,9 @@ export default defineComponent({
         }
 
         function onKeydown(this: Window, event: KeyboardEvent):void {
+            if ((event.target as Element).closest('[data-allow-keydown]'))
+                return;//基本同理于onWheel
+
             function action(key:string){
                 switch (key){
                     case 'ArrowDown':
@@ -73,6 +83,9 @@ export default defineComponent({
         }
 
         function onTouchMove(this: Window, event: TouchEvent):void {
+            if ((event.target as Element).closest('[data-allow-touch]'))
+                return;
+
             event.preventDefault();
             const currentTouchY:number = event.touches[0].clientY;
             const diff:number = touchStartY-currentTouchY;
@@ -101,53 +114,122 @@ export default defineComponent({
         });
         //#endregion
 
-        const animElem:Ref<(HTMLElement|null)[][]>=ref([[]]);
+        const animElem:Ref<(HTMLElement|null)[][]>=ref((():(HTMLElement|null)[][]=>{
+            let ref:(HTMLElement|null)[][];
+            ref = new Array(2);
+            ref[0]=new Array(4);
+            ref[1]=new Array(6);
+            return ref;
+        })());
         const animElem_import=ref((e:HTMLElement|null, index1:number, index2:number) => {
             animElem.value[index1][index2]=e;
         });
         async function doAnim(currSect:number,lastSect:number){
             function cssClassAction(index:number,isLoad:boolean){
-                if(animElem.value[0][0]) {
-                    animElem.value[0][0].classList.toggle('roll-out-2', !isLoad);
-                    animElem.value[0][0].classList.toggle('roll-in-2', isLoad);
-                }
-                if (animElem.value[0][1]){
-                    animElem.value[0][1].classList.toggle('title-unload',!isLoad);
-                    animElem.value[0][1].classList.toggle('title-load',isLoad);
-                }
-                if (animElem.value[0][2]){
-                    animElem.value[0][2].classList.toggle('animate__bounceOut',!isLoad);
-                    if (isLoad) {
-                        animElem.value[0][2].classList.add('animate__delay-1s');
-                        animElem.value[0][2].classList.add('animate__bounceIn');
-                        setTimeout(() => {
-                            if (animElem.value[0][2]) {//动画完成后及时清理，避免影响hover
-                                animElem.value[0][2].classList.remove('animate__delay-1s');
-                                animElem.value[0][2].classList.remove('animate__bounceIn');
+                switch (index) {
+                    case 0:
+                        if (animElem.value[0][0]) {
+                            animElem.value[0][0].classList.toggle('roll-out-2', !isLoad);
+                            animElem.value[0][0].classList.toggle('roll-in-2', isLoad);
+                        }
+                        if (animElem.value[0][1]) {
+                            animElem.value[0][1].classList.toggle('title-unload', !isLoad);
+                            animElem.value[0][1].classList.toggle('title-load', isLoad);
+                            if (isLoad){
+                                const titleText: string = '简于壳，精于核，致力于自由';
+                                animElem.value[0][1].innerText='';
+                                setTimeout(async () => {
+                                    for (let i = 0; i < titleText.length; i++) {
+                                        if(currentSection.value==0 && animElem.value[0][1]) {
+                                            animElem.value[0][1].innerText += titleText.substring(i, i + 1);
+                                            await sleep(100);
+                                        }else break;
+                                    }
+                                }, 2000/*title-load 2s动画时间*/);
                             }
-                        },
-                            2000//animate__delay-1s + animate__fast + 200ms容错 = 2000ms
-                        );
-                    }
+                        }
+                        if (animElem.value[0][2]) {
+                            animElem.value[0][2].classList.toggle('animate__faster', !isLoad);
+                            animElem.value[0][2].classList.toggle('animate__bounceOut', !isLoad);
+                            if (isLoad) {
+                                animElem.value[0][2].classList.add('animate__delay-1s');
+                                animElem.value[0][2].classList.add('animate__fast');
+                                animElem.value[0][2].classList.add('animate__bounceIn');
+                                setTimeout(() => {
+                                        if (animElem.value[0][2]) {//动画完成后及时清理，避免影响hover
+                                            animElem.value[0][2].classList.remove('animate__delay-1s');
+                                            animElem.value[0][2].classList.remove('animate__fast');
+                                            animElem.value[0][2].classList.remove('animate__bounceIn');
+                                        }
+                                    },
+                                    2000//animate__delay-1s + animate__fast + 200ms容错 = 2000ms
+                                );
+                            }
+                        }
+                        if (animElem.value[0][3]) {
+                            animElem.value[0][3].classList.toggle('continue-svg-atten', isLoad);
+                        }
+                        break;
+                    case 1:
+                        if (animElem.value[1][0]) {
+                            if (isLoad){
+                                //使用--animate-delay变量时需要使用animate__delay-1s类在元素中占位以激活，否则变量不生效
+                                animElem.value[1][0].style.setProperty('--animate-delay','.2s');
+                            }
+                            else {
+                                animElem.value[1][0].style.setProperty('--animate-delay','0s');
+                            }
+                            animElem.value[1][0].classList.toggle('animate__backOutLeft', !isLoad);
+                            animElem.value[1][0].classList.toggle('animate__backInLeft', isLoad);
+                        }
+                        if (animElem.value[1][1]) {
+                            if (isLoad){
+                                animElem.value[1][1].style.setProperty('--animate-delay','.4s');
+                            }
+                            else {
+                                animElem.value[1][1].style.setProperty('--animate-delay','.1s');
+                            }
+                            if (getComputedStyle(animElem.value[1][1]).getPropertyValue('--left-or-right-in').toString()=='left') {
+                                animElem.value[1][1].classList.remove('animate__backOutRight');
+                                animElem.value[1][1].classList.remove('animate__backInRight');
+                                animElem.value[1][1].classList.toggle('animate__backOutLeft', !isLoad);
+                                animElem.value[1][1].classList.toggle('animate__backInLeft', isLoad);
+                            }
+                            else{
+                                animElem.value[1][1].classList.remove('animate__backOutLeft');
+                                animElem.value[1][1].classList.remove('animate__backInLeft');
+                                animElem.value[1][1].classList.toggle('animate__backOutRight', !isLoad);
+                                animElem.value[1][1].classList.toggle('animate__backInRight', isLoad);
+                            }
+                        }
+                        if (animElem.value[1][2]) {
+                            animElem.value[1][2].classList.toggle('card0-unload', !isLoad);
+                            animElem.value[1][2].classList.toggle('card0-load', isLoad);
+                        }
+                        if (animElem.value[1][3]) {
+                            animElem.value[1][3].classList.toggle('card1-unload', !isLoad);
+                            animElem.value[1][3].classList.toggle('card1-load', isLoad);
+                        }
+                        if (animElem.value[1][4]) {
+                            animElem.value[1][4].classList.toggle('card2-unload', !isLoad);
+                            animElem.value[1][4].classList.toggle('card2-load', isLoad);
+                        }
+                        if (animElem.value[1][5]) {
+                            animElem.value[1][5].classList.toggle('card3-unload', !isLoad);
+                            animElem.value[1][5].classList.toggle('card3-load', isLoad);
+                        }
+                        break;
                 }
-                if (animElem.value[0][3]){
-                    animElem.value[0][3].classList.toggle('continue-svg-atten',isLoad);
-                }
             }
-            switch (lastSect){
-                case 0:
-                    cssClassAction(0,false);
-                    break;
-            }
-            switch (currSect){
-                case 0:
-                    cssClassAction(0,true);
-                    break;
-            }
+            cssClassAction(lastSect,false);
+            cssClassAction(currSect,true);
         }
         onMounted(() => {
             function to0(){
-                scrollToPage(0);
+                if (!loadDone.value) {
+                    loadDone.value = true;
+                    scrollToPage(0);
+                }
             }
             if (document.readyState === 'complete') {//如果已加载则直接显示
                 to0();
@@ -158,14 +240,18 @@ export default defineComponent({
                 }, {once: true/*执行完后解绑*/});
             }
         });
+        function skipLoadClick(){
+            loadDone.value = true;
+            scrollToPage(0);
+        }
 
-        //#region section0
+        //region section0
         function section0Continue_click(){
             scrollToPage(1);
         }
-        //#endregion
+        //endregion
         return {
-            ref, onMounted, onUnmounted,
+            ref, onMounted, onUnmounted, loadDone, skipLoadClick,
             currentSection,
             animElem,animElem_import,
             section0Continue_click,

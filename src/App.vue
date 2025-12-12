@@ -1,6 +1,6 @@
 <template>
   <side-navbar />
-  <div id="app">
+  <div id="view">
   <router-view />
   </div>
 </template>

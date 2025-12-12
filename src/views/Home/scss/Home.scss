@@ -1,4 +1,8 @@
-#view {
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
+#home {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -24,27 +28,83 @@
 
 #section0 {
   .row0{
-    display: flex;
-    align-items: center;
+    @include media-breakpoint-up(xs) {}
+    @include media-breakpoint-up(sm) {
+      display: flex;
+      align-items: center;
+    }
     position: relative;
     height: 80vh;
   }
-  .avatar{
-    position: relative;
-    display: flex;
-    justify-content: flex-end;//子元素靠右
-    margin-right: 32px;
-    img {
-      width: 128px;
-      height: 128px;
-      border-radius: 50%;
-      right: 0;
+  .avatar-col {
+    @include media-breakpoint-up(xs) {
+      height: 40vh;
+      position: relative;
+    }
+    @include media-breakpoint-up(sm) {
+      height: unset;
+    }
+    .avatar {
+      @include media-breakpoint-up(xs) {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-right: 0;
+        bottom: 0;
+      }
+      @include media-breakpoint-up(sm) {
+        position: relative;
+        display: flex;
+        justify-content: flex-end; //子元素靠右
+        margin-right: 32px;
+      }
+
+      img {
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+      }
     }
   }
-  .title{
-    margin: 0;
-    left: 0;
-    width: 80%;
+  .title-col {
+    @include media-breakpoint-up(xs) {
+      height: 40vh;
+      position: relative;
+    }
+    @include media-breakpoint-up(sm) {
+      height: unset;
+    }
+    .title {
+      max-width: 424.8px;
+      height: 3.3rem;
+      line-height: 2rem;
+
+      @mixin sm {
+        left: 0;
+        width: 80%;
+        margin: 0;
+      }
+      @include media-breakpoint-up(xs) {
+        font-size: 0.97rem;
+        left: unset;
+        width: 100%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 5vh;
+      }
+      @include media-breakpoint-up(sm) {
+        font-size: 0.83rem;
+        @include sm;
+      }
+      @include media-breakpoint-up(md) {
+        font-size: 1.2rem;
+        @include sm;
+      }
+      @include media-breakpoint-up(lg) {
+        font-size: 1.6rem;
+        @include sm;
+      }
+    }
   }
 
   .continue{
@@ -53,6 +113,164 @@
     svg{
       width: 10rem;
       height: 2rem;
+    }
+  }
+}
+
+#section1 {
+  .container-main{
+    width: 100%;
+    height: 100%;
+    .row-main {
+      .row0 {
+        %style{
+          @include media-breakpoint-up(xs) {
+            height: 35vh;
+          }
+          img {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .lang-used {
+          @extend %style;
+          @include media-breakpoint-up(lg) {
+            height: 60vh;
+          }
+          padding-top: .8rem;
+        }
+        .skill {
+          @extend %style;
+          @include media-breakpoint-up(lg) {
+            height: 40vh;
+          }
+          padding-bottom: .8rem;
+          img{
+            @include media-breakpoint-up(xs) {
+              --left-or-right-in: right;
+            }
+            @include media-breakpoint-up(lg) {
+              --left-or-right-in: left;
+            }
+          }
+        }
+      }
+      .row1{
+        text-align: left;
+        @include media-breakpoint-up(xs) {
+          margin-top: 2.5vh;
+        }
+        @include media-breakpoint-up(lg) {
+          margin-top: 5vh;
+        }
+        .card{
+          @mixin card-xs{
+            height: 28.75vh;
+            margin-bottom: 2.5vh;
+          }
+          @mixin card-lg{
+            height: 42.5vh;
+            margin-bottom: 5vh;
+          }
+          @include media-breakpoint-up(xs) {
+            font-size: 0.6rem;
+            @include card-xs;
+          }
+          @include media-breakpoint-up(sm){
+            font-size: 0.65rem;
+            @include card-xs;
+          }
+          @include media-breakpoint-up(md) {
+            font-size: 0.75rem;
+            @include card-xs;
+          }
+          @include media-breakpoint-up(lg) {
+            font-size: 0.75rem;
+            @include card-lg;
+          }
+          @include media-breakpoint-up(xl){
+            font-size: 0.85rem;
+            @include card-lg;
+          }
+          @include media-breakpoint-up(xxl){
+            font-size: 1.09rem;
+            @include card-lg;
+          }
+
+          .card-header{
+            text-align: center;
+            .card-header- {
+              margin: 0;
+              @include media-breakpoint-up(xs) {
+                font-size: 0.7rem;
+              }
+              @include media-breakpoint-up(sm){
+                font-size: 1.25rem;
+              }
+              %shared{
+                position: relative;
+                width: 0;//使用宽度0加溢出显示特性，使其不占实体位置
+                overflow: visible;
+                display: inline-block;
+                left: -1.5em;
+              }
+              &.n0::before{
+                content: "💡";
+                @extend %shared;
+              }
+              &.n1::before{
+                content: "🔧";
+                @extend %shared;
+              }
+              &.n2::before{
+                content: "🌐";
+                @extend %shared;
+              }
+              &.n3::before{
+                content: "🚀";
+                @extend %shared;
+              }
+            }
+          }
+
+          .card-body {
+            overflow: scroll;
+            ul {
+              margin: 0;
+              padding-left: 1rem;
+            }
+            @-moz-document url-prefix() {//firefox样式隔离，大括号内的样式供firefox浏览器使用
+              scrollbar-width: thin; //细滚动条
+              scrollbar-color: var(--bs-border-color) transparent; //滑块颜色；滑道颜色
+            }
+          }
+          //Chrome浏览器的滚动条样式
+          .card-body::-webkit-scrollbar{
+            width: 3px;//垂直滚动条宽度
+            height: 100%;//水平滚动条高度
+          }
+          //滚动条滑块
+          .card-body::-webkit-scrollbar-thumb{
+            background: var(--bs-border-color);
+            border-radius: 5px;
+            transition: background 0.3s;
+          }
+          //滑块悬停
+          .card-body::-webkit-scrollbar-thumb:hover{
+            background: var(--bs-body-color);
+          }
+          //滚动条滑道
+          .card-body::-webkit-scrollbar-track{
+            background: var(--bs-btn-active-border-color);
+            border-radius: 5px;
+          }
+          //滚动条上下箭头按钮
+          .card-body::-webkit-scrollbar-button{
+            display: none;//隐藏按钮
+          }
+        }
+      }
     }
   }
 }

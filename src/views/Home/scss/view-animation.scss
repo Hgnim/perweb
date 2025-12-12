@@ -1,10 +1,19 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
 #section0 {
   @keyframes roll-in {
     to {
       transform: translateX(0) rotate(0deg);
     }
   }
-  @keyframes roll-out {
+  @keyframes roll-out-xs {
+    to{
+      transform: translateX(-70vw) rotate(-720deg);
+    }
+  }
+  @keyframes roll-out-sm {
     to{
       transform: translateX(-50vw) rotate(-720deg);
     }
@@ -14,18 +23,36 @@
     animation: roll-in 1s forwards;
   }
   .roll-in-2 {
-    transform: translateX(-50vw) rotate(-720deg);
+    @include media-breakpoint-up(xs) {
+      transform: translateX(-70vw) rotate(-720deg);
+    }
+    @include media-breakpoint-up(sm) {
+      transform: translateX(-50vw) rotate(-720deg);
+    }
     animation: roll-in 1s .3s forwards;
   }
   .roll-out-2{
-    animation: roll-out 1s forwards;
+    @include media-breakpoint-up(xs) {
+      animation: roll-out-xs 1s forwards;
+    }
+    @include media-breakpoint-up(sm) {
+      animation: roll-out-sm 1s forwards;
+    }
   }
 
   .title-load {
     width: 0;
-    transform: translateX(60vw);
+    @include media-breakpoint-up(xs) {
+      transform: translateX(90vw);
+    }
+    @include media-breakpoint-up(sm) {
+      transform: translateX(60vw);
+    }
     animation: title-load-anim 2s .3s forwards;
     @keyframes title-load-anim {
+      0%{
+        width: 0;
+      }
       40%{
         width: 0;
         transform: translateX(0);
@@ -37,10 +64,20 @@
     }
   }
   .title-unload {
-    animation: title-unload-anim 1s forwards;
-    @keyframes title-unload-anim {
+    @include media-breakpoint-up(xs) {
+      animation: title-unload-anim-xs 1s forwards;
+    }
+    @include media-breakpoint-up(sm) {
+      animation: title-unload-anim-sm 1s forwards;
+    }
+    @keyframes title-unload-anim-xs {
       to{
         //width: 0;
+        transform: translateX(90vw);
+      }
+    }
+    @keyframes title-unload-anim-sm {
+      to{
         transform: translateX(60vw);
       }
     }
@@ -61,5 +98,226 @@
         transform: translateY(0);
       }
     }
+  }
+}
+#section1 {
+  .row1{
+    //region card-load
+    @keyframes card0o2-load-anim-xs{
+      0%{
+        transform: translateX(100vw);
+        height: 2.2rem;
+      }
+      50%{
+        transform: translateX(0);
+        height: 2.2rem;
+      }
+      100%{
+        transform: translateX(0);
+        height: 28.75vh;
+      }
+    }
+    @keyframes card0o2-load-anim-sm{
+      0%{
+        transform: translateX(100vw);
+        height: 3rem;
+      }
+      50%{
+        transform: translateX(0);
+        height: 3rem;
+      }
+      100%{
+        transform: translateX(0);
+        height: 28.75vh;
+      }
+    }
+    @keyframes card0o2-load-anim-lg{
+      0%{
+        transform: translateX(50vw);
+        height: 3rem;
+      }
+      50%{
+        transform: translateX(0);
+        height: 3rem;
+      }
+      100%{
+        transform: translateX(0);
+        height: 42.5vh;
+      }
+    }
+    @keyframes card1o3-load-anim-xs{
+      0%{
+        transform: translateX(50vw);
+        height: 2.2rem;
+      }
+      50%{
+        transform: translateX(0);
+        height: 2.2rem;
+      }
+      100%{
+        transform: translateX(0);
+        height: 28.75vh;
+      }
+    }
+    @keyframes card1o3-load-anim-sm{
+      0%{
+        transform: translateX(50vw);
+        height: 3rem;
+      }
+      50%{
+        transform: translateX(0);
+        height: 3rem;
+      }
+      100%{
+        transform: translateX(0);
+        height: 28.75vh;
+      }
+    }
+    @keyframes card1o3-load-anim-lg{
+      0%{
+        transform: translateX(30vw);
+        height: 3rem;
+      }
+      50%{
+        transform: translateX(0);
+        height: 3rem;
+      }
+      100%{
+        transform: translateX(0);
+        height: 42.5vh;
+      }
+    }
+
+    .card0-load.card0-load{
+      overflow: hidden;
+      @include media-breakpoint-up(xs) {
+        transform: translateX(100vw);
+        height: 2.2rem;
+        animation: card0o2-load-anim-xs 1s .3s forwards;
+      }
+      @include media-breakpoint-up(sm) {
+        transform: translateX(100vw);
+        height: 3rem;
+        animation: card0o2-load-anim-sm 1s .3s forwards;
+      }
+      @include media-breakpoint-up(lg) {
+        transform: translateX(50vw);
+        height: 3rem;
+        animation: card0o2-load-anim-lg 1s .3s forwards;
+      }
+    }
+    .card2-load.card2-load{
+      overflow: hidden;
+      @include media-breakpoint-up(xs) {
+        transform: translateX(100vw);
+        height: 2.2rem;
+        animation: card0o2-load-anim-xs 1s 1.3s forwards;
+      }
+      @include media-breakpoint-up(sm) {
+        transform: translateX(100vw);
+        height: 3rem;
+        animation: card0o2-load-anim-sm 1s 1.3s forwards;
+      }
+      @include media-breakpoint-up(lg) {
+        transform: translateX(50vw);
+        height: 3rem;
+        animation: card0o2-load-anim-lg 1s 1.3s forwards;
+      }
+    }
+
+    .card1-load.card1-load{
+      overflow: hidden;
+      @include media-breakpoint-up(xs) {
+        transform: translateX(50vw);
+        height: 2.2rem;
+        animation: card1o3-load-anim-xs 1s .8s forwards;
+      }
+      @include media-breakpoint-up(sm) {
+        transform: translateX(50vw);
+        height: 3rem;
+        animation: card1o3-load-anim-sm 1s .8s forwards;
+      }
+      @include media-breakpoint-up(lg) {
+        transform: translateX(30vw);
+        height: 3rem;
+        animation: card1o3-load-anim-lg 1s .8s forwards;
+      }
+    }
+    .card3-load.card3-load{
+      overflow: hidden;
+      @include media-breakpoint-up(xs) {
+        transform: translateX(50vw);
+        height: 2.2rem;
+        animation: card1o3-load-anim-xs 1s 1.8s forwards;
+      }
+      @include media-breakpoint-up(sm) {
+        transform: translateX(50vw);
+        height: 3rem;
+        animation: card1o3-load-anim-sm 1s 1.8s forwards;
+      }
+      @include media-breakpoint-up(lg) {
+        transform: translateX(30vw);
+        height: 3rem;
+        animation: card1o3-load-anim-lg 1s 1.8s forwards;
+      }
+    }
+    //endregion
+    //region card-unload
+    @keyframes card0o2-unload-anim-xs{
+      to{
+        transform: translateX(100vw);
+      }
+    }
+    @keyframes card0o2-unload-anim-lg{
+      to{
+        transform: translateX(50vw);
+      }
+    }
+
+    @keyframes card1o3-unload-anim-xs{
+      to{
+        transform: translateX(50vw);
+      }
+    }
+    @keyframes card1o3-unload-anim-lg{
+      to{
+        transform: translateX(30vw);
+      }
+    }
+
+    .card0-unload{
+      @include media-breakpoint-up(xs) {
+        animation: card0o2-unload-anim-xs .5s .2s forwards;
+      }
+      @include media-breakpoint-up(lg) {
+        animation: card0o2-unload-anim-lg .5s .2s forwards;
+      }
+    }
+    .card2-unload{
+      @include media-breakpoint-up(xs) {
+        animation: card0o2-unload-anim-xs .5s .3s forwards;
+      }
+      @include media-breakpoint-up(lg) {
+        animation: card0o2-unload-anim-lg .5s .3s forwards;
+      }
+    }
+
+    .card1-unload{
+      @include media-breakpoint-up(xs) {
+        animation: card1o3-unload-anim-xs .5s forwards;
+      }
+      @include media-breakpoint-up(lg) {
+        animation: card1o3-unload-anim-lg .5s forwards;
+      }
+    }
+    .card3-unload{
+      @include media-breakpoint-up(xs) {
+        animation: card1o3-unload-anim-xs .5s .1s forwards;
+      }
+      @include media-breakpoint-up(lg) {
+        animation: card1o3-unload-anim-lg .5s .1s forwards;
+      }
+    }
+    //endregion
   }
 }

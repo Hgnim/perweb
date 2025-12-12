@@ -6,10 +6,13 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "bootstrap": "^5.3.3",
     "core-js": "^3.8.3",
+    "hover.css": "^2.3.2",
     "jquery": "^3.7.1",
-    "popper.js": "^1.16.1",
+    "pace-js": "^1.2.4",
+    "terminal.css": "^0.7.5",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"
   },
@@ -19,6 +22,7 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "postcss-prefixwrap": "^1.57.0",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
     "typescript": "~4.5.5"

@@ -33,10 +33,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-#    - name: Set Git Account Identity
-#      run: |
-#        git config --global user.name 'github-actions[bot]'
-#        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
     - name: Build
       run: npm run build
     - name: Copy some files to the dist folder
@@ -49,3 +45,5 @@ jobs:
         publish_dir: ./dist
         publish_branch: gh-pages
         full_commit_message: '${{ github.event.head_commit.message }} (Deployed via GitHub Actions)'
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'

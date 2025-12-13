@@ -18,7 +18,7 @@ module.exports = defineConfig({
         config
             .plugin('html')
             .tap(args => {
-                args[0].title = 'Hgnim的个人网页'
+                args[0].title = 'Hagnimik的个人网页'
                 return args
             })
     },

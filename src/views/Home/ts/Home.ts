@@ -17,8 +17,17 @@ export default defineComponent({
 
         let isScrolling:boolean = false;
         //页面总数
-        const allSection:number = 3;
-        function scrollToPage(pageIndex: number) {
+        const allSection:number = 4;
+
+        //页面进度
+        const sectionProgress:Ref<HTMLElement|null>=ref(null);
+
+        /**
+         * 页面滚动
+         * @param pageIndex 滚动至目标索引
+         * @param waitTime 切换至目标页面后的强制等待时间，在等待时间内无法进行滚动操作。如果留空或为null则根据目标页面使用其默认值
+         */
+        function scrollToPage(pageIndex: number,waitTime: number|null=null) {
             if (!loadDone.value) return;
             if (pageIndex < 0 || pageIndex >= allSection) return;
             if (isScrolling) return;
@@ -29,11 +38,35 @@ export default defineComponent({
             else return;
             isScrolling = true;
 
+            if (sectionProgress.value){
+                const value:number=((pageIndex+1)/allSection)*100;
+                const spsb:HTMLElement|null=sectionProgress.value.querySelector('.progress-bar');
+                sectionProgress.value.setAttribute('aria-valuenow', value.toString());
+                if (spsb){
+                    spsb.style.width=`${value}%`;
+                    spsb.innerText=`${pageIndex+1}/${allSection}`;
+                }
+            }
             doAnim(pageIndex,currentSection.value);
             currentSection.value = pageIndex;
+
+            if (waitTime==null){
+                switch (pageIndex){//对应各个页面所有动画执行完成的时间
+                    case 0:
+                        waitTime=2300;break;
+                    case 1:
+                        waitTime=2800;break;
+                    case 2:
+                        waitTime=1900;break;
+                    case 3:
+                        waitTime=1400;break;
+                    default:
+                        waitTime=800;break;//默认使用--section-transition的动画时间
+                }
+            }
             setTimeout(() => {
                 isScrolling = false;
-            }, 800)
+            }, waitTime)
         }
 
         function onWheel(this: Window, event: WheelEvent):void {
@@ -119,10 +152,11 @@ export default defineComponent({
 
         const animElem:Ref<(HTMLElement|null)[][]>=ref((():(HTMLElement|null)[][]=>{
             let ref:(HTMLElement|null)[][];
-            ref = new Array(3);
+            ref = new Array(4);
             ref[0]=new Array(3+4);//section-1 + section0
             ref[1]=new Array(6);
-            ref[2]=new Array(6);
+            ref[2]=new Array(5);
+            ref[3]=new Array(1);
             return ref;
         })());
         const animElem_import=ref((e:HTMLElement|null, index1:number, index2:number) => {
@@ -282,15 +316,40 @@ export default defineComponent({
                             animElem.value[2][4].classList.toggle('item3-unload', !isLoad);
                             animElem.value[2][4].classList.toggle('item3-load', isLoad);
                         }
-                        if (animElem.value[2][5]){
+                        break;
+                    case 3:
+                        if (animElem.value[3][0]){
                             if (isLoad){
-                                animElem.value[2][5].style.setProperty('--animate-delay','1s');
+                                animElem.value[3][0].style.setProperty('--animate-delay','.4s');
                             }
                             else {
-                                animElem.value[2][5].style.setProperty('--animate-delay','0s');
+                                animElem.value[3][0].style.setProperty('--animate-delay','0s');
                             }
-                            animElem.value[2][5].classList.toggle('animate__flipOutX', !isLoad);
-                            animElem.value[2][5].classList.toggle('animate__flipInY', isLoad);
+                            animElem.value[3][0].classList.toggle('animate__zoomOut', !isLoad);
+                            animElem.value[3][0].classList.toggle('animate__zoomIn', isLoad);
+                        }
+                        if (animElem.value[3][1]){
+                            if (isLoad){
+                                animElem.value[3][1].style.setProperty('--animate-delay','.6s');
+
+                                animElem.value[3][1].classList.add('animate__fast');
+
+                                animElem.value[3][1].classList.add('animate__flipInY');
+                                setTimeout(() => {
+                                        if (animElem.value[3][1]) {//动画完成后及时清理，避免影响hover
+                                            animElem.value[3][1].classList.remove('animate__fast');
+
+                                            animElem.value[3][1].classList.remove('animate__flipInY');
+                                        }
+                                    },
+                                    1600//--animate-delay(600ms) + animate__fast(800ms) + 200ms容错 = 1600ms
+                                );
+                            }
+                            else {
+                                animElem.value[3][1].style.setProperty('--animate-delay','0s');
+                            }
+                            animElem.value[3][1].classList.toggle('animate__faster', !isLoad);
+                            animElem.value[3][1].classList.toggle('animate__flipOutX', !isLoad);
                         }
                         break;
                 }
@@ -326,7 +385,7 @@ export default defineComponent({
         }
         //endregion
         return {
-            ref, onMounted, onUnmounted, loadDone, skipLoadClick,
+            ref, onMounted, onUnmounted, loadDone, skipLoadClick, sectionProgress,
             currentSection,
             animElem,animElem_import,
             section0Continue_click,

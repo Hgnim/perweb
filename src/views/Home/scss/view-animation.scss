@@ -335,7 +335,7 @@
 }
 
 #section2 {
-  .col0{
+  .col1{
     .accordion{
       @keyframes accordion-item-load{
         to{
@@ -385,8 +385,5 @@
         animation: accordion-item-unload-left .5s 90ms forwards;
       }
     }
-  }
-  .col1{
-
   }
 }

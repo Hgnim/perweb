@@ -1,7 +1,14 @@
 <template>
   <div id="home">
+    <div id="sect-prog" class="home-const animate-wrap">
+      <div ref="sectionProgress" class="progress animate__animated animate__fadeInDown animate__delay-1s"
+           role="progressbar" aria-label="Example with label"
+           aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 0">0/4</div>
+      </div>
+    </div>
     <div
-        class="section-container with-transition"
+        class="section-container home-const"
         ref="sectionContainer"
         :style="{ transform: `translateY(${-(currentSection * 100)-100}vh)`/*-100用于兼容负数层*/ }"
     >
@@ -32,7 +39,7 @@
             <div class="avatar-col col-xs-12 col-sm-5">
               <div class="avatar unSelectable">
                 <img :ref="(e:HTMLElement|null)=>animElem_import(e,0,0)" alt="avatar图像加载中" draggable="false"
-                     src="https://avatars.githubusercontent.com/u/112072873"/><!--class="roll-in-2"-->
+                     src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/avatar/Hgnim-github_460x.png"/><!--class="roll-in-2"--><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/master/avatar/Hgnim-github_460x.png https://avatars.githubusercontent.com/u/112072873 -->
               </div>
             </div>
             <div class="title-col col-xs-12 col-sm-7">
@@ -68,7 +75,7 @@
                 <div class="lang-used col-6 col-lg-12 unSelectable">
                   <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,0)" alt="Language used图像加载中" draggable="false"
                        class="animate__animated animate__delay-1s"
-                       src="https://raw.githubusercontent.com/Hgnim/Hgnim/refs/heads/main/profile-summary-card-output/transparent/2-most-commit-language.svg"/>
+                       src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/profile-summary-card-output/transparent/2-most-commit-language.svg"/><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/refs/heads/main/profile-summary-card-output/transparent/2-most-commit-language.svg -->
                 </div>
                 <div class="skill col-6 col-lg-12 unSelectable">
                   <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,1)" alt="Skill图像加载中" draggable="false"
@@ -142,12 +149,12 @@
       <section id="section2">
         <div class="container container-main">
           <div class="row">
-            <div class="col-12 col0">
-              <div class="title-par animate-wrap">
-                <h2 :ref="(e:HTMLElement|null)=>animElem_import(e,2,0)"
-                    class="title animate__animated animate__delay-1s"
-                >精选产品</h2>
-              </div>
+            <div class="col-12 col0 animate-wrap">
+              <h2 :ref="(e:HTMLElement|null)=>animElem_import(e,2,0)"
+                  class="title animate__animated animate__delay-1s"
+              >精选产品</h2>
+            </div>
+            <div class="col-12 col1">
               <div class="accordion" id="accordionExample">
                 <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,1)" class="accordion-item">
                   <h2 class="accordion-header">
@@ -158,6 +165,7 @@
                   <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body"
                          data-allow-wheel data-allow-keydown data-allow-touch>
+                      <!--suppress HttpUrlsUsage -->
                       <img alt="图像加载中" class="inset-image mb-3" src="http://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg"><br/>
                       <span>
                         Minecraft多人游戏平台，前往<a href="https://mjyy.top">官网</a>以查看详情。
@@ -174,6 +182,7 @@
                   <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body"
                          data-allow-wheel data-allow-keydown data-allow-touch>
+                      <!--suppress HttpUrlsUsage -->
                       <img alt="图像加载中" class="inset-image mb-3" src="http://cdnjson.com/images/2025/02/12/Hgnim_TimedPower_wiki__image13.png"><br/>
                       <span>
                         Windows平台下简约、高效、多功能的定时电源操作工具。<br/>
@@ -214,9 +223,22 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col1 animate-wrap">
-              <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,5)"
-                   class="card animate__animated animate__delay-1s"
+          </div>
+        </div>
+      </section>
+
+      <section id="section3">
+        <div class="container container-main">
+          <div class="row">
+            <div class="col-12 col0 unSelectable animate-wrap">
+              <img alt="snake图像加载中" draggable="false"
+                   class="animate__animated animate__delay-1s"
+                   :ref="(e:HTMLElement|null)=>animElem_import(e,3,0)"
+                   src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/snake/github-snake-dark.svg" /><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/refs/heads/main/snake/github-snake-dark.svg -->
+            </div>
+            <div class="col-12 col1 animate-wrap hover-wrap">
+              <div :ref="(e:HTMLElement|null)=>animElem_import(e,3,1)"
+                   class="card animate__animated animate__delay-1s hvr-round-corners"
               >
                 <div class="card-body" data-allow-wheel data-allow-keydown data-allow-touch>
                   <h5><strong>联系我</strong></h5>

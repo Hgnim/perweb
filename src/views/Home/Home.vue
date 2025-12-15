@@ -39,7 +39,8 @@
             <div class="avatar-col col-xs-12 col-sm-5">
               <div class="avatar unSelectable">
                 <img :ref="(e:HTMLElement|null)=>animElem_import(e,0,0)" alt="avatar图像加载中" draggable="false"
-                     src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/avatar/Hgnim-github_460x.png"/><!--class="roll-in-2"--><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/master/avatar/Hgnim-github_460x.png https://avatars.githubusercontent.com/u/112072873 -->
+                     style="background-color: white"
+                     src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/avatar/Hgnim.svg"/><!--class="roll-in-2"--><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/master/avatar/Hgnim-github_460x.png https://avatars.githubusercontent.com/u/112072873 -->
               </div>
             </div>
             <div class="title-col col-xs-12 col-sm-7">

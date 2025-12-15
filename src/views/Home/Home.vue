@@ -38,7 +38,8 @@
           <div class="row row0">
             <div class="avatar-col col-xs-12 col-sm-5">
               <div class="avatar unSelectable">
-                <img :ref="(e:HTMLElement|null)=>animElem_import(e,0,0)" alt="avatar图像加载中" draggable="false"
+                <img :ref="(e:HTMLElement|null)=>animElem_import(e,0,0)" alt="avatar" draggable="false"
+                     class="img-loader" @load="imgLoad" @error="imgError"
                      src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/avatar/Hgnim-github_460x.png"/><!--class="roll-in-2"--><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/master/avatar/Hgnim-github_460x.png https://avatars.githubusercontent.com/u/112072873 -->
               </div>
             </div>
@@ -73,13 +74,15 @@
             <div class="col-12 col-lg-6">
               <div class="row row0 animate-wrap">
                 <div class="lang-used col-6 col-lg-12 unSelectable">
-                  <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,0)" alt="Language used图像加载中" draggable="false"
-                       class="animate__animated animate__delay-1s"
+                  <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,0)" alt="Language used" draggable="false"
+                       class="animate__animated animate__delay-1s img-loader"
+                       @load="imgLoad" @error="imgError"
                        src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/profile-summary-card-output/transparent/2-most-commit-language.svg"/><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/refs/heads/main/profile-summary-card-output/transparent/2-most-commit-language.svg -->
                 </div>
                 <div class="skill col-6 col-lg-12 unSelectable">
-                  <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,1)" alt="Skill图像加载中" draggable="false"
-                       class="animate__animated animate__delay-1s"
+                  <img :ref="(e:HTMLElement|null)=>animElem_import(e,1,1)" alt="Skill" draggable="false"
+                       class="animate__animated animate__delay-1s img-loader"
+                       @load="imgLoad" @error="imgError"
                        src="https://skillicons.dev/icons?perline=6&theme=dark&i=cs,ts,js,scss,css,vue,html,md,dotnet,bootstrap,docker,nginx,git,github,webpack,nodejs,npm,sqlite,visualstudio,vscode,webstorm,vim,bash,linux,windows,debian,raspberrypi,ubuntu"/>
                 </div>
               </div>
@@ -166,7 +169,9 @@
                     <div class="accordion-body"
                          data-allow-wheel data-allow-keydown data-allow-touch>
                       <!--suppress HttpUrlsUsage -->
-                      <img alt="图像加载中" class="inset-image mb-3" src="http://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg"><br/>
+                      <img alt="img" class="inset-image mb-3 img-loader"
+                           @load="imgLoad" @error="imgError"
+                           src="http://cdnjson.com/images/2025/01/15/main2-dark-lowe179e1b3cf5a8293.jpg"><br/>
                       <span>
                         Minecraft多人游戏平台，前往<a href="https://mjyy.top">官网</a>以查看详情。
                       </span>
@@ -183,7 +188,9 @@
                     <div class="accordion-body"
                          data-allow-wheel data-allow-keydown data-allow-touch>
                       <!--suppress HttpUrlsUsage -->
-                      <img alt="图像加载中" class="inset-image mb-3" src="http://cdnjson.com/images/2025/02/12/Hgnim_TimedPower_wiki__image13.png"><br/>
+                      <img alt="img" class="inset-image mb-3 img-loader"
+                           @load="imgLoad" @error="imgError"
+                           src="http://cdnjson.com/images/2025/02/12/Hgnim_TimedPower_wiki__image13.png"><br/>
                       <span>
                         Windows平台下简约、高效、多功能的定时电源操作工具。<br/>
                         <a href="https://github.com/Hgnim/TimedPower">前往该项目</a>
@@ -231,8 +238,9 @@
         <div class="container container-main">
           <div class="row">
             <div class="col-12 col0 unSelectable animate-wrap">
-              <img alt="snake图像加载中" draggable="false"
-                   class="animate__animated animate__delay-1s"
+              <img alt="snake" draggable="false"
+                   class="animate__animated animate__delay-1s img-loader"
+                   @load="imgLoad" @error="imgError"
                    :ref="(e:HTMLElement|null)=>animElem_import(e,3,0)"
                    src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/snake/github-snake-dark.svg" /><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/refs/heads/main/snake/github-snake-dark.svg -->
             </div>
@@ -257,3 +265,5 @@
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>
 <style scoped lang="scss" src="./scss/view-animation.scss"></style>
+
+<style scoped lang="scss" src="./scss/imgLoader.scss"></style>

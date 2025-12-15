@@ -3,6 +3,8 @@
 import {defineComponent, ref, Ref, onMounted, onUnmounted} from 'vue';
 import conveyorBelt from "@/components/conveyorBelt/conveyorBelt.vue";
 import {sleep} from "@/ts/global/sleep";
+import {imgLoad,imgError} from "./imgLoader";
+
 export default defineComponent({
     components: {
         conveyorBelt
@@ -389,6 +391,7 @@ export default defineComponent({
             currentSection,
             animElem,animElem_import,
             section0Continue_click,
+            imgLoad,imgError,
         };
     }
 });

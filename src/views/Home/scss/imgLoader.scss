@@ -1,0 +1,55 @@
+.img-loader{
+  //display: block;
+  //position: relative;
+  color: transparent;//隐藏alt内容
+  isolation: isolate;
+  visibility: hidden;//主元素隐藏，防止遮挡伪元素
+  z-index: 0;
+
+  &::before {
+    inset: 0;
+    z-index: 1;
+    //引用于https://github.com/MJYY-MC/MJYY_Web/blob/ef641ca665ff05f179a929228a9d3b221e9bafaf/src/assets/css/index/imageResource.css
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border: 5px solid var(--bs-border-color);
+    border-top-color: var(--bs-body-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    visibility: visible;
+  }
+
+  //加载完成
+  &.loaded{
+    visibility: visible;
+  }
+  &.loaded::before {
+    display: none;
+  }
+
+  //加载失败
+  &.error::before {
+    animation: none;
+    border: 5px solid darkred;
+    //color: red;
+    background-image://利用渐变特性绘制叉叉
+            linear-gradient(45deg, transparent 47%, darkred 47%, darkred 53%, transparent 53%),
+            linear-gradient(-45deg, transparent 47%, darkred 47%, darkred 53%, transparent 53%);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

@@ -6,8 +6,18 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - '.gitignore'
+      - '.browserslistrc'
+      - 'babel.config.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - 'vue.config.js'
+      - 'CNAME'
+  workflow_dispatch:
 
 jobs:
   build:

@@ -3,7 +3,8 @@
 import {defineComponent, ref, Ref, onMounted, onUnmounted} from 'vue';
 import conveyorBelt from "@/components/conveyorBelt/conveyorBelt.vue";
 import {sleep} from "@/ts/global/sleep";
-import {imgLoad,imgError} from "./imgLoader";
+import {il_imgLoad, il_imgError} from "./imgLoader";
+import {isProd} from "@/ts/global/packMode";
 
 export default defineComponent({
     components: {
@@ -53,17 +54,27 @@ export default defineComponent({
             currentSection.value = pageIndex;
 
             if (waitTime==null){
-                switch (pageIndex){//对应各个页面所有动画执行完成的时间
-                    case 0:
-                        waitTime=2300;break;
-                    case 1:
-                        waitTime=2800;break;
-                    case 2:
-                        waitTime=1900;break;
-                    case 3:
-                        waitTime=1400;break;
-                    default:
-                        waitTime=800;break;//默认使用--section-transition的动画时间
+                if (isProd) {
+                    switch (pageIndex) {//对应各个页面所有动画执行完成的时间
+                        case 0:
+                            waitTime = 2300;
+                            break;
+                        case 1:
+                            waitTime = 2800;
+                            break;
+                        case 2:
+                            waitTime = 1900;
+                            break;
+                        case 3:
+                            waitTime = 1400;
+                            break;
+                        default:
+                            waitTime = 800;
+                            break;//默认使用--section-transition的动画时间
+                    }
+                }
+                else{
+                    waitTime=0;
                 }
             }
             setTimeout(() => {
@@ -182,13 +193,15 @@ export default defineComponent({
                             //animElem.value[0][6].classList.toggle('animate__faster', !isLoad);
                             animElem.value[0][6].classList.toggle('animate__rollOut', !isLoad);
                             if (isLoad) {
-                                animElem.value[0][6].classList.add('animate__delay-2s');
+                                if (isProd)
+                                    animElem.value[0][6].classList.add('animate__delay-2s');
                                 animElem.value[0][6].classList.add('animate__fast');
 
                                 animElem.value[0][6].classList.add('animate__bounceInUp');
                                 setTimeout(() => {
                                         if (animElem.value[0][6]) {//动画完成后及时清理，避免影响hover
-                                            animElem.value[0][6].classList.remove('animate__delay-2s');
+                                            if (isProd)
+                                                animElem.value[0][6].classList.remove('animate__delay-2s');
                                             animElem.value[0][6].classList.remove('animate__fast');
 
                                             animElem.value[0][6].classList.remove('animate__bounceInUp');
@@ -391,7 +404,7 @@ export default defineComponent({
             currentSection,
             animElem,animElem_import,
             section0Continue_click,
-            imgLoad,imgError,
+            il_imgLoad,il_imgError,
         };
     }
 });

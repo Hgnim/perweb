@@ -136,10 +136,12 @@
         margin-right: 32px;
       }
 
-      img {
+      .img-loader {
         width: 128px;
         height: 128px;
-        border-radius: 50%;
+        .img-box {
+          border-radius: 50%;
+        }
       }
     }
   }
@@ -204,7 +206,7 @@
           @include media-breakpoint-up(xs) {
             height: 35vh;
           }
-          img {
+          .img-loader {
             height: 100%;
             width: 100%;
           }
@@ -223,7 +225,7 @@
             height: 40vh;
           }
           padding-bottom: .8rem;
-          img{
+          .img-loader {
             @include media-breakpoint-up(xs) {
               --left-or-right-in: right;
             }
@@ -395,7 +397,11 @@
           @include media-breakpoint-up(md) {
             width: 25vw;
           }
-          border-radius: 10px;
+          .img-box {
+            border-radius: 10px;
+          }
+          left: 50%;
+          transform: translateX(-50%);
         }
       }
     }
@@ -409,7 +415,7 @@
     align-items: center;
     justify-content: center;
     .col0{
-      img{
+      .img-loader{
         width: 100%;
       }
     }

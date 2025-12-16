@@ -46,7 +46,7 @@
                     <img alt="avatar" draggable="false"
                          @load="il_imgLoad" @error="il_imgError"
                          style="background-color: white"
-                         src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/avatar/Hgnim.svg"/><!--class="roll-in-2"--><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/master/avatar/Hgnim-github_460x.png https://avatars.githubusercontent.com/u/112072873 -->
+                         src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/avatar/Hgnim.svg"/><!--class="roll-in-2"--><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/master/avatar/Hgnim.svg -->
                   </div>
                 </div>
               </div>

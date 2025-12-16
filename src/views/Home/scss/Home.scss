@@ -205,6 +205,7 @@
         %style{
           @include media-breakpoint-up(xs) {
             height: 35vh;
+            padding-top: .8rem;
           }
           .img-loader {
             height: 100%;
@@ -216,15 +217,16 @@
           @extend %style;
           @include media-breakpoint-up(lg) {
             height: 60vh;
+            padding-top: .8rem;
           }
-          padding-top: .8rem;
         }
         .skill {
           @extend %style;
           @include media-breakpoint-up(lg) {
             height: 40vh;
+            padding-top: 0;
+            padding-bottom: .8rem;
           }
-          padding-bottom: .8rem;
           .img-loader {
             @include media-breakpoint-up(xs) {
               --left-or-right-in: right;

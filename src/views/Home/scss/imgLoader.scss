@@ -1,0 +1,104 @@
+.img-loader{
+  position: relative;
+
+  .img-box{
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    img{
+      height: 100%;
+      width: 100%;
+      //object-fit: contain;
+    }
+  }
+
+  &{
+    color: transparent;
+  }
+  &.error{
+    color: red;
+  }
+  //region img-loader-animation
+  .img-loader-animation{
+    position: absolute;
+    visibility: hidden;
+    min-width: 100px;
+    min-height: 100px;
+    width: 100%;
+    height: 100%;
+    container-type: size;//供伪元素使用cqh与cqw
+    pointer-events: none;//不影响鼠标事件
+  }
+
+  & .img-loader-animation::before {
+    $transform-had: translate(-50%, -50%);
+    //引用与修改于https://github.com/MJYY-MC/MJYY_Web/blob/ef641ca665ff05f179a929228a9d3b221e9bafaf/src/assets/css/index/imageResource.css
+    @keyframes spin {
+      0% {
+        transform: $transform-had rotate(0deg);
+      }
+
+      100% {
+        transform: $transform-had rotate(360deg);
+      }
+    }
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50cqh;
+    height: 50cqh;
+    transform: $transform-had;
+    border: 8cqh solid var(--bs-border-color);
+    border-top-color: var(--bs-body-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    visibility: visible;
+  }
+  & .img-loader-animation::after{
+    visibility: visible;
+    content: "图像加载中";
+    color: var(--bs-body-color);
+    position: absolute;
+    top: calc(50% + 25cqh);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16cqh;
+    line-height: 1.5;
+    padding: 0;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  //加载完成
+  &.loaded .img-loader-animation{
+    visibility: visible;
+  }
+  &.loaded .img-loader-animation::before {
+    display: none;
+  }
+  &.loaded .img-loader-animation::after{
+    display: none;
+  }
+
+  //加载失败
+  &.error .img-loader-animation::before {
+    animation: none;
+    border: 5cqh solid darkred;
+    background-image://利用渐变特性绘制叉叉
+            linear-gradient(45deg, transparent 47%, darkred 47%, darkred 53%, transparent 53%),
+            linear-gradient(-45deg, transparent 47%, darkred 47%, darkred 53%, transparent 53%);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /*content: "图像加载失败";
+    text-indent: -28px;
+    white-space: nowrap;
+    line-height: 0;*/
+  }
+  &.error .img-loader-animation::after{
+    content: "图像加载失败";
+    color: red;
+  }
+  //endregion
+}

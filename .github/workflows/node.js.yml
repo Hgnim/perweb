@@ -9,13 +9,15 @@ on:
     paths:
       - 'src/**'
       - 'public/**'
+      - '.env'
       - '.gitignore'
-      - '.browserslistrc'
-      - 'babel.config.js'
+      - 'index.html'
       - 'package.json'
       - 'package-lock.json'
       - 'tsconfig.json'
-      - 'vue.config.js'
+      - 'tsconfig.app.json'
+      - 'tsconfig.node.json'
+      - 'vite.config.js'
       - 'CNAME'
   workflow_dispatch:
 

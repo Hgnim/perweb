@@ -21,9 +21,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/terminal-custom.scss';
-@import 'animate.css';
-@import 'hover.css';
 #app{
   text-align: center
 }

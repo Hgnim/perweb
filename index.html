@@ -4,17 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>%VITE_INDEX_HTML_TITLE%</title>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/112072873?s=48&v=4"><!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
 
     <link rel="stylesheet" href="/assets/css/index/style.css" type="text/css">
 </head>
 <body>
 <noscript>
-    <strong><%= htmlWebpackPlugin.options.title %> 的正常运行需要启用 JavaScript</strong>
-    <!--<strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-        Please enable it to continue.</strong>-->
+    <strong>%VITE_INDEX_HTML_TITLE% 的正常运行需要启用 JavaScript</strong>
 </noscript>
 <div id="app"></div>
+<script type="module" src="/src/main.ts"></script>
 </body>
 </html>

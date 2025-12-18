@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import $ from 'jquery';
-import {defineComponent, Ref, ref} from 'vue';
+import {defineComponent,type Ref, ref} from 'vue';
 import {themeSync} from '@/ts/themeSync';
 export default defineComponent({
   setup() {

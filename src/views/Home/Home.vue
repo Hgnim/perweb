@@ -16,18 +16,18 @@
         <div class="container container-main">
           <div class="row animate-wrap">
             <div class="col-12 mb-3 col0">
-              <div :ref="(e:HTMLElement|null)=>animElem_import(e,0,4)"
+              <div :ref="(e)=>animElem_import(e as HTMLElement|null,0,4)"
                    class="animate__animated"
               >
                 <div class="spinner-border" role="status"></div>
               </div>
               <h3 class="animate__animated"
-                  :ref="(e:HTMLElement|null)=>animElem_import(e,0,5)"
+                  :ref="(e)=>animElem_import(e as HTMLElement|null,0,5)"
               >资源加载中</h3>
             </div>
             <div class="col-12 col1">
               <button type="button" class="btn btn-secondary animate__animated" @click="skipLoadClick()"
-                      :ref="(e:HTMLElement|null)=>animElem_import(e,0,6)"
+                      :ref="(e)=>animElem_import(e as HTMLElement|null,0,6)"
               >后台加载</button>
             </div>
           </div>
@@ -38,7 +38,7 @@
           <div class="row row0">
             <div class="avatar-col col-xs-12 col-sm-5">
               <div class="avatar unSelectable">
-                <div :ref="(e:HTMLElement|null)=>animElem_import(e,0,0)"
+                <div :ref="(e)=>animElem_import(e as HTMLElement|null,0,0)"
                      class="img-loader"
                 >
                   <div class="img-loader-animation"></div>
@@ -53,18 +53,18 @@
             </div>
             <div class="title-col col-xs-12 col-sm-7">
               <div class="terminal-wrap ter_def-color">
-                <h4 :ref="(e:HTMLElement|null)=>animElem_import(e,0,1)" class="title terminal-prompt underline terminal-border"></h4>
+                <h4 :ref="(e)=>animElem_import(e as HTMLElement|null,0,1)" class="title terminal-prompt underline terminal-border"></h4>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
               <div class="animate-wrap hover-wrap">
-              <button :ref="(e:HTMLElement|null)=>animElem_import(e,0,2)" @click="section0Continue_click()"
+              <button :ref="(e)=>animElem_import(e as HTMLElement|null,0,2)" @click="section0Continue_click()"
                       class="continue hvr-sink animate__animated">
                 <span>向下滑动或点击以继续</span><br>
                 <!--suppress HtmlDeprecatedAttribute -->
-                <svg :ref="(e:HTMLElement|null)=>animElem_import(e,0,3)" class=""
+                <svg :ref="(e)=>animElem_import(e as HTMLElement|null,0,3)" class=""
                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="none">
                   <polyline points="6 9 12 15 18 9"/>
@@ -82,7 +82,7 @@
             <div class="col-12 col-lg-6">
               <div class="row row0 animate-wrap">
                 <div class="lang-used col-6 col-lg-12 unSelectable">
-                  <div :ref="(e:HTMLElement|null)=>animElem_import(e,1,0)"
+                  <div :ref="(e)=>animElem_import(e as HTMLElement|null,1,0)"
                        class="img-loader
                               animate__animated animate__delay-1s"
                   >
@@ -95,7 +95,7 @@
                   </div>
                 </div>
                 <div class="skill col-6 col-lg-12 unSelectable">
-                  <div :ref="(e:HTMLElement|null)=>animElem_import(e,1,1)"
+                  <div :ref="(e)=>animElem_import(e as HTMLElement|null,1,1)"
                        class="img-loader
                               animate__animated animate__delay-1s"
                   >
@@ -112,7 +112,7 @@
             <div class="col-12 col-lg-6">
               <div class="row row1">
                 <div class="col-6">
-                  <div :ref="(e:HTMLElement|null)=>animElem_import(e,1,2)" class="card">
+                  <div :ref="(e)=>animElem_import(e as HTMLElement|null,1,2)" class="card">
                     <div class="card-header">
                       <h5 class="card-header- n0">关于我</h5>
                     </div>
@@ -122,7 +122,7 @@
                   </div>
                 </div>
                 <div class="col-6">
-                  <div :ref="(e:HTMLElement|null)=>animElem_import(e,1,3)" class="card">
+                  <div :ref="(e)=>animElem_import(e as HTMLElement|null,1,3)" class="card">
                     <div class="card-header">
                       <h5 class="card-header- n1">技术专长</h5>
                     </div>
@@ -138,7 +138,7 @@
                   </div>
                 </div>
                 <div class="col-6">
-                  <div :ref="(e:HTMLElement|null)=>animElem_import(e,1,4)" class="card">
+                  <div :ref="(e)=>animElem_import(e as HTMLElement|null,1,4)" class="card">
                     <div class="card-header">
                       <h5 class="card-header- n2">Web技能</h5>
                     </div>
@@ -152,7 +152,7 @@
                   </div>
                 </div>
                 <div class="col-6">
-                  <div :ref="(e:HTMLElement|null)=>animElem_import(e,1,5)" class="card">
+                  <div :ref="(e)=>animElem_import(e as HTMLElement|null,1,5)" class="card">
                     <div class="card-header">
                       <h5 class="card-header- n3">工程能力</h5>
                     </div>
@@ -175,13 +175,13 @@
         <div class="container container-main">
           <div class="row">
             <div class="col-12 col0 animate-wrap">
-              <h2 :ref="(e:HTMLElement|null)=>animElem_import(e,2,0)"
+              <h2 :ref="(e)=>animElem_import(e as HTMLElement|null,2,0)"
                   class="title animate__animated animate__delay-1s"
               >精选产品</h2>
             </div>
             <div class="col-12 col1">
               <div class="accordion" id="accordionExample">
-                <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,1)" class="accordion-item">
+                <div :ref="(e)=>animElem_import(e as HTMLElement|null,2,1)" class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
                       <span><strong>谧静幽原</strong> Minecraft多人游戏平台</span>
@@ -207,7 +207,7 @@
                     </div>
                   </div>
                 </div>
-                <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,2)" class="accordion-item">
+                <div :ref="(e)=>animElem_import(e as HTMLElement|null,2,2)" class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                       <span>定时电源 (TimedPower)</span>
@@ -234,7 +234,7 @@
                     </div>
                   </div>
                 </div>
-                <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,3)" class="accordion-item">
+                <div :ref="(e)=>animElem_import(e as HTMLElement|null,2,3)" class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                       <span>按键输入宏 (KeyInputMacro)</span>
@@ -250,7 +250,7 @@
                     </div>
                   </div>
                 </div>
-                <div :ref="(e:HTMLElement|null)=>animElem_import(e,2,4)" class="accordion-item">
+                <div :ref="(e)=>animElem_import(e as HTMLElement|null,2,4)" class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                       <span>我的世界服务器玩家数据文件管理器 (MinecraftServerPlayerDataManager)</span>
@@ -274,7 +274,7 @@
         <div class="container container-main">
           <div class="row">
             <div class="col-12 col0 unSelectable animate-wrap">
-              <div :ref="(e:HTMLElement|null)=>animElem_import(e,3,0)"
+              <div :ref="(e)=>animElem_import(e as HTMLElement|null,3,0)"
                    class="img-loader
                           animate__animated animate__delay-1s"
               >
@@ -287,7 +287,7 @@
               </div>
             </div>
             <div class="col-12 col1 animate-wrap hover-wrap">
-              <div :ref="(e:HTMLElement|null)=>animElem_import(e,3,1)"
+              <div :ref="(e)=>animElem_import(e as HTMLElement|null,3,1)"
                    class="card animate__animated animate__delay-1s hvr-round-corners"
               >
                 <div class="card-body" data-allow-wheel data-allow-keydown data-allow-touch>
@@ -303,7 +303,16 @@
   </div>
 </template>
 
-<script lang="ts" src="./ts/Home.ts"></script>
+<script setup lang="ts">
+import {il_imgLoad, il_imgError} from "./ts/imgLoader";
+import {pageScrollPublicVar, pageScroll} from './ts/pageScroll';
+import {elementAnimationAction, elementAnimation} from "./ts/elementAnimation.ts";
+
+const {loadDone,currentSection,sectionProgress}=pageScrollPublicVar();
+const {doAnim,animElem_import}=elementAnimationAction(currentSection);
+const {scrollToPage}=pageScroll(loadDone,currentSection,sectionProgress,doAnim);
+const {skipLoadClick,section0Continue_click}=elementAnimation(doAnim,loadDone,scrollToPage);
+</script>
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>
 <style scoped lang="scss" src="./scss/view-animation.scss"></style>

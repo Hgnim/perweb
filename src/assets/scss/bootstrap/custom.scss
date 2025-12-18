@@ -10,7 +10,7 @@ $navbar-dark-hover-color: #b3b3b3;
 $body-color-dark: #f8f8ff;
 $headings-color-dark: #f8f8ff;
 
-@import "~bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 
 .navbar {
   --bs-navbar-background-color-rgb: 102, 102, 102;
@@ -21,4 +21,4 @@ $headings-color-dark: #f8f8ff;
   --bs-navbar-background-color: rgba(var(--bs-navbar-background-color-rgb), 1);
 }
 
-@import 'bootstrap';
+//@import 'bootstrap';

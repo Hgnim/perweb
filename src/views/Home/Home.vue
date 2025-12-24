@@ -307,11 +307,14 @@
 import {il_imgLoad, il_imgError} from "./ts/imgLoader";
 import {pageScrollPublicVar, pageScroll} from './ts/pageScroll';
 import {elementAnimationAction, elementAnimation} from "./ts/elementAnimation.ts";
+import {useTitle} from "@vueuse/core";
 
 const {loadDone,currentSection,sectionProgress}=pageScrollPublicVar();
 const {doAnim,animElem_import}=elementAnimationAction(currentSection);
 const {scrollToPage}=pageScroll(loadDone,currentSection,sectionProgress,doAnim);
 const {skipLoadClick,section0Continue_click}=elementAnimation(doAnim,loadDone,scrollToPage);
+
+useTitle('Hagnimik的个人网页');
 </script>
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>

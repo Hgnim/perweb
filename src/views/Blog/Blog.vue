@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import {useTitle} from "@vueuse/core";
 
+useTitle('Hagnimik的博客');
 </script>
 
 <template>

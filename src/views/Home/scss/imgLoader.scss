@@ -57,7 +57,7 @@
   }
   & .img-loader-animation::after{
     visibility: visible;
-    content: "图像加载中";
+    content: "加载中";
     color: var(--bs-body-color);
     position: absolute;
     top: calc(50% + 25cqh);
@@ -97,7 +97,7 @@
     line-height: 0;*/
   }
   &.error .img-loader-animation::after{
-    content: "图像加载失败";
+    content: "加载失败";
     color: red;
   }
   //endregion

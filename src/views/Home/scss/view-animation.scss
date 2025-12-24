@@ -113,6 +113,41 @@
 }
 
 #section1 {
+  .row0{
+    .lang-used {
+      .row{
+        .panel{
+          @keyframes lang-used_lang-load{
+            from{
+              width: 0;
+            }
+            to{
+              width: var(--lang-width);
+            }
+          }
+          @keyframes lang-used_lang-unload{
+            from{
+              width: var(--lang-width);
+            }
+            to{
+              width: 0;
+            }
+          }
+          .lang{
+            --anim-delay-time:0s;
+            &.lang-load{
+              width: 0;
+              animation: lang-used_lang-load 1s var(--anim-delay-time) forwards;
+            }
+            &.lang-unload{
+              width: var(--lang-width);
+              animation: lang-used_lang-unload .5s var(--anim-delay-time) forwards;
+            }
+          }
+        }
+      }
+    }
+  }
   .row1{
     //region card-load
     @keyframes card0o2-load-anim-xs{

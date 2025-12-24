@@ -219,6 +219,122 @@
             height: 60vh;
             padding-top: .8rem;
           }
+          .row{
+            height: 90%;
+            margin: 5%;
+            .img-loader{
+              position: absolute;
+              height: 100%;
+              width: 100%;
+              z-index: 1;
+              padding: 0;
+            }
+            .title{
+              //height: calc(1.325rem + 0.9vw + 0.1rem);
+              h2{
+                margin: 0;
+                @include media-breakpoint-up(xs) {
+                  font-size: calc(0.8rem + 0.9vw);
+                }
+                @include media-breakpoint-up(md) {
+                  font-size: calc(1rem + 0.9vw);
+                }
+                @include media-breakpoint-up(lg) {
+                  font-size: calc(1.325rem + 0.9vw);
+                }
+              }
+            }
+            .panel{
+              position: relative;
+              padding: 0;
+              @include media-breakpoint-up(xs) {
+                height: calc( 100% - 1rem - 0.9vw );
+              }
+              @include media-breakpoint-up(md) {
+                height: calc( 100% - 1.2rem - 0.9vw );
+              }
+              @include media-breakpoint-up(lg) {
+                height: calc( 100% - 1.5rem - 0.9vw );
+              }
+
+              display: flex;
+              flex-direction: column-reverse;
+              justify-content: space-between;
+              .center-line{
+                position: absolute;
+                height: 100%;
+                width: 1%;
+                background-color: var(--bs-border-color);
+                z-index: -1;
+              }
+              .lang{
+                --lang-width: 0;
+                position: relative;
+                background-color: var(--bs-border-color);
+                margin-bottom: 3%;
+                flex: 1;//height: 10%;
+                width: 0;//20%;
+                overflow: hidden;
+                @mixin no-marbot{
+                  margin-bottom: 0;
+                }
+                &.lang-0{
+                  @include no-marbot;
+                }
+                &.lang-1{
+                  @include no-marbot;
+                }
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                :deep(span){
+                  @include media-breakpoint-up(xs) {
+                    font-size: 0.4rem;
+                  }
+                  @include media-breakpoint-up(md) {
+                    font-size: 0.5rem;
+                  }
+                  @include media-breakpoint-up(lg) {
+                    font-size: 0.8rem;
+                  }
+                }
+                :deep(.lang-txt){
+                }
+                :deep(.lang-val){
+                }
+              }
+              &.left{
+                align-items: flex-end;
+                .center-line{
+                  right: 0;
+                }
+                .lang{
+                  --lang-bg-color: black;//red;
+                  right: 0;
+                  margin-right: 1%;
+                  border-top-left-radius: 10px;
+                  border-bottom-left-radius: 10px;
+
+                  background: linear-gradient(0.75turn, var(--bs-border-color), 35%, var(--lang-bg-color));
+                }
+              }
+              &.right{
+                .center-line{
+                  left: 0;
+                }
+                .lang{
+                  --lang-bg-color: black;//blue;
+                  left: 0;
+                  margin-left: 1%;
+                  border-top-right-radius: 10px;
+                  border-bottom-right-radius: 10px;
+
+                  background: linear-gradient(0.25turn, var(--bs-border-color), 35%, var(--lang-bg-color));
+                }
+              }
+            }
+          }
         }
         .skill {
           @extend %style;
@@ -255,27 +371,27 @@
             margin-bottom: 5vh;
           }
           @include media-breakpoint-up(xs) {
-            font-size: 0.6rem;
+            font-size: calc(0.45rem + 0.9vh);
             @include card-xs;
           }
           @include media-breakpoint-up(sm){
-            font-size: 0.65rem;
+            font-size: calc(0.5rem + 0.9vh);
             @include card-xs;
           }
           @include media-breakpoint-up(md) {
-            font-size: 0.75rem;
+            font-size: calc(0.55rem + 0.9vh);
             @include card-xs;
           }
           @include media-breakpoint-up(lg) {
-            font-size: 0.75rem;
+            font-size: calc(0.65rem + 0.9vh);
             @include card-lg;
           }
           @include media-breakpoint-up(xl){
-            font-size: 0.85rem;
+            font-size: calc(0.7rem + 0.9vh);
             @include card-lg;
           }
           @include media-breakpoint-up(xxl){
-            font-size: 1.09rem;
+            font-size: calc(1rem + 0.9vh);
             @include card-lg;
           }
 

@@ -82,15 +82,56 @@
             <div class="col-12 col-lg-6">
               <div class="row row0 animate-wrap">
                 <div class="lang-used col-6 col-lg-12 unSelectable">
-                  <div :ref="(e)=>animElem_import(e as HTMLElement|null,1,0)"
-                       class="img-loader
-                              animate__animated animate__delay-1s"
+                  <div :ref="
+                    (e)=>{
+                      animElem_import(e as HTMLElement|null,1,0);
+                      langUsed=e as HTMLElement|null;
+                    }"
+                       class="animate__animated animate__delay-1s row"
                   >
-                    <div class="img-loader-animation"></div>
-                    <div class="img-box">
-                      <img alt="Language used" draggable="false"
-                           @load="il_imgLoad" @error="il_imgError"
-                           src="https://fastly.jsdelivr.net/gh/Hgnim/Hgnim@latest/profile-summary-card-output/transparent/2-most-commit-language.svg"/><!-- https://raw.githubusercontent.com/Hgnim/Hgnim/refs/heads/main/profile-summary-card-output/transparent/2-most-commit-language.svg -->
+                    <div class="img-loader">
+                      <div class="img-loader-animation"></div>
+                    </div>
+                    <div class="col-12 title animate__animated animate__delay-1s">
+                      <h2>常用的语言</h2>
+                    </div>
+                    <div ref="panelLeft.e" class="col-6 panel left">
+                      <div class="center-line"></div>
+                      <div v-for="(pl, index) in panelLeft.child"
+                           :key="index"
+                           :class="pl.classList"
+                           :style="pl.style"
+                           v-html="pl.innerHTML"
+                      ></div>
+                      <!--<div class="lang lang-0">
+                        <span class="lang-txt">test</span>
+                        <span class="lang-val">20.0000%</span>
+                      </div>
+                      <div class="lang lang-2"></div>
+                      <div class="lang lang-4"></div>
+                      <div class="lang lang-6"></div>
+                      <div class="lang lang-8"></div>
+                      <div class="lang lang-10"></div>
+                      <div class="lang lang-12"></div>-->
+                    </div>
+                    <div ref="panelRight.e" class="col-6 panel right">
+                      <div class="center-line"></div>
+                      <div v-for="(pr, index) in panelRight.child"
+                           :key="index"
+                           :class="pr.classList"
+                           :style="pr.style"
+                           v-html="pr.innerHTML"
+                      ></div>
+                      <!--<div class="lang lang-1">
+                        <span class="lang-txt">test</span>
+                        <span class="lang-val">20.0000%</span>
+                      </div>
+                      <div class="lang lang-3"></div>
+                      <div class="lang lang-5"></div>
+                      <div class="lang lang-7"></div>
+                      <div class="lang lang-9"></div>
+                      <div class="lang lang-11"></div>
+                      <div class="lang lang-13"></div>-->
                     </div>
                   </div>
                 </div>
@@ -131,8 +172,8 @@
                     <ul>
                       <li>桌面开发：WinForm、WPF</li>
                       <li>跨平台开发：Linux、Xamarin.Android</li>
-                      <li>游戏开发：Godot-dotnet、Unity</li>
                       <li>Web开发：ASP.NET Core MVC</li>
+                      <li>游戏开发：Godot-dotnet、Unity</li>
                     </ul>
                     </div>
                   </div>
@@ -308,13 +349,24 @@ import {il_imgLoad, il_imgError} from "./ts/imgLoader";
 import {pageScrollPublicVar, pageScroll} from './ts/pageScroll';
 import {elementAnimationAction, elementAnimation} from "./ts/elementAnimation.ts";
 import {useTitle} from "@vueuse/core";
+import {langUsedSvg, loadLangUsedSvg} from "@/views/Home/ts/langUsedSvg.ts";
+import {onMounted} from "vue";
 
 const {loadDone,currentSection,sectionProgress}=pageScrollPublicVar();
 const {doAnim,animElem_import}=elementAnimationAction(currentSection);
 const {scrollToPage}=pageScroll(loadDone,currentSection,sectionProgress,doAnim);
 const {skipLoadClick,section0Continue_click}=elementAnimation(doAnim,loadDone,scrollToPage);
+const {
+  langUsed,
+  panelLeft,
+  panelRight,
+}=langUsedSvg();
 
 useTitle('Hagnimik的个人网页');
+
+onMounted(()=>{
+  loadLangUsedSvg(langUsed,panelLeft,panelRight);
+})
 </script>
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>

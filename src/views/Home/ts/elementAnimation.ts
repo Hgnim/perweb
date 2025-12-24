@@ -105,6 +105,30 @@ export function elementAnimationAction(
                     break;
                 case 1:
                     if (animElem.value[1] && animElem.value[1][0]) {
+                        for (let i=0;true;i++){
+                            const lang:HTMLElement|null=animElem.value[1][0].querySelector(`.lang.lang-${i}`);
+                            if (lang) {
+                                if (isLoad){
+                                    lang.style.setProperty('--anim-delay-time',`${(i*0.2)+0.8}s`);
+                                }else{
+                                    lang.style.setProperty('--anim-delay-time','0s');
+                                }
+                                lang.classList.toggle('lang-unload',!isLoad);
+                                lang.classList.toggle('lang-load',isLoad);
+                            }else break;
+                        }
+                        {
+                            const title:HTMLElement|null=animElem.value[1][0].querySelector('.title');
+                            if (title) {
+                                if (isLoad) {
+                                    title.style.setProperty('--animate-delay', '1.5s');
+                                } else {
+                                    title.style.setProperty('--animate-delay', '0s');
+                                }
+                                title.classList.toggle('animate__fadeOutLeftBig', !isLoad);
+                                title.classList.toggle('animate__fadeIn', isLoad);
+                            }
+                        }
                         if (isLoad) {
                             //使用--animate-delay变量时需要使用animate__delay-1s类在元素中占位以激活，否则变量不生效
                             animElem.value[1][0].style.setProperty('--animate-delay', '.2s');

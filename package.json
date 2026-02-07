@@ -3,8 +3,23 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "before-build": "echo 'nothing'",
+    "type-check": "vue-tsc -b",
+    "dev": "npm run dev:spa",
+    "dev:spa": "cross-env VITE_RENDER_MODE=spa vite",
+    "dev:spa-hash": "cross-env VITE_RENDER_MODE=spa-hash vite",
+    "dev:ssg": "cross-env VITE_RENDER_MODE=ssg vite",
+    "build": "npm run build:ssg",
+    "build-only:spa": "cross-env VITE_RENDER_MODE=spa vite build",
+    "build-only:spa-hash": "cross-env VITE_RENDER_MODE=spa-hash vite build",
+    "build-only:ssg": "cross-env VITE_RENDER_MODE=ssg vite-ssg build",
+    "build:spa": "npm run type-check && npm run before-build && npm run build-only:spa",
+    "build:spa-hash": "npm run type-check && npm run before-build && npm run build-only:spa-hash",
+    "build:ssg": "npm run type-check && npm run before-build && npm run build-only:ssg",
+    "build-quick": "npm run build-quick:ssg",
+    "build-quick:spa": "npm run type-check && npm run build-only:spa",
+    "build-quick:spa-hash": "npm run type-check && npm run build-only:spa-hash",
+    "build-quick:ssg": "npm run type-check && npm run build-only:ssg",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -13,21 +28,24 @@
     "bootstrap": "^5.3.8",
     "core-js": "^3.8.3",
     "hover.css": "^2.3.2",
-    "jquery": "^3.7.1",
     "pace-js": "^1.2.4",
     "terminal.css": "^0.7.5",
     "vue": "^3.5.24",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
     "@types/jquery": "^3.5.32",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "cross-env": "^10.1.0",
     "postcss-prefixwrap": "^1.57.0",
     "sass": "^1.97.0",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
+    "vite-plugin-html": "^3.2.2",
+    "vite-ssg": "^28.3.0",
     "vue-tsc": "^3.1.4"
   }
 }

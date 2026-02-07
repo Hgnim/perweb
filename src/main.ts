@@ -1,18 +1,18 @@
-import 'jquery';
-import '@/assets/scss/bootstrap/custom.scss';
-import 'bootstrap';
-import  '@/assets/css/unSelect.css';
+import renderMode from "@/ts/env/renderMode.ts";
 
-import 'terminal.css';//改为vite后，postcssPrefixwrap只会处理ts中引用的css，不会处理scss中的@inport，故在此引用
-import '@/assets/scss/terminal-custom.scss';
-import 'animate.css';
-import 'hover.css';
-
-import { createApp } from 'vue';
-
-import App from '@/App.vue';
-import router from '@/router';
-createApp(App).use(router).mount('#app');
-
-//import SideNavbar from '@/components/SideNavbar.vue';
-//createApp(SideNavbar).mount('#SideNavbar');
+export const createApp:any=async ()=>{
+    switch (renderMode){
+        case 'spa':
+        case 'spa-hash': {
+            const module = await import("@/main-spa.ts");
+            return module.default();
+        }
+        case 'ssg': {
+            const module = await import("@/main-ssg.ts");
+            return await module.default().createApp();
+        }
+        default:
+            throw new Error(`Unknown RENDER_MODE: ${renderMode}`);
+    }
+};
+createApp();

@@ -1,5 +1,5 @@
 import {ref,type Ref, onMounted, onUnmounted} from 'vue';
-import {isProd} from "@/ts/global/packMode";
+import {isProd} from "@/ts/env/packMode.ts";
 
 export function pageScrollPublicVar(){
     //是否加载完毕

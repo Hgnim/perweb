@@ -1,9 +1,22 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import {createMemoryHistory, createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
+import renderMode from "@/ts/env/renderMode.ts";
+
 import Home from '@/views/Home/Home.vue';
 import Blog from '@/views/Blog/Blog.vue';
 
 export default createRouter({
-    history: createWebHashHistory(),//hash模式，使用'#'内部导航，'#'及后面的内容不会发送给服务器，避免了非'/'时404的情况。
+    history: (()=>{
+        switch (renderMode){
+            case 'ssg':
+                return import.meta.env.SSR ? createMemoryHistory() : createWebHistory();
+            case 'spa':
+                return createWebHistory();
+            case 'spa-hash':
+                return createWebHashHistory();
+            default:
+                throw new Error(`Unknown RENDER_MODE: ${renderMode}`);
+        }
+    })(),
     routes: [
         {
             path: '/',

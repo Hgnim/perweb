@@ -1,5 +1,5 @@
 import {type Ref, ref} from "vue";
-import {isDev} from "@/ts/global/packMode.ts";
+import {isDev} from "@/ts/env/packMode.ts";
 
 export async function loadLangUsedSvg(
     langUsed:Ref<HTMLElement|null>,

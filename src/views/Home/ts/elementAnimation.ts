@@ -2,7 +2,7 @@
 
 import {ref,type Ref, onMounted} from 'vue';
 import {sleep} from "@/ts/global/sleep";
-import {isProd} from "@/ts/global/packMode";
+import {isProd} from "@/ts/env/packMode.ts";
 
 export function elementAnimationAction(
     currentSection: Ref<number>

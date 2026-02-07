@@ -4,24 +4,24 @@
   <router-view />
   </div>
 </template>
-<script lang="ts">
-import {defineComponent} from 'vue';
+<script setup lang="ts">
 import sideNavbar from "@/components/sideNavbar/sideNavbar.vue";
 
-import Pace from 'pace-js';
-import 'pace-js/themes/black/pace-theme-minimal.css'
-export default defineComponent({
-  components: {
-    sideNavbar
-  },
-  setup() {
+if (!import.meta.env.SSR) {
+  import('pace-js').then((module) => {
+    const Pace = module.default;
     Pace.start();
-  }
-});
+  });
+}
 </script>
 
+<style scoped lang="css" src='pace-js/themes/black/pace-theme-minimal.css'></style>
+<style scoped lang="scss">
+#app{
+}
+</style>
 <style lang="scss">
 #app{
-  text-align: center
+  text-align: center;
 }
 </style>

@@ -6,6 +6,7 @@ import renderMode from "./src/ts/env/renderMode.node.ts";
 import {isDev, isProd, mode} from "./src/ts/env/packMode.node.ts";
 import fs from 'fs';
 import {createHtmlPlugin} from "vite-plugin-html";
+import {createSvgIconsPlugin} from "vite-plugin-svg-icons";
 
 const distPath=path.resolve(__dirname, 'dist');
 
@@ -19,6 +20,13 @@ export default defineConfig(({}) => {
             vue(),
             createHtmlPlugin({
                 minify: true,
+            }),
+            createSvgIconsPlugin({
+                iconDirs: [//获取svg的目录
+                    path.resolve(__dirname, 'src/assets/_svg'),
+                ],
+                symbolId: 'svg-[dir]-[name]',
+                customDomId: '__svg__icons__dom__',
             }),
         ],
         resolve: {

@@ -3,7 +3,7 @@
   <nav ref="sideNavbar" id="sideNavbar" class="navbar navbar-left"
        data-allow-wheel data-allow-touch><!--:data-bs-theme="theme"-->
     <div ref="sideNavbar_toggleButton" id="side-navbar_toggle-button" v-on:click="sideNavbar_toggleButton_onClick()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="css" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left svg-center"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      <svg class="bi" width="24" height="24" ><use xlink:href="#svg-bsi-arrow-bar-left"></use></svg>
     </div>
     <div class="navbar-collapse">
       <a class="navbar-brand">Hgnim</a>
@@ -206,8 +206,11 @@ $navbar-left_width: 5rem;
 
 #side-navbar_toggle-button{
   position: fixed;
-  width: 24px;
-  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
   top: 0;
   left: $navbar-left_width;
   margin: 10px;

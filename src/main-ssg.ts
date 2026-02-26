@@ -10,6 +10,7 @@ import 'terminal.css';//改为vite后，postcssPrefixwrap只会处理ts中引用
 import '@/assets/scss/terminal-custom.scss';
 import 'animate.css';
 import 'hover.css';
+import 'virtual:svg-icons-register';//vite-plugin-svg-icons的虚拟模块
 
 
 export default function () {

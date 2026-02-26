@@ -1,19 +1,31 @@
 <!DOCTYPE html>
-<html lang="" data-bs-theme="dark">
+<html lang="zh-CN" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <title>%VITE_INDEX_HTML_TITLE%</title>
+    <title>%VITE_INDEX_HTML_TITLE% | %VITE_INDEX_HTML_TITLE_EN%</title>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/112072873?s=48&v=4"><!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
-
+    <meta name="description" content="%VITE_INDEX_HTML_TITLE% | %VITE_INDEX_HTML_TITLE_EN%"/>
     <link rel="stylesheet" href="/assets/css/index/style.css" type="text/css">
 </head>
 <body>
 <noscript>
-    <strong>%VITE_INDEX_HTML_TITLE% 的正常运行需要启用 JavaScript</strong>
+    <style>
+        #app{
+            display: none;
+        }
+    </style>
+    <strong><em>%VITE_INDEX_HTML_TITLE%</em>需要启用<em>JavaScript</em>才能正常运作。</strong>
+    <strong>We're sorry but <em>%VITE_INDEX_HTML_TITLE_EN%</em> doesn't work properly without <em>JavaScript</em> enabled. Please enable it to continue.</strong>
 </noscript>
-<div id="app"></div>
+<div id="app">
+    <h1>%VITE_INDEX_HTML_TITLE%</h1>
+    <em>正在加载……</em>
+    <br/>
+    <h1>%VITE_INDEX_HTML_TITLE_EN%</h1>
+    <em>Loading…</em>
+</div>
 <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

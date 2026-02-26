@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "before-build": "echo 'nothing'",
+    "copy-files": "node script/copySvgIcons.js",
+    "before-build": "npm run copy-files",
     "type-check": "vue-tsc -b",
     "dev": "npm run dev:spa",
     "dev:spa": "cross-env VITE_RENDER_MODE=spa vite",
@@ -26,10 +27,12 @@
     "@vueuse/core": "^14.1.0",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "core-js": "^3.8.3",
     "hover.css": "^2.3.2",
     "pace-js": "^1.2.4",
     "terminal.css": "^0.7.5",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.5.24",
     "vue-router": "^4.6.4"
   },

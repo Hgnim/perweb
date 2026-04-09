@@ -19,7 +19,7 @@
   height: 0;
   top: 20vh;
   right: 0.5rem;
-  //z-index: 1;
+  z-index: 1;
   .progress{
     rotate: 90deg;
     width: 60vh;
@@ -33,6 +33,22 @@
       font-size: 0.55rem;
       transition: width var(--section-transition);
     }
+  }
+  @mixin sect-prog_upAndDown{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    color: var(--bs-secondary);
+    cursor: pointer;
+  }
+  #sect-prog_up{
+    @include sect-prog_upAndDown;
+    top: calc(16px * -1);
+  }
+  #sect-prog_down{
+    @include sect-prog_upAndDown;
+    top: calc(60vh + 16px * 0.5);
   }
 }
 

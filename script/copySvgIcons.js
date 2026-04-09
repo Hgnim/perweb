@@ -6,7 +6,9 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const iconsName = [//需要复制的图标名
-    'arrow-bar-left'
+    'arrow-bar-left',
+    'caret-up-fill',
+    'caret-down-fill',
 ];
 const sourceDir = path.resolve(__dirname, '../node_modules/bootstrap-icons/icons');
 const targetDir = path.resolve(__dirname, '../src/assets/_svg/bsi');

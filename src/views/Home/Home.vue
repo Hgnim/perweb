@@ -369,7 +369,11 @@ const {
 useTitle('Hagnimik的个人网页');
 
 onMounted(()=>{
-  loadLangUsedSvg(langUsed,panelLeft,panelRight);
+  loadLangUsedSvg(langUsed,panelLeft,panelRight,{
+    maybeIgnore_name: [
+        "Text","XML","JSON"
+    ],
+  });
 })
 
 function sectProg_up_click(){

@@ -5,21 +5,26 @@ useTitle('Hagnimik的博客');
 </script>
 
 <template>
-  <div style="
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-  ">
-    <div class="animate-wrap"
-         style="
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            "
-    >
-      <h3 class="animate__animated animate__rubberBand animate__infinite">此页面正在开发中，尽请期待 :)</h3>
+  <div class="container">
+    <div class="row mt-1">
+      <div class="col-12 text-center">
+        <h1>博客</h1>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-10 mx-auto">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">title</h5>
+            </div>
+            <p class="mb-1">summary</p>
+            <div class="d-flex w-100 justify-content-end">
+              <small class="text-body-secondary">time</small>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>

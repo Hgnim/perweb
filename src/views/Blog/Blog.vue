@@ -2,6 +2,7 @@
 import {useTitle} from "@vueuse/core";
 import {type BlogInfo, blogListGeter} from "@/views/Blog/ts/blog.ts";
 import {ref, type Ref} from "vue";
+import {getFromNowTime} from "@/utils/date.ts";
 
 useTitle('Hagnimik的博客');
 
@@ -36,7 +37,7 @@ const blogList:Ref<BlogInfo[]>=ref([]);
             </div>
             <p class="mb-1">{{bi.summary}}</p>
             <div class="d-flex w-100 justify-content-end">
-              <small class="text-body-secondary">{{bi.time}}</small>
+              <small class="text-body-secondary">{{getFromNowTime(bi.time)}}</small>
             </div>
           </router-link>
         </div>

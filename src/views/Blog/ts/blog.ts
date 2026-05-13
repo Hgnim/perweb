@@ -9,7 +9,7 @@ export type BlogInfo={
     title:string,
     //博客概要
     summary:string,
-    //博客时间
+    //博客时间，使用ISO 8601标准的时间字符串，例如：2026-05-13T00:11:10+08:00
     time:string,
 };
 

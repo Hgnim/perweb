@@ -1,5 +1,6 @@
-//import blogDataBaseUrl from "@/ts/env/blogDataBaseUrl.ts";
 import {blogData, blogData_rootPath} from "@/views/Blog/ts/blogData.ts";
+import blogDataBaseUrl from "@/ts/env/blogDataBaseUrl.ts";
+import {isClient} from "@vueuse/core";
 
 //单个博客信息
 export type BlogInfo={
@@ -37,36 +38,63 @@ export function blogListGeter(){
     //初始化
     async function init(){
         isInitLoading=true;
-        blogTotalInfo=JSON.parse(blogData[`${blogData_rootPath}/info.json`] as string);
+
+        {
+            function locGet(){
+                blogTotalInfo = JSON.parse(blogData[`${blogData_rootPath}/info.json`] as string);
+            }
+            if (isClient) {
+                const res = await fetch(`${blogDataBaseUrl}/blogs/info.json`);
+                if (res.ok) {
+                    blogTotalInfo = await res.json();//远程数据优先，因为远程数据中可能包含更加新的博客索引最大值
+                } else {//如果失败则获取本地数据
+                    locGet();
+                }
+            } else {
+                locGet();//如果是构建中，为了兼容预渲染，强制使用本地
+            }
+        }
+
         blogIndex=blogTotalInfo!.maxIndex;
         isInit=true;
-        /*const res=await fetch(`${blogDataBaseUrl}/blogs/info.json`);
-        if (res.ok){
-            blogTotalInfo=await res.json();
-            blogIndex=blogTotalInfo!.maxIndex;
-            isInit=true;
-        }*/
+
         isInitLoading=false;
     }
 
     async function getBlogList(num:number=10):Promise<BlogInfo[]|null>{
         if (isInit && !isBlogListLoading) {
             isBlogListLoading=true;
-            const bi:BlogInfo[]=[];
+            const bis:BlogInfo[]=[];
             for (let i = 0; i < num; i++) {
-                if (blogIndex<blogTotalInfo!.maxIndex){
+                if (blogIndex<blogTotalInfo!.minIndex){
                     break;
                 }
 
-                /*const res=await fetch(`${blogDataBaseUrl}/blogs/${blogIndex}/info.json`);
-                if (res.ok){
-                    bi.push(await res.json());
-                }*/
-                bi.push(JSON.parse(blogData[`${blogData_rootPath}/${blogIndex}/info.json`] as string))
+                if (isClient){
+                    const bi: BlogInfo | undefined = (() => {
+                        const infoData = blogData[`${blogData_rootPath}/${blogIndex}/info.json`] as string | undefined;
+                        if (infoData != undefined) {
+                            return JSON.parse(infoData);
+                        } else {
+                            return undefined;
+                        }
+                    })();
+                    if (bi != undefined) {//优先检查本地是否有数据，如果没有则获取远程数据
+                        bis.push(bi);
+                    } else {
+                        const res = await fetch(`${blogDataBaseUrl}/blogs/${blogIndex}/info.json`);
+                        if (res.ok) {
+                            bis.push(await res.json());
+                        }
+                    }
+                }else{//如果是构建中，为了兼容预渲染，强制使用本地
+                    bis.push(JSON.parse(blogData[`${blogData_rootPath}/${blogIndex}/info.json`] as string))
+                }
+
                 blogIndex--;
             }
             isBlogListLoading=false;
-            return bi;
+            return bis;
         }
         else
             return null;

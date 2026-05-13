@@ -1,33 +1,77 @@
 <script setup lang="ts">
 import {useRoute} from "vue-router";
-//import {onMounted, ref, type Ref} from "vue";
-//import blogDataBaseUrl from "@/ts/env/blogDataBaseUrl.ts";
+import {onMounted, ref, type Ref} from "vue";
+import blogDataBaseUrl from "@/ts/env/blogDataBaseUrl.ts";
 import {blogData, blogData_rootPath} from "@/views/Blog/ts/blogData.ts";
 import {marked} from "marked";
 import type {BlogInfo} from "@/views/Blog/ts/blog.ts";
 import {getFormatTime} from "@/utils/date.ts";
+import {isClient} from "@vueuse/core";
 
 const route = useRoute();
 
-//const blogContent:Ref<HTMLDivElement|null>=ref(null);
+const blogContent:Ref<HTMLDivElement|null>=ref(null);
+const timeText:Ref<HTMLDivElement|null>=ref(null);
 
-//将内容赋值放在onMounted中时，预渲染将不会将内容渲染至输出的html中
-/*onMounted(async ()=>{
-  if (blogContent.value){
-    blogContent.value.innerText=blogData[`${blogData_rootPath}/${route.name!.toString().split('-')[1]}/content.md`] as string;//await (await fetch(`${blogDataBaseUrl}/blogs/${route.params.id}/content.md`)).text();
-  }
-});*/
+//用于在获取到blogInfo实例之前使用的id，未来blogInfo.id的值将与该值一致
+const blogId=Number(route.name!.toString().split('-')[1]);
 
-const blogInfo:BlogInfo=
-    JSON.parse(
-        blogData[`${blogData_rootPath}/${Number(route.name!.toString().split('-')[1])}/info.json`] as string
+//#region 仅用于预渲染
+const buiBlogInfo:BlogInfo|null=(()=>{//仅构建时执行，用于预渲染
+  if (!isClient) {
+    return JSON.parse(
+        blogData[`${blogData_rootPath}/${blogId}/info.json`] as string
     );
+  }else{
+    return null;
+  }
+})();
 
-function getContent(){
-  return marked(
-      blogData[`${blogData_rootPath}/${blogInfo.id}/content.md`] as string
-  );
+function getLocContent(id:number){
+  //批注：如果将内容赋值放在onMounted中时，预渲染将不会将内容渲染至输出的html中
+  const locData=blogData[`${blogData_rootPath}/${id}/content.md`] as string|undefined;
+  if (locData!=undefined)
+    return marked(locData);
+  else
+    return null;
 }
+//#endregion
+
+let blogInfo:BlogInfo;
+async function blogInfo_init(){
+  const locData=blogData[`${blogData_rootPath}/${blogId}/info.json`] as string|undefined;
+  if(locData!=undefined){
+    blogInfo=JSON.parse(locData);//本地优先
+  }
+  else{
+    const res = await fetch(`${blogDataBaseUrl}/blogs/${blogId}/info.json`);
+    if (res.ok) {
+      blogInfo=await res.json();//如果本地没有最新数据，则获取远程数据
+    }
+  }
+}
+
+onMounted(async ()=>{
+  if (isClient) {//仅在客户端执行
+    await blogInfo_init();
+    if (
+        blogContent.value
+        && timeText.value
+    ) {
+      {
+        const locContent = await getLocContent(blogInfo.id);
+        if (locContent != undefined) {//本地数据优先
+          blogContent.value.innerHTML = locContent;
+        } else {//如果本地没有最新数据则获取远程的数据
+          blogContent.value.innerHTML = await marked(
+              await (await fetch(`${blogDataBaseUrl}/blogs/${blogInfo.id}/content.md`)).text()
+          );
+        }
+      }
+      timeText.value.innerText = getFormatTime(blogInfo.time);
+    }
+  }
+});
 </script>
 
 <template>
@@ -35,12 +79,12 @@ function getContent(){
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="mt-2" v-html="getContent()"/>
+        <div ref="blogContent" class="mt-2" v-html="(!isClient)?getLocContent(buiBlogInfo!.id):''"/>
       </div>
     </div>
     <div class="row">
       <div class="col-12 text-center">
-        <em><small>{{getFormatTime(blogInfo.time)}}</small></em>
+        <em><small ref="timeText">{{(!isClient)?getFormatTime(buiBlogInfo!.time):''}}</small></em>
       </div>
     </div>
   </div>

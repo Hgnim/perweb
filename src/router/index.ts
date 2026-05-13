@@ -1,9 +1,6 @@
 import {createMemoryHistory, createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 import renderMode from "@/ts/env/renderMode.ts";
 
-import Home from '@/views/Home/Home.vue';
-import Blog from '@/views/Blog/Blog.vue';
-
 export default createRouter({
     history: (()=>{
         switch (renderMode){
@@ -21,12 +18,17 @@ export default createRouter({
         {
             path: '/',
             name: 'home',
-            component: Home,
+            component: ()=>import('@/views/Home/Home.vue'),
         },
         {
             path: '/blog',
             name: 'blog',
-            component: Blog,
+            component: ()=>import('@/views/Blog/Blog.vue'),
+        },
+        {
+            path: '/blog/content/:id',
+            name:'blogContent',
+            component: ()=>import('@/views/Blog/views/BlogContent/BlogContent.vue'),
         }
     ],
 });

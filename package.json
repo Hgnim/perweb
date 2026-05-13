@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "copy-files": "node script/copySvgIcons.js",
-    "before-build": "npm run copy-files",
+    "download-files": "node script/downloadBlogData.js",
+    "before-build": "npm run copy-files && npm run download-files",
     "type-check": "vue-tsc -b",
     "dev": "npm run dev:spa",
     "dev:spa": "cross-env VITE_RENDER_MODE=spa vite",
@@ -45,6 +46,7 @@
     "cross-env": "^10.1.0",
     "postcss-prefixwrap": "^1.57.0",
     "sass": "^1.97.0",
+    "tiged": "^2.12.7",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
     "vite-plugin-html": "^3.2.2",

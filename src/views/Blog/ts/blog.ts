@@ -1,4 +1,5 @@
-import blogDataBaseUrl from "@/ts/env/blogDataBaseUrl.ts";
+//import blogDataBaseUrl from "@/ts/env/blogDataBaseUrl.ts";
+import {blogData, blogData_rootPath} from "@/views/Blog/ts/blogData.ts";
 
 //单个博客信息
 export type BlogInfo={
@@ -36,12 +37,15 @@ export function blogListGeter(){
     //初始化
     async function init(){
         isInitLoading=true;
-        const res=await fetch(`${blogDataBaseUrl}/blogs/info.json`);
+        blogTotalInfo=JSON.parse(blogData[`${blogData_rootPath}/info.json`] as string);
+        blogIndex=blogTotalInfo!.maxIndex;
+        isInit=true;
+        /*const res=await fetch(`${blogDataBaseUrl}/blogs/info.json`);
         if (res.ok){
             blogTotalInfo=await res.json();
             blogIndex=blogTotalInfo!.maxIndex;
             isInit=true;
-        }
+        }*/
         isInitLoading=false;
     }
 
@@ -54,10 +58,11 @@ export function blogListGeter(){
                     break;
                 }
 
-                const res=await fetch(`${blogDataBaseUrl}/blogs/${blogIndex}/info.json`);
+                /*const res=await fetch(`${blogDataBaseUrl}/blogs/${blogIndex}/info.json`);
                 if (res.ok){
                     bi.push(await res.json());
-                }
+                }*/
+                bi.push(JSON.parse(blogData[`${blogData_rootPath}/${blogIndex}/info.json`] as string))
                 blogIndex--;
             }
             isBlogListLoading=false;

@@ -30,7 +30,7 @@ const blogList:Ref<BlogInfo[]>=ref([]);
       <div class="col-10 mx-auto">
         <div class="list-group">
           <router-link v-for="(bi,index) in blogList" :key="index"
-             :to="{ name: 'blogContent', params: { id: bi.id} }" class="list-group-item list-group-item-action">
+                       :to="{ name: `blogContent-${bi.id}` }" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{bi.title}}</h5>
             </div>

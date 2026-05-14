@@ -3,19 +3,33 @@ import {useTitle} from "@vueuse/core";
 import {type BlogInfo, blogListGeter} from "@/views/Blog/ts/blog.ts";
 import {ref, type Ref} from "vue";
 import {getFromNowTime} from "@/utils/date.ts";
+import {useRoute} from "vue-router";
 
 useTitle('Hagnimik的博客');
 
+const route = useRoute();
+
 const {init:blgInit,getBlogList}=blogListGeter();
 blgInit().then(()=>{
-  getBlogList().then((val)=>{
+  getBL();
+});
+
+const blogTypesFilter:string[]=(()=>{
+  const q=route.query.types;
+  if (q!=undefined){
+    return q.toString().split(',');
+  }else return ['all'];
+})()
+
+function getBL(){
+  getBlogList(10,blogTypesFilter).then((val)=>{
     if (val!=null){
       val.forEach((v)=>{
         blogList.value.push(v);//使用push减小性能开销
       });
     }
   });
-});
+}
 
 const blogList:Ref<BlogInfo[]>=ref([]);
 </script>

@@ -105,7 +105,7 @@ export async function loadLangUsedSvg(
                 allEl.push(newel);
             }
         }
-        console.log(allEl)
+        if(isDev) console.debug(allEl)
         if (allEl) {
             for (let i = 0; i < allEl.length; i++) {
                 if (allEl[i]) {

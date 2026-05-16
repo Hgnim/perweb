@@ -19,7 +19,7 @@ export type BlogInfo={
         string
     )[],
     //标签
-    tag:string[],
+    tag?:string[],
 };
 
 //所有博客的总信息
@@ -119,9 +119,9 @@ export function blogListGeter(){
                     let typeFilterPass=false;
                     if (typeFilter[0] == 'all') {
                         typeFilterPass=true;
-                        for (let bit in binfo.type){//检查目标类型是否为需要被隐藏的类型，仅在all时生效，被直接筛选类型的时候还是会显示
+                        for (let bit of binfo.type){//检查目标类型是否为需要被隐藏的类型，仅在all时生效，被直接筛选类型的时候还是会显示
                             let pass=false;
-                            for (let hbt in HideBlogType){
+                            for (let hbt of HideBlogType){
                                 if (bit ==hbt){
                                     pass=true;
                                     break;
@@ -133,9 +133,9 @@ export function blogListGeter(){
                             }
                         }
                     } else {
-                        for (let bit in binfo.type){//检查筛选的类型是否符合要求
+                        for (let bit of binfo.type){//检查筛选的类型是否符合要求
                             let pass=false;
-                            for (let tf in typeFilter){
+                            for (let tf of typeFilter){
                                 if (bit ==tf){
                                     pass=true;
                                     break;
@@ -148,11 +148,13 @@ export function blogListGeter(){
                         }
                     }
 
-                    binfo.tag.forEach((t:string)=>{
-                        if (t =='hide'){
-                            typeFilterPass=false;
-                        }
-                    });
+                    if(binfo.tag) {
+                        binfo.tag.forEach((t: string) => {
+                            if (t == 'hide') {//如果博客被打上隐藏标签，则无论如何都不会显示在列表，除非直接通过博客id访问
+                                typeFilterPass = false;
+                            }
+                        });
+                    }
 
                     if (typeFilterPass)
                         bis.push(binfo);
@@ -169,8 +171,15 @@ export function blogListGeter(){
             return null;
     }
 
+    //重置，重置当前博客索引值
+    function reset(){
+        if (isInit && !isBlogListLoading){
+            blogIndex=blogTotalInfo!.maxIndex;
+        }
+    }
+
     return{
         isInit,isInitLoading,isBlogListLoading,blogIndex,blogTotalInfo,
-        init,getBlogList,
+        init,getBlogList,reset,
     };
 }

@@ -1,24 +1,7 @@
-$navbar-light-color: rgba(#777777,.7);
-$navbar-light-active-color: #818181;
-$navbar-light-hover-color: #b3b3b3;
-
-$navbar-dark-color: rgba(#777777,.7);
-$navbar-dark-active-color: #818181;
-$navbar-dark-hover-color: #b3b3b3;
-
-
-$body-color-dark: #f8f8ff;
-$headings-color-dark: #f8f8ff;
+@import "../color/bootstrap/var-color";
 
 @import "bootstrap/scss/bootstrap";
 
-.navbar {
-  --bs-navbar-background-color-rgb: 102, 102, 102;
-  --bs-navbar-background-color: rgba(var(--bs-navbar-background-color-rgb), 1);
-}
-[data-bs-theme=dark] .navbar {
-  --bs-navbar-background-color-rgb: 102, 102, 102;
-  --bs-navbar-background-color: rgba(var(--bs-navbar-background-color-rgb), 1);
-}
+@import "../color/bootstrap/cssvar-color";
 
 //@import 'bootstrap';

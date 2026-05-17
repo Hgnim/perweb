@@ -1,29 +1,152 @@
 <script setup lang="ts">
 import {useTitle} from "@vueuse/core";
+import {type BlogInfo, BlogListGeter, type BlogTotalInfo} from "@/views/Blog/ts/blog.ts";
+import {onMounted, ref, type Ref} from "vue";
+import {getFromNowTime} from "@/utils/date.ts";
+import {useRoute} from "vue-router";
 
 useTitle('Hagnimik的博客');
+
+const route = useRoute();
+
+/*const {
+  init:blgInit,
+  getBlogList,
+  reset:resetBlg,
+  blogIndex,
+  blogTotalInfo,
+  isInit
+}=blogListGeter();*/
+const blogListGeter=new BlogListGeter();
+
+let blogTypesFilter:string[]=['all'];
+//更改blogTypesFilter的函数，对值进行处理
+function blogTypesFilter_set(value:string|undefined){
+  if (value!=undefined && value!=''){
+    const source= value.toString().split(',');
+    const ret:string[]=[];
+    source.forEach((s)=>{
+      ret.push(s.trim());//去掉开头与末尾的空格
+    });
+    blogTypesFilter = ret;
+  }else blogTypesFilter = ['all'];
+}
+
+const blogList:Ref<BlogInfo[]>=ref([]);
+const blogTypeInput:Ref<HTMLInputElement|null> = ref(null);
+//const blogTypeInputApply:Ref<HTMLInputElement|null> = ref(null);
+const loadBlogBtn_enabled:Ref<boolean>=ref(false);
+
+function loadBlogBtn_update(){
+  loadBlogBtn_enabled.value=!(blogListGeter.blogIndex<((blogListGeter.blogTotalInfo as unknown) as BlogTotalInfo)!.minIndex);
+}
+
+function getBL(){
+  blogListGeter.getBlogList(10,blogTypesFilter).then((val)=>{
+    if (val!=null){
+      val.forEach((v)=>{
+        blogList.value.push(v);//使用push减小性能开销
+      });
+    }
+  });
+  loadBlogBtn_update();
+}
+
+function resetBlogList(){
+  blogListGeter.reset();
+  blogList.value=[];
+}
+
+onMounted(()=>{
+  blogTypesFilter_set(route.query.types?.toString());//获取url参数
+  blogListGeter.init().then(()=>{//初始化与获取列表
+    getBL();
+  });
+  if (blogTypeInput.value){
+    let output='';
+    for (let i=0;i<blogTypesFilter.length;i++){
+      output+=blogTypesFilter[i]!.toString();
+      if (i+1<blogTypesFilter.length)
+        output+=', ';
+    }
+    blogTypeInput.value.value=output;
+  }
+});
+
+function blogTypeInputApply_click(){
+  resetBlogList();
+  blogTypesFilter_set(blogTypeInput.value?.value);
+  getBL();
+}
+
+function loadBlogBtn_click(){
+  if (loadBlogBtn_enabled.value
+      && !blogListGeter.isBlogListLoading
+      && blogListGeter.isInit
+  ){
+    getBL();
+  }
+}
 </script>
 
 <template>
-  <div style="
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-  ">
-    <div class="animate-wrap"
-         style="
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            "
-    >
-      <h3 class="animate__animated animate__rubberBand animate__infinite">此页面正在开发中，尽请期待 :)</h3>
+  <div class="container">
+    <div class="row mt-1">
+      <div class="col-4">
+      </div>
+      <div class="col-4 text-center">
+        <h1>博客</h1>
+      </div>
+      <div class="col-4 d-flex align-items-center">
+        <div class="input-group">
+          <input ref="blogTypeInput" @keyup.enter="blogTypeInputApply_click"
+                 type="text" class="form-control" placeholder="博客类型输入">
+          <button class="btn btn-outline-secondary" type="button"
+                  @click="blogTypeInputApply_click" >类型筛选</button><!--ref="blogTypeInputApply"-->
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-10 mx-auto">
+        <div class="list-group">
+          <router-link v-for="(bi,index) in blogList" :key="index"
+                       :to="{ name: `blogContent-${bi.id}` }" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{bi.title}}</h5>
+            </div>
+            <p class="mb-1">{{bi.summary}}</p>
+            <div class="d-flex w-100 justify-content-end">
+              <small class="text-body-secondary">{{getFromNowTime(bi.time)}}</small>
+            </div>
+          </router-link>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col-10 mx-auto">
+        <span id="loadBlogBtn"
+              :class="{'lbb_dis':(!loadBlogBtn_enabled)}"
+              @click="loadBlogBtn_click"
+        >{{(loadBlogBtn_enabled)?'继续加载':'已加载全部'}}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+#loadBlogBtn{
+  color: var(--bs-primary);
+  cursor: pointer;
 
+  &.lbb_dis{
+    cursor: no-drop;
+  }
+}
+#loadBlogBtn:hover{
+  color: var(--bs-primary-text-emphasis);
+
+  &.lbb_dis{
+    color: var(--bs-primary);
+  }
+}
 </style>

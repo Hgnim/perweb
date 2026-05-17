@@ -1,11 +1,15 @@
 <template>
   <div id="home">
-    <div id="sect-prog" class="home-const animate-wrap">
+    <div id="sect-prog" class="home-const animate-wrap unSelectable">
+      <svg id="sect-prog_up" class="animate__animated animate__fadeInRight animate__delay-2s"
+           @click="sectProg_up_click"><use xlink:href="#svg-bsi-caret-up-fill"></use></svg>
       <div ref="sectionProgress" class="progress animate__animated animate__fadeInDown animate__delay-1s"
-           role="progressbar" aria-label="Example with label"
+           role="progressbar"
            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         <div class="progress-bar" style="width: 0">0/4</div>
       </div>
+      <svg id="sect-prog_down"  class="animate__animated animate__fadeInRight animate__delay-2s"
+           @click="sectProg_down_click"><use xlink:href="#svg-bsi-caret-down-fill"></use></svg>
     </div>
     <div
         class="section-container home-const"
@@ -365,8 +369,19 @@ const {
 useTitle('Hagnimik的个人网页');
 
 onMounted(()=>{
-  loadLangUsedSvg(langUsed,panelLeft,panelRight);
+  loadLangUsedSvg(langUsed,panelLeft,panelRight,{
+    maybeIgnore_name: [
+        "Text","XML","JSON"
+    ],
+  });
 })
+
+function sectProg_up_click(){
+  scrollToPage(currentSection.value - 1);
+}
+function sectProg_down_click(){
+  scrollToPage(currentSection.value + 1);
+}
 </script>
 
 <style scoped lang="scss" src="./scss/Home.scss"></style>

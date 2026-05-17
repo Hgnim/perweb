@@ -1,0 +1,26 @@
+:root {
+  --bs-primary: rgb(39,39,39);
+  --bs-primary-rgb: 39,39,39;
+  --bs-primary-bg: rgb(66 66 66);
+  --bs-primary-border: rgb(19 19 19);
+  --bs-primary-text-emphasis: rgb(57 57 57);
+}
+
+:root[data-bs-theme=dark]{
+  --bs-primary: rgb(197 197 197);
+  --bs-primary-rgb: 197,197,197;
+  --bs-primary-bg: rgb(64 64 64);
+  --bs-primary-border: rgb(106 106 106);
+  --bs-primary-text-emphasis: rgb(152 152 152);
+}
+
+
+
+.navbar {
+  --bs-navbar-background-color-rgb: 102, 102, 102;
+  --bs-navbar-background-color: rgba(var(--bs-navbar-background-color-rgb), 1);
+}
+[data-bs-theme=dark] .navbar {
+  --bs-navbar-background-color-rgb: 102, 102, 102;
+  --bs-navbar-background-color: rgba(var(--bs-navbar-background-color-rgb), 1);
+}

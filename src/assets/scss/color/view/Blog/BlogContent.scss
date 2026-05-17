@@ -1,0 +1,17 @@
+/*:root{
+}
+:root[data-bs-theme=dark]{
+}*/
+
+.type-box{
+  //类型（种类）框的背景色
+  --type-box-bg:var(--bs-secondary-bg);
+
+  --type-box-creator-contribution-level-bg-0: red;
+  --type-box-creator-contribution-level-bg-1: orange;
+  --type-box-creator-contribution-level-bg-2: yellow;
+  --type-box-creator-contribution-level-bg-3: green;
+}
+[data-bs-theme=dark] .type-box{
+  --type-box-bg:var(--bs-secondary-bg);
+}

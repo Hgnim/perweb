@@ -1,0 +1,200 @@
+import {blogData, blogData_rootPath} from "@/views/Blog/ts/blogData.ts";
+import blogDataBaseUrl from "@/ts/env/blogDataBaseUrl.ts";
+import {isClient} from "@vueuse/core";
+
+//单个博客信息
+export type BlogInfo={
+    //博客id
+    id:number,
+    //博客标题
+    title:string,
+    //博客概要
+    summary:string,
+    //博客时间，使用ISO 8601标准的时间字符串，例如：2026-05-13T00:11:10+08:00
+    time:string,
+    //博客类型
+    type:(
+        'all'|
+        'test'|'test-a'|'test-b'|
+        string
+    )[],
+    //标签
+    tag?:string[],
+    /**
+     * 创作者贡献等级 creator contribution level
+     * <br>
+     * 0：原创
+     * 1：半原创，原创加部分转载
+     * 2：半转载，转载加部分加工
+     * 3：转载
+     */
+    creatorContriLevel:number,
+};
+
+//所有博客的总信息
+export type BlogTotalInfo={
+    //最小博客id索引
+    minIndex:number,
+    //最大博客id索引
+    maxIndex:number,
+}
+
+//单个博客信息的类型标签字典
+export const BlogInfoTypeLabelDict:Record<string, string>=await (async ()=>{
+    if (isClient){
+        const res = await fetch(`${blogDataBaseUrl}/blogs/blogInfoTypeLabelDict.json`);
+        if (res.ok)
+            return res.json();
+        else
+            return JSON.parse(blogData[`${blogData_rootPath}/blogInfoTypeLabelDict.json`] as string);
+    }else
+        return JSON.parse(blogData[`${blogData_rootPath}/blogInfoTypeLabelDict.json`] as string);//如果是构建中，则直接使用本地
+})();
+export const CreatorContriLevelDict:Record<number, string>={
+    0:'原创',
+    1:'原创加部分转载',
+    2:'转载加部分加工',
+    3:'转载',
+}
+
+//将被隐藏的类型，但是如果被点名筛选，则不会隐藏
+export const HideBlogType:string[]=[
+    'test'
+]
+
+export class BlogListGeter{
+    //是否已经初始化
+    isInit=false;
+    //是否正在进行初始化
+    isInitLoading=false;
+    //是否正在加载博客列表
+    isBlogListLoading=false;
+
+    //博客总信息
+    blogTotalInfo:BlogTotalInfo|undefined=undefined;
+    //当前博客索引值
+    blogIndex:number = -1;
+
+    //初始化
+    async init(){
+        this.isInitLoading=true;
+
+        {
+            const locGet = () =>{
+                this.blogTotalInfo = JSON.parse(blogData[`${blogData_rootPath}/info.json`] as string);
+            }
+            if (isClient) {
+                const res = await fetch(`${blogDataBaseUrl}/blogs/info.json`);
+                if (res.ok) {
+                    this.blogTotalInfo = await res.json();//远程数据优先，因为远程数据中可能包含更加新的博客索引最大值
+                } else {//如果失败则获取本地数据
+                    locGet();
+                }
+            } else {
+                locGet();//如果是构建中，为了兼容预渲染，强制使用本地
+            }
+        }
+
+        this.blogIndex=this.blogTotalInfo!.maxIndex;
+        this.isInit=true;
+
+        this.isInitLoading=false;
+    }
+
+    async getBlogList(num:number,typeFilter:string[]):Promise<BlogInfo[]|null>{
+        if (this.isInit && !this.isBlogListLoading) {
+            this.isBlogListLoading=true;
+            const bis:BlogInfo[]=[];
+            for (let i = 0; i < num; i++) {
+                if (this.blogIndex<this.blogTotalInfo!.minIndex){
+                    break;
+                }
+
+                let binfo:BlogInfo|undefined=undefined;
+                if (isClient){
+                    const bi: BlogInfo | undefined = (() => {
+                        const infoData = blogData[`${blogData_rootPath}/${this.blogIndex}/info.json`] as string | undefined;
+                        if (infoData != undefined) {
+                            return JSON.parse(infoData);
+                        } else {
+                            return undefined;
+                        }
+                    })();
+                    if (bi != undefined) {//优先检查本地是否有数据，如果没有则获取远程数据
+                        //bis.push(bi);
+                        binfo=bi;
+                    } else {
+                        const res = await fetch(`${blogDataBaseUrl}/blogs/${this.blogIndex}/info.json`);
+                        if (res.ok) {
+                            //bis.push(await res.json());
+                            binfo=await res.json()
+                        }
+                    }
+                }else{//如果是构建中，为了兼容预渲染，强制使用本地
+                    //bis.push(JSON.parse(blogData[`${blogData_rootPath}/${blogIndex}/info.json`] as string))
+                    binfo=JSON.parse(blogData[`${blogData_rootPath}/${this.blogIndex}/info.json`] as string);
+                }
+
+                if (binfo!=undefined){
+                    let typeFilterPass=false;
+                    if (typeFilter[0] == 'all') {
+                        typeFilterPass=true;
+                        for (let bit of binfo.type){//检查目标类型是否为需要被隐藏的类型，仅在all时生效，被直接筛选类型的时候还是会显示
+                            let pass=false;
+                            for (let hbt of HideBlogType){
+                                if (bit ==hbt){
+                                    pass=true;
+                                    break;
+                                }
+                            }
+                            if (pass){
+                                typeFilterPass=false;
+                                break;
+                            }
+                        }
+                    } else {
+                        for (let bit of binfo.type){//检查筛选的类型是否符合要求
+                            let pass=false;
+                            for (let tf of typeFilter){
+                                if (bit ==tf){
+                                    pass=true;
+                                    break;
+                                }
+                            }
+                            if (pass){
+                                typeFilterPass=true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if(binfo.tag) {
+                        binfo.tag.forEach((t: string) => {
+                            if (t == 'hide') {//如果博客被打上隐藏标签，则无论如何都不会显示在列表，除非直接通过博客id访问
+                                typeFilterPass = false;
+                            }
+                        });
+                    }
+
+                    if (typeFilterPass)
+                        bis.push(binfo);
+                    else
+                        i--;
+                }
+
+                this.blogIndex--;
+            }
+            this.isBlogListLoading=false;
+            return bis;
+        }
+        else
+            return null;
+    }
+
+    //重置，重置当前博客索引值
+    reset(){
+        if (this.isInit && !this.isBlogListLoading){
+            this.blogIndex=this.blogTotalInfo!.maxIndex;
+        }
+    }
+}

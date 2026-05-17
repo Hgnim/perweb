@@ -76,8 +76,10 @@ function blogTypeInputApply_click(){
       </div>
       <div class="col-4 d-flex align-items-center">
         <div class="input-group">
-          <input ref="blogTypeInput" type="text" class="form-control" placeholder="博客类型输入">
-          <button class="btn btn-outline-secondary" type="button" @click="blogTypeInputApply_click">类型筛选</button><!--ref="blogTypeInputApply"-->
+          <input ref="blogTypeInput" @keyup.enter="blogTypeInputApply_click"
+                 type="text" class="form-control" placeholder="博客类型输入">
+          <button class="btn btn-outline-secondary" type="button"
+                  @click="blogTypeInputApply_click" >类型筛选</button><!--ref="blogTypeInputApply"-->
         </div>
       </div>
     </div>

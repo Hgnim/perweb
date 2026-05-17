@@ -20,6 +20,15 @@ export type BlogInfo={
     )[],
     //标签
     tag?:string[],
+    /**
+     * 创作者贡献等级 creator contribution level
+     * <br>
+     * 0：原创
+     * 1：半原创，原创加部分转载
+     * 2：半转载，转载加部分加工
+     * 3：转载
+     */
+    creatorContriLevel:number,
 };
 
 //所有博客的总信息
@@ -31,12 +40,19 @@ export type BlogTotalInfo={
 }
 
 //单个博客信息的类型标签字典
-export const BlogInfoTypeLabelDict={
+export const BlogInfoTypeLabelDict:Record<string, string>={
     'all':'全部',
     'test':'测试',
     'test-a':'测试a',
     'test-b':'测试b',
 }
+export const CreatorContriLevelDict:Record<number, string>={
+    0:'原创',
+    1:'原创加部分转载',
+    2:'转载加部分加工',
+    3:'转载',
+}
+
 //将被隐藏的类型，但是如果被点名筛选，则不会隐藏
 export const HideBlogType:string[]=[
     'test'

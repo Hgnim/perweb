@@ -40,12 +40,16 @@ export type BlogTotalInfo={
 }
 
 //单个博客信息的类型标签字典
-export const BlogInfoTypeLabelDict:Record<string, string>={
-    'all':'全部',
-    'test':'测试',
-    'test-a':'测试a',
-    'test-b':'测试b',
-}
+export const BlogInfoTypeLabelDict:Record<string, string>=await (async ()=>{
+    if (isClient){
+        const res = await fetch(`${blogDataBaseUrl}/blogs/blogInfoTypeLabelDict.json`);
+        if (res.ok)
+            return res.json();
+        else
+            return JSON.parse(blogData[`${blogData_rootPath}/blogInfoTypeLabelDict.json`] as string);
+    }else
+        return JSON.parse(blogData[`${blogData_rootPath}/blogInfoTypeLabelDict.json`] as string);//如果是构建中，则直接使用本地
+})();
 export const CreatorContriLevelDict:Record<number, string>={
     0:'原创',
     1:'原创加部分转载',
@@ -58,31 +62,31 @@ export const HideBlogType:string[]=[
     'test'
 ]
 
-export function blogListGeter(){
+export class BlogListGeter{
     //是否已经初始化
-    let isInit=false;
+    isInit=false;
     //是否正在进行初始化
-    let isInitLoading=false;
+    isInitLoading=false;
     //是否正在加载博客列表
-    let isBlogListLoading=false;
+    isBlogListLoading=false;
 
     //博客总信息
-    let blogTotalInfo:BlogTotalInfo|undefined=undefined;
+    blogTotalInfo:BlogTotalInfo|undefined=undefined;
     //当前博客索引值
-    let blogIndex:number = -1;
+    blogIndex:number = -1;
 
     //初始化
-    async function init(){
-        isInitLoading=true;
+    async init(){
+        this.isInitLoading=true;
 
         {
-            function locGet(){
-                blogTotalInfo = JSON.parse(blogData[`${blogData_rootPath}/info.json`] as string);
+            const locGet = () =>{
+                this.blogTotalInfo = JSON.parse(blogData[`${blogData_rootPath}/info.json`] as string);
             }
             if (isClient) {
                 const res = await fetch(`${blogDataBaseUrl}/blogs/info.json`);
                 if (res.ok) {
-                    blogTotalInfo = await res.json();//远程数据优先，因为远程数据中可能包含更加新的博客索引最大值
+                    this.blogTotalInfo = await res.json();//远程数据优先，因为远程数据中可能包含更加新的博客索引最大值
                 } else {//如果失败则获取本地数据
                     locGet();
                 }
@@ -91,25 +95,25 @@ export function blogListGeter(){
             }
         }
 
-        blogIndex=blogTotalInfo!.maxIndex;
-        isInit=true;
+        this.blogIndex=this.blogTotalInfo!.maxIndex;
+        this.isInit=true;
 
-        isInitLoading=false;
+        this.isInitLoading=false;
     }
 
-    async function getBlogList(num:number,typeFilter:string[]):Promise<BlogInfo[]|null>{
-        if (isInit && !isBlogListLoading) {
-            isBlogListLoading=true;
+    async getBlogList(num:number,typeFilter:string[]):Promise<BlogInfo[]|null>{
+        if (this.isInit && !this.isBlogListLoading) {
+            this.isBlogListLoading=true;
             const bis:BlogInfo[]=[];
             for (let i = 0; i < num; i++) {
-                if (blogIndex<blogTotalInfo!.minIndex){
+                if (this.blogIndex<this.blogTotalInfo!.minIndex){
                     break;
                 }
 
                 let binfo:BlogInfo|undefined=undefined;
                 if (isClient){
                     const bi: BlogInfo | undefined = (() => {
-                        const infoData = blogData[`${blogData_rootPath}/${blogIndex}/info.json`] as string | undefined;
+                        const infoData = blogData[`${blogData_rootPath}/${this.blogIndex}/info.json`] as string | undefined;
                         if (infoData != undefined) {
                             return JSON.parse(infoData);
                         } else {
@@ -120,7 +124,7 @@ export function blogListGeter(){
                         //bis.push(bi);
                         binfo=bi;
                     } else {
-                        const res = await fetch(`${blogDataBaseUrl}/blogs/${blogIndex}/info.json`);
+                        const res = await fetch(`${blogDataBaseUrl}/blogs/${this.blogIndex}/info.json`);
                         if (res.ok) {
                             //bis.push(await res.json());
                             binfo=await res.json()
@@ -128,7 +132,7 @@ export function blogListGeter(){
                     }
                 }else{//如果是构建中，为了兼容预渲染，强制使用本地
                     //bis.push(JSON.parse(blogData[`${blogData_rootPath}/${blogIndex}/info.json`] as string))
-                    binfo=JSON.parse(blogData[`${blogData_rootPath}/${blogIndex}/info.json`] as string);
+                    binfo=JSON.parse(blogData[`${blogData_rootPath}/${this.blogIndex}/info.json`] as string);
                 }
 
                 if (binfo!=undefined){
@@ -178,9 +182,9 @@ export function blogListGeter(){
                         i--;
                 }
 
-                blogIndex--;
+                this.blogIndex--;
             }
-            isBlogListLoading=false;
+            this.isBlogListLoading=false;
             return bis;
         }
         else
@@ -188,14 +192,9 @@ export function blogListGeter(){
     }
 
     //重置，重置当前博客索引值
-    function reset(){
-        if (isInit && !isBlogListLoading){
-            blogIndex=blogTotalInfo!.maxIndex;
+    reset(){
+        if (this.isInit && !this.isBlogListLoading){
+            this.blogIndex=this.blogTotalInfo!.maxIndex;
         }
     }
-
-    return{
-        isInit,isInitLoading,isBlogListLoading,blogIndex,blogTotalInfo,
-        init,getBlogList,reset,
-    };
 }

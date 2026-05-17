@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useTitle} from "@vueuse/core";
-import {type BlogInfo, blogListGeter} from "@/views/Blog/ts/blog.ts";
+import {type BlogInfo, BlogListGeter, type BlogTotalInfo} from "@/views/Blog/ts/blog.ts";
 import {onMounted, ref, type Ref} from "vue";
 import {getFromNowTime} from "@/utils/date.ts";
 import {useRoute} from "vue-router";
@@ -9,7 +9,15 @@ useTitle('Hagnimik的博客');
 
 const route = useRoute();
 
-const {init:blgInit,getBlogList,reset:resetBlg}=blogListGeter();
+/*const {
+  init:blgInit,
+  getBlogList,
+  reset:resetBlg,
+  blogIndex,
+  blogTotalInfo,
+  isInit
+}=blogListGeter();*/
+const blogListGeter=new BlogListGeter();
 
 let blogTypesFilter:string[]=['all'];
 //更改blogTypesFilter的函数，对值进行处理
@@ -27,25 +35,31 @@ function blogTypesFilter_set(value:string|undefined){
 const blogList:Ref<BlogInfo[]>=ref([]);
 const blogTypeInput:Ref<HTMLInputElement|null> = ref(null);
 //const blogTypeInputApply:Ref<HTMLInputElement|null> = ref(null);
+const loadBlogBtn_enabled:Ref<boolean>=ref(false);
+
+function loadBlogBtn_update(){
+  loadBlogBtn_enabled.value=!(blogListGeter.blogIndex<((blogListGeter.blogTotalInfo as unknown) as BlogTotalInfo)!.minIndex);
+}
 
 function getBL(){
-  getBlogList(10,blogTypesFilter).then((val)=>{
+  blogListGeter.getBlogList(10,blogTypesFilter).then((val)=>{
     if (val!=null){
       val.forEach((v)=>{
         blogList.value.push(v);//使用push减小性能开销
       });
     }
   });
+  loadBlogBtn_update();
 }
 
 function resetBlogList(){
-  resetBlg();
+  blogListGeter.reset();
   blogList.value=[];
 }
 
 onMounted(()=>{
   blogTypesFilter_set(route.query.types?.toString());//获取url参数
-  blgInit().then(()=>{//初始化与获取列表
+  blogListGeter.init().then(()=>{//初始化与获取列表
     getBL();
   });
   if (blogTypeInput.value){
@@ -63,6 +77,15 @@ function blogTypeInputApply_click(){
   resetBlogList();
   blogTypesFilter_set(blogTypeInput.value?.value);
   getBL();
+}
+
+function loadBlogBtn_click(){
+  if (loadBlogBtn_enabled.value
+      && !blogListGeter.isBlogListLoading
+      && blogListGeter.isInit
+  ){
+    getBL();
+  }
 }
 </script>
 
@@ -99,9 +122,31 @@ function blogTypeInputApply_click(){
         </div>
       </div>
     </div>
+    <div class="row mt-1">
+      <div class="col-10 mx-auto">
+        <span id="loadBlogBtn"
+              :class="{'lbb_dis':(!loadBlogBtn_enabled)}"
+              @click="loadBlogBtn_click"
+        >{{(loadBlogBtn_enabled)?'继续加载':'已加载全部'}}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+#loadBlogBtn{
+  color: var(--bs-primary);
+  cursor: pointer;
 
+  &.lbb_dis{
+    cursor: no-drop;
+  }
+}
+#loadBlogBtn:hover{
+  color: var(--bs-primary-text-emphasis);
+
+  &.lbb_dis{
+    color: var(--bs-primary);
+  }
+}
 </style>

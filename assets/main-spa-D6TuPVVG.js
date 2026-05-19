@@ -1,0 +1,1 @@
+import{c as p}from"./runtime-dom.esm-bundler-fC6xpSYR.js";import{r,A as o}from"./virtual_svg-icons-register-CtWK9qnd.js";import"./bootstrap.esm--3AG11oG.js";import"./blogDataBaseUrl-t65TK45Z.js";import"./app-Cb8qNfFM.js";function s(){p(o).use(r).mount("#app")}export{s as default};

@@ -96,8 +96,8 @@ onMounted(async ()=>{
       </div>
     </div>
     <div class="row mt-1">
-      <div class="col-10 mx-auto">
-        <div ref="blogContent" class="text-start" v-html="(!isClient)?getLocContent(buiBlogInfo!.id):''"/>
+      <div class="col-10 mx-auto github-markdown_wrap">
+        <div ref="blogContent" class="text-start markdown-body" v-html="(!isClient)?getLocContent(buiBlogInfo!.id):''"/>
       </div>
     </div>
     <div class="row">
@@ -118,3 +118,9 @@ onMounted(async ()=>{
 }
 </style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Blog/BlogContent.scss"></style>
+
+<style scoped lang="css">
+.markdown-body {
+  background-color: transparent;
+}
+</style>

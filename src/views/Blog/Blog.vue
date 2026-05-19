@@ -116,7 +116,7 @@ function loadBlogBtn_click(){
             </div>
             <p class="mb-1">{{bi.summary}}</p>
             <div class="d-flex w-100 justify-content-end">
-              <small class="text-body-secondary">{{getFromNowTime(bi.time)}}</small>
+              <small class="text-body-secondary">{{getFromNowTime(bi.lastModificationTime)}}</small>
             </div>
           </router-link>
         </div>

@@ -31,6 +31,7 @@
     "bootstrap-icons": "^1.13.1",
     "core-js": "^3.8.3",
     "dayjs": "^1.11.20",
+    "github-markdown-css": "^5.9.0",
     "hover.css": "^2.3.2",
     "marked": "^18.0.3",
     "pace-js": "^1.2.4",

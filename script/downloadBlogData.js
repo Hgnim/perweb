@@ -6,6 +6,7 @@ const logHeader='[downloadBlogData.js] ';
 import tiged from "tiged";
 import path from "path";
 import {fileURLToPath} from "url";
+import fs from 'fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -51,4 +52,27 @@ if (isSuccess) {
     console.log(`${logHeader}博客数据下载完成`);
 }else{
     console.error(`${logHeader}博客数据下载失败`);
+}
+
+if (isSuccess){
+    console.log(`${logHeader}开始检查与删除扩展名黑名单中的文件`);
+    const blackListExtname=[
+        '.webp'
+    ];
+    fs.readdirSync(outputDir, { recursive: true }).forEach(filePath => {//递归输出目录
+        const fullPath = path.join(outputDir, filePath);
+        try {
+            const fileStats = fs.statSync(fullPath);
+            for (const extname of blackListExtname){
+                if (fileStats.isFile() && path.extname(filePath) === extname) {//判断是否匹配黑名单中的扩展名目标
+                    fs.unlinkSync(fullPath);
+                    console.log(`${logHeader}已删除符合黑名单条件的文件: ${fullPath}`);
+                    break;
+                }
+            }
+        } catch (err) {
+            console.error(`${logHeader}无法处理目标文件: ${fullPath}`, err);
+        }
+    });
+    console.log(`${logHeader}检查与删除扩展名黑名单中文件的任务完成`);
 }

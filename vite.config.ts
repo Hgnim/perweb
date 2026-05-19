@@ -74,6 +74,13 @@ export default defineConfig(({}) => {
                             whitelist: [/node_modules[\\\/]hover\.css/]
                         }
                     ),
+                    postcssPrefixwrap(//github-markdown-css
+                        '.github-markdown_wrap',
+                        {
+                            //@ts-expect-error 其支持正则表达式，但类型定义为string[]，故可忽略
+                            whitelist: [/node_modules[\\\/]github-markdown-css/]
+                        },
+                    )
                 ],
             },
         },

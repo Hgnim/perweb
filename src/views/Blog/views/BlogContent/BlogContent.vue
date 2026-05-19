@@ -3,15 +3,16 @@ import {useRoute} from "vue-router";
 import {onMounted, ref, type Ref} from "vue";
 import blogDataBaseUrl from "@/ts/env/blogDataBaseUrl.ts";
 import {blogData, blogData_rootPath} from "@/views/Blog/ts/blogData.ts";
-import {marked} from "marked";
 import {type BlogInfo, BlogInfoTypeLabelDict, CreatorContriLevelDict} from "@/views/Blog/ts/blog.ts";
 import {getFormatTime} from "@/utils/date.ts";
 import {isClient} from "@vueuse/core";
+import doMarked from "@/views/Blog/views/BlogContent/ts/doMarked.ts";
 
 const route = useRoute();
 
 const blogContent:Ref<HTMLDivElement|null>=ref(null);
-const timeText:Ref<HTMLDivElement|null>=ref(null);
+const creationTimeText:Ref<HTMLDivElement|null>=ref(null);
+const lastModificationTimeText:Ref<HTMLDivElement|null>=ref(null);
 const creatorContriLevel:Ref<HTMLDivElement|null>=ref(null);
 const blogTypes:Ref<string[]>=ref([]);
 
@@ -33,7 +34,7 @@ function getLocContent(id:number){
   //批注：如果将内容赋值放在onMounted中时，预渲染将不会将内容渲染至输出的html中
   const locData=blogData[`${blogData_rootPath}/${id}/content.md`] as string|undefined;
   if (locData!=undefined)
-    return marked(locData);
+    return doMarked(locData);
   else
     return null;
 }
@@ -62,14 +63,18 @@ onMounted(async ()=>{
         if (locContent != undefined) {//本地数据优先
           blogContent.value.innerHTML = locContent;
         } else {//如果本地没有最新数据则获取远程的数据
-          blogContent.value.innerHTML = await marked(
+          blogContent.value.innerHTML = await doMarked(
               await (await fetch(`${blogDataBaseUrl}/blogs/${blogInfo.id}/content.md`)).text()
           );
         }
       }
     }
-    if (timeText.value){
-      timeText.value.innerText = getFormatTime(blogInfo.time);
+    if (
+        creationTimeText.value
+        && lastModificationTimeText.value
+    ){
+      creationTimeText.value.innerText = getFormatTime(blogInfo.creationTime);
+      lastModificationTimeText.value.innerText=getFormatTime(blogInfo.lastModificationTime);
     }
     if (creatorContriLevel.value){
       creatorContriLevel.value.style.setProperty('background',`var(--type-box-creator-contribution-level-bg-${blogInfo.creatorContriLevel})`);
@@ -96,13 +101,17 @@ onMounted(async ()=>{
       </div>
     </div>
     <div class="row mt-1">
-      <div class="col-10 mx-auto">
-        <div ref="blogContent" class="text-start" v-html="(!isClient)?getLocContent(buiBlogInfo!.id):''"/>
+      <div class="col-10 mx-auto github-markdown_wrap">
+        <div ref="blogContent" class="text-start markdown-body" v-html="(!isClient)?getLocContent(buiBlogInfo!.id):''"/>
       </div>
     </div>
     <div class="row">
-      <div class="col-12 text-center">
-        <em><small ref="timeText">{{(!isClient)?getFormatTime(buiBlogInfo!.time):''}}</small></em>
+      <div class="col-12 d-flex justify-content-center">
+        <div class="text-end">
+          <small>创建时间：<em ref="creationTimeText">{{(!isClient)?getFormatTime(buiBlogInfo!.creationTime):''}}</em></small>
+          <br>
+          <small>最后修改时间：<em ref="lastModificationTimeText">{{(!isClient)?getFormatTime(buiBlogInfo!.lastModificationTime):''}}</em></small>
+        </div>
       </div>
     </div>
   </div>
@@ -118,3 +127,9 @@ onMounted(async ()=>{
 }
 </style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Blog/BlogContent.scss"></style>
+
+<style scoped lang="css">
+.markdown-body {
+  background-color: transparent;
+}
+</style>

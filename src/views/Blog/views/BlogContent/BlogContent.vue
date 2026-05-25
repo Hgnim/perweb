@@ -7,8 +7,14 @@ import {type BlogInfo, BlogInfoTypeLabelDict, CreatorContriLevelDict} from "@/vi
 import {getFormatTime} from "@/utils/date.ts";
 import {isClient} from "@vueuse/core";
 import doMarked from "@/views/Blog/views/BlogContent/ts/doMarked.ts";
+import aos from "@/plugins/aos.ts";
 
 const route = useRoute();
+
+aos();
+
+//博客是否加载完毕
+const isLoaded:Ref<boolean>=ref(false);
 
 const blogContent:Ref<HTMLDivElement|null>=ref(null);
 const creationTimeText:Ref<HTMLDivElement|null>=ref(null);
@@ -20,6 +26,9 @@ const blogTypes:Ref<string[]>=ref([]);
 const blogId=Number(route.name!.toString().split('-')[1]);
 
 //#region 仅用于预渲染
+if (!isClient)//如果是构建时则直接将该变量设置为true
+  isLoaded.value = true;
+
 const buiBlogInfo:BlogInfo|null=(()=>{//仅构建时执行，用于预渲染
   if (!isClient) {
     return JSON.parse(
@@ -84,6 +93,8 @@ onMounted(async ()=>{
         blogTypes.value.push(BlogInfoTypeLabelDict[t]||t);
       })
     }
+
+    isLoaded.value = true;
   }
 });
 </script>
@@ -93,26 +104,50 @@ onMounted(async ()=>{
   <div class="container">
     <div class="row mt-2">
       <div class="col-10 mx-auto">
-        <div class="d-flex">
-          <div ref="creatorContriLevel" class="type-box" style="background: transparent"></div>
+        <div class="d-flex flex-wrap">
+          <div ref="creatorContriLevel"
+               class="type-box"
+               style="background: transparent"
+               :class="{'d-none':!isLoaded}"
+               data-aos="zoom-in"
+          />
           <div v-for="(bt,index) in blogTypes" :key="index"
-               class="type-box">{{bt}}</div>
+               class="type-box"
+               :class="{'d-none':!isLoaded}"
+               data-aos="zoom-in"
+               :data-aos-delay="((index+1)*200).toString()"
+          >{{bt}}</div>
         </div>
       </div>
     </div>
     <div class="row mt-1">
       <div class="col-10 mx-auto github-markdown_wrap">
-        <div ref="blogContent" class="text-start markdown-body" v-html="(!isClient)?getLocContent(buiBlogInfo!.id):''"/>
+        <div ref="blogContent"
+             class="text-start markdown-body"
+             :class="{'d-none':!isLoaded}"
+             v-html="(!isClient)?getLocContent(buiBlogInfo!.id):''"
+             data-aos="zoom-in-up"
+        />
       </div>
     </div>
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
-        <div class="text-end">
+        <div class="text-end"
+             :class="{'d-none':!isLoaded}"
+             data-aos="fade-up"
+        >
           <small>创建时间：<em ref="creationTimeText">{{(!isClient)?getFormatTime(buiBlogInfo!.creationTime):''}}</em></small>
           <br>
           <small>最后修改时间：<em ref="lastModificationTimeText">{{(!isClient)?getFormatTime(buiBlogInfo!.lastModificationTime):''}}</em></small>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="position-absolute top-0 vh-100 w-100 d-flex justify-content-center align-items-center"
+       :class="{'d-none':isLoaded}"
+  >
+    <div class="col-12 text-center">
+      <strong>正在加载...</strong>
     </div>
   </div>
 </template>
@@ -128,3 +163,5 @@ onMounted(async ()=>{
 </style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Blog/BlogContent.scss"></style>
 <style scoped lang="css" src="@/assets/scss/github-markdown/gm-custom.scss"/>
+
+<style scoped lang="css" src="aos/dist/aos.css"></style>

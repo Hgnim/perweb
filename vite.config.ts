@@ -34,7 +34,7 @@ export default defineConfig(({}) => {
                 '@': path.resolve(__dirname, 'src'),
             }
         },
-        base: '',
+        base: '/',//确保构建出的html中的引用是绝对路径，以避免出现"./"开头的相对路径引用
         build: {
             outDir: 'dist',
         },

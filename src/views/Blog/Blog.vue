@@ -117,7 +117,7 @@ function loadBlogBtn_textGet(lbbs:number){
       <div class="col-4 text-center">
         <h1>博客</h1>
       </div>
-      <div class="col-4 d-flex align-items-center">
+      <div class="col-8 col-sm-6 col-md-4 mx-auto d-flex align-items-center">
         <div class="input-group">
           <input ref="blogTypeInput" @keyup.enter="blogTypeInputApply_click"
                  type="text" class="form-control" placeholder="博客类型输入">

@@ -35,10 +35,16 @@ function blogTypesFilter_set(value:string|undefined){
 const blogList:Ref<BlogInfo[]>=ref([]);
 const blogTypeInput:Ref<HTMLInputElement|null> = ref(null);
 //const blogTypeInputApply:Ref<HTMLInputElement|null> = ref(null);
-const loadBlogBtn_enabled:Ref<boolean>=ref(false);
+const loadBlogBtn_status:Ref<number>=ref(3);
 
 function loadBlogBtn_update(){
-  loadBlogBtn_enabled.value=!(blogListGeter.blogIndex<((blogListGeter.blogTotalInfo as unknown) as BlogTotalInfo)!.minIndex);
+  if (blogListGeter.isBlogListLoading){
+    loadBlogBtn_status.value=2;
+  }else{
+    loadBlogBtn_status.value=
+        (!(blogListGeter.blogIndex<((blogListGeter.blogTotalInfo as unknown) as BlogTotalInfo)!.minIndex))
+          ?0:1;
+  }
 }
 
 function getBL(){
@@ -48,6 +54,7 @@ function getBL(){
         blogList.value.push(v);//使用push减小性能开销
       });
     }
+    loadBlogBtn_update();
   });
   loadBlogBtn_update();
 }
@@ -80,11 +87,24 @@ function blogTypeInputApply_click(){
 }
 
 function loadBlogBtn_click(){
-  if (loadBlogBtn_enabled.value
+  if (loadBlogBtn_status.value==0
       && !blogListGeter.isBlogListLoading
       && blogListGeter.isInit
   ){
     getBL();
+  }
+}
+
+function loadBlogBtn_textGet(lbbs:number){
+  switch (lbbs){
+    case 0:
+      return '继续加载';
+    case 1:
+      return '已加载全部';
+    case 2:
+      return '正在加载';
+    case 3:
+      return '正在初始化';
   }
 }
 </script>
@@ -125,9 +145,9 @@ function loadBlogBtn_click(){
     <div class="row mt-1">
       <div class="col-10 mx-auto">
         <span id="loadBlogBtn"
-              :class="{'lbb_dis':(!loadBlogBtn_enabled)}"
+              :class="{'lbb_dis':(loadBlogBtn_status!=0)}"
               @click="loadBlogBtn_click"
-        >{{(loadBlogBtn_enabled)?'继续加载':'已加载全部'}}</span>
+        >{{loadBlogBtn_textGet(loadBlogBtn_status)}}</span>
       </div>
     </div>
   </div>

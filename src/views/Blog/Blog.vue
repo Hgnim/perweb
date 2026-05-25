@@ -4,8 +4,11 @@ import {type BlogInfo, BlogListGeter, type BlogTotalInfo} from "@/views/Blog/ts/
 import {onMounted, ref, type Ref} from "vue";
 import {getFromNowTime} from "@/utils/date.ts";
 import {useRoute} from "vue-router";
+import aos from "@/plugins/aos.ts";
 
 useTitle('Hagnimik的博客');
+
+aos();
 
 const route = useRoute();
 
@@ -115,10 +118,10 @@ function loadBlogBtn_textGet(lbbs:number){
       <div class="col-4">
       </div>
       <div class="col-4 text-center">
-        <h1>博客</h1>
+        <h1 data-aos="zoom-in-down">博客</h1>
       </div>
       <div class="col-8 col-sm-6 col-md-4 mx-auto d-flex align-items-center">
-        <div class="input-group">
+        <div class="input-group" data-aos="zoom-in-down">
           <input ref="blogTypeInput" @keyup.enter="blogTypeInputApply_click"
                  type="text" class="form-control" placeholder="博客类型输入">
           <button class="btn btn-outline-secondary" type="button"
@@ -130,7 +133,10 @@ function loadBlogBtn_textGet(lbbs:number){
       <div class="col-10 mx-auto">
         <div class="list-group">
           <router-link v-for="(bi,index) in blogList" :key="index"
-                       :to="{ name: `blogContent-${bi.id}` }" class="list-group-item list-group-item-action">
+                       :to="{ name: `blogContent-${bi.id}` }"
+                       class="list-group-item list-group-item-action"
+                       :data-aos="(index%2==0)?'fade-left':'fade-right'"
+          >
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{bi.title}}</h5>
             </div>
@@ -170,3 +176,5 @@ function loadBlogBtn_textGet(lbbs:number){
   }
 }
 </style>
+
+<style scoped lang="css" src="aos/dist/aos.css"></style>

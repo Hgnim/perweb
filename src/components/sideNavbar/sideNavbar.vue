@@ -16,6 +16,46 @@
           <router-link class="nav-link" to="/blog">博客</router-link>
         </li>
       </ul>
+      <ul class="navbar-nav flex-row flex-wrap d-flex justify-content-evenly nav-2">
+        <li class="nav-item dropdown unSelectable w-100">
+          <button type="button" class="btn btn-link nav-link dropdown-toggle w-100" data-bs-toggle="dropdown">
+            <svg class="bi" width="24" height="24" ><use :xlink:href="themeIcon"></use></svg>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end overflow-scroll w-100 min-width-unset">
+            <li>
+              <h6 class="dropdown-header">主题选择</h6>
+            </li>
+            <li class="min-width-100px">
+              <button @click="doThemeSel('auto')" :class="{ 'active': (curSelTheme=='auto') }" class="dropdown-item">
+                <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-clock"></use></svg>
+                自动
+                <svg :style="(curSelTheme!='auto')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+              </button>
+            </li>
+            <li class="min-width-100px">
+              <button @click="doThemeSel('system')" :class="{ 'active': (curSelTheme=='system') }" class="dropdown-item">
+                <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-circle-half"></use></svg>
+                系统
+                <svg :style="(curSelTheme!='system')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+              </button>
+            </li>
+            <li class="min-width-100px">
+              <button @click="doThemeSel('light')" :class="{ 'active': (curSelTheme=='light') }" class="dropdown-item">
+                <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-sun"></use></svg>
+                浅色
+                <svg :style="(curSelTheme!='light')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+              </button>
+            </li>
+            <li class="min-width-100px">
+              <button @click="doThemeSel('dark')" :class="{ 'active': (curSelTheme=='dark') }" class="dropdown-item">
+                <svg class="bi" width="16" height="16" ><use xlink:href="#svg-bsi-moon-stars"></use></svg>
+                深色
+                <svg :style="(curSelTheme!='dark')?{display: 'none'}:{}" class="bi" width="16" height="16"><use xlink:href="#svg-bsi-check2"></use></svg>
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </nav>
   </div>
@@ -24,6 +64,7 @@
 <script setup lang="ts">
 import { onMounted, type Ref, ref} from 'vue';
 //import {themeSync} from '@/ts/themeSync';
+import {curSelTheme, doThemeSel, themeIcon, init as themeInit} from "@/components/sideNavbar/ts/theme.ts";
 
 const leftSideNavbar: Ref<HTMLElement|null>=ref(null);
 const sideNavbar: Ref<HTMLElement | null>=ref(null);
@@ -58,6 +99,8 @@ onMounted(()=>{
     }
   }
 });
+
+themeInit();
 
 //const {theme/*, toggleTheme*/} = themeSync();
 </script>
@@ -224,4 +267,11 @@ $navbar-left_width: 5rem;
   background-color: var(--bs-navbar-hover-color);
 }
 
+
+.min-width-unset{
+  min-width: unset;
+}
+.min-width-100px{
+  min-width: 100px;
+}
 </style>

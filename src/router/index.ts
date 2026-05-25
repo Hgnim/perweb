@@ -21,6 +21,17 @@ export default createRouter({
             name: 'home',
             component: ()=>import('@/views/Home/Home.vue'),
         },
-        ...blogRouter
+        ...blogRouter,
+
+        {
+            path: '/404',//使预渲染工具构建一个404.html以供github page使用
+            name: '404',
+            component: ()=>import('@/views/404.vue'),
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'notFound',
+            component: ()=>import('@/views/404.vue'),
+        },
     ],
 });

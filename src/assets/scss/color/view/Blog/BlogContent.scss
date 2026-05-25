@@ -14,4 +14,9 @@
 }
 [data-bs-theme=dark] .type-box{
   --type-box-bg:var(--bs-secondary-bg);
+
+  --type-box-creator-contribution-level-bg-0: #570000;
+  --type-box-creator-contribution-level-bg-1: #734a00;
+  --type-box-creator-contribution-level-bg-2: #4c4c00;
+  --type-box-creator-contribution-level-bg-3: #003e00;
 }

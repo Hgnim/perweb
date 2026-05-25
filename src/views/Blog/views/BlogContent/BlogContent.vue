@@ -94,7 +94,7 @@ onMounted(async ()=>{
     <div class="row mt-2">
       <div class="col-10 mx-auto">
         <div class="d-flex">
-          <div ref="creatorContriLevel" class="type-box">test</div>
+          <div ref="creatorContriLevel" class="type-box" style="background: transparent"></div>
           <div v-for="(bt,index) in blogTypes" :key="index"
                class="type-box">{{bt}}</div>
         </div>
@@ -127,9 +127,4 @@ onMounted(async ()=>{
 }
 </style>
 <style scoped lang="scss" src="@/assets/scss/color/view/Blog/BlogContent.scss"></style>
-
-<style scoped lang="css">
-.markdown-body {
-  background-color: transparent;
-}
-</style>
+<style scoped lang="css" src="@/assets/scss/github-markdown/gm-custom.scss"/>
